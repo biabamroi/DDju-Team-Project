@@ -18,6 +18,7 @@
 /* section2 */
 
 .slide-wrapper {
+  position: relative;
   width: 100vw;
   height: 100vh;
   background-color: #EEF1FF;
