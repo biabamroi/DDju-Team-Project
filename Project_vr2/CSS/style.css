@@ -21,3 +21,18 @@ button {
 .visually-hidden {
     display: none;
 }
+
+.section-text {
+    width: 100%;
+    height: 200px;
+    padding-top: 100px;
+    text-align: center;
+  }
+  
+  .section-title {
+    font-weight: 700;
+  }
+  
+  .section-content {
+    font-size: 18px;
+  }
