@@ -19,6 +19,10 @@
 
 
 <!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+   
 
 
 <!-- Fontawesome -->
@@ -35,22 +39,69 @@
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="./css/header.css">
 <link rel="stylesheet" href="./css/footer.css">
-
+<link rel="stylesheet" href="./CSS/section.css">
 </head>
 <body>
     <div class="wrapper">
-        
-        <header>
-            <h1 class="logo"></h1>
+
+        <header class="global-header">
+            <h1 class="logo">
+                <a href="./index.html">DDju</a>
+            </h1>
             <nav>
-    
+                <h2 class="visually-hidden">메뉴</h2>
+                <ul class="gnb">
+                    <li><a href="">what's DDju</a></li>
+                    <li><a href="">코스 대전</a></li>
+                    <li>
+                        <a href="">대전의 모든 것</a>
+                        <ul class="sub">
+                            <li><a href="">오늘 뭐하지</a></li>
+                            <li><a href="">오늘 뭐먹지</a></li>
+                            <li><a href="">오늘 뭐보지</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">contact</a></li>
+                </ul>
             </nav>
+
+            <div class="button-group">
+                <button type="button" class="login-btn login-hidden">
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <div class="mymenu login-show">
+                    <button type="button" class="like-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+                    <button type="button" class="mymenu-btn">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+                </div>
+            </div>
         </header>
 
 
         <main>
 
             <section>
+                <div class="search">
+                    <div class="search-txt">
+                        <h3>대전 데이트</h3>
+                        <p>어디로 가지?</p>
+                    </div>
+                    <div class="search-box">
+                        <div class="search-bar">
+                            <div></div>
+                            <button type="button">검색</button>
+                        </div>
+                        <ul class="keywords-list">
+                            <li>#맛집</li>
+                            <li>#데이트 코스 추천</li>
+                            <li>#대전 핫플</li>
+                            <li>#놀거리</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
 
 
@@ -59,6 +110,36 @@
 
 
             <section>
+                <div class="section-text">
+                    <h3 class="section-title">유잼 도시 '대전'</h3>
+                    <p class="section-content">먹거리, 놀거리, 볼거리 다 있는 대전!</p>
+                </div>
+                <div class="menu-box-wrapper">
+                    <a href="" class="menu-box">
+                        <p class="menu-title">오늘<br>뭐하지</p>
+                        <div class="img-box">
+                            <img src="./images/travel.jpg" alt="여행">
+                        </div>
+                    </a>
+                    <a href="" class="menu-box">
+                        <div class="img-box">
+                            <img src="./images/Food.jpg" alt="음식">
+                        </div>
+                        <p class="menu-title">오늘<br>뭐먹지</p>
+                    </a>
+                    <a href="" class="menu-box">
+                        <p class="menu-title">오늘<br>뭐보지</p>
+                        <div class="img-box">
+                            <img src="./images/Expo.jpg" alt="엑스포">
+                        </div>
+                    </a>
+                    <a href="" class="menu-box">
+                        <div class="img-box">
+                            <img src="./images/kumdori .jpg" alt="꿈돌이">
+                        </div>
+                        <p class="menu-title">대전의<br>모든것</p>
+                    </a>
+                </div>
             </section>
 
         </main>
@@ -73,7 +154,7 @@
                     <li class="footer-link-item"><a href="">사이트맵</a></li>
                 </ul>
                 <ul class="footer-info-list">
-                    <li><span>DDJu</span></li>
+                    <li><a href="./index.html">DDJu</a></li>
                     <li>대표이사: 꼬타비, 서우, 한나, Kai</li>
                     <li>사업자등록번호: 123-456-7890</li>
                     <li>고객센터: 1234-1234</li>
@@ -88,7 +169,7 @@
         </footer>
 
         <aside></aside>
-        <div class="overlay"></div>
+        <div class="overlay"> </div>
 
         
     </div>
