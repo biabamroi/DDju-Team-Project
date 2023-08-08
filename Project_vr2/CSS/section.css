@@ -1,0 +1,45 @@
+.menu-box-wrapper {
+  width: 900px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.menu-box {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #AAC4FF;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  transition: background-color 300ms ease-in-out;
+}
+
+.menu-box:hover {
+  background-color: #AAC4FF;
+  color: aliceblue; 
+}
+
+.menu-title {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  font-size: 30px;
+  font-family: 'Gowun Dodum', sans-serif;
+}
+
+.img-box {
+ padding: 20px;
+}  
+
+.img-box img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+}  
+
