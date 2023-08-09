@@ -1,0 +1,78 @@
+.global-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+  background-color: #AAC4FF;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.logo a {
+  color: #fff;
+  font-weight: 700;
+}
+
+.gnb-list {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+}
+
+.gnb-item {
+  position: relative;
+}
+
+.gnb-list li a {
+  display: block;
+  padding: 16px;
+  color: #fff;
+  transition: all 300ms ease-in-out;
+}
+
+.gnb-list a:hover {
+  color: #AAC4FF;
+  background-color: #fff;
+}
+
+.sub {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  text-align: center;
+  background-color: #AAC4FF;
+}
+
+.global-header .button-group {
+  display: flex;
+  align-items: center;
+}
+
+.global-header .button-group button i {
+  font-size: 25px;
+  color: #fff;
+}
+
+.global-header .button-group.login .login-btn {
+  display: none;
+}
+
+.global-header .button-group.login .mymenu {
+  display: flex;
+}
+
+.mymenu {
+  display: none;
+}
+
+.mymenu button {
+  margin-right: 10px;
+}
+
+.mymenu button:last-child {
+  margin-right: 0;
+}
