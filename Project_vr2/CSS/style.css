@@ -9,7 +9,7 @@ li {
 }
 
 a {
-    color: black;
+    color: #000;
     text-decoration: none;
 }
 
@@ -21,3 +21,4 @@ button {
 .visually-hidden {
     display: none;
 }
+

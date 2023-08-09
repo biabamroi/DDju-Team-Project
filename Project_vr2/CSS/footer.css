@@ -34,10 +34,11 @@ footer {
   padding: 5px 0;
 }
 
-.footer-info-list span {
+.footer-info-list li a {
   font-size: 28px;
   font-weight: 700;
   color: #aac4ff;
+  cursor: pointer;
 }
 
 .footer-icon-list {
@@ -80,3 +81,17 @@ footer {
   transition: background-color 300ms ease-in-out;
 }
 
+
+
+/* top-btn */
+
+.top-btn{
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+}
+
+.top-btn i {
+  font-size: 38px;
+  color: #AAC4FF;
+}
