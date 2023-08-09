@@ -1,0 +1,84 @@
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-wrap {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  height: 600px;
+  border: 1px solid #AAC4FF;
+  border-radius: 10px;
+  /* box-shadow: 0 0.5px 3px rgba(000,000,000,0.3); */
+}
+
+
+
+.login-top {
+  text-align: center;
+}
+
+.login-top p {
+  font-size: 48px;
+  font-weight: 700;
+  color: #aac4ff;
+}
+
+.login-top span {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.login-center {
+  margin-top: 40px;
+}
+
+.login-center input {
+  width: 300px;
+  height: 40px;
+  padding-left: 15px;
+  border: 1px solid #AAC4FF;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.login-center input:last-child {
+  margin-top: 10px;
+}
+
+
+
+.login-bottom button {
+  width: 300px;
+  height: 40px;
+  margin-top: 10px;
+  padding-left: 15px;
+  border: 1px solid #AAC4FF;
+  border-radius: 10px;
+  background-color: #AAC4FF;
+  color: white;
+  font-size: 15px;
+}
+
+.login-list-wrap {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.login-list-wrap span {
+  font-size: 15px;
+}
+
+.login-list-wrap > span:first-child > a {
+  color: black;
+}
+
+.login-list-wrap > span:last-child > a {
+  color: #AAC4FF;
+  font-weight: 700;
+}
