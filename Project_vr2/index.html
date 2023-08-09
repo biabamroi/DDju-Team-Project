@@ -48,10 +48,10 @@
             </h1>
             <nav>
                 <h2 class="visually-hidden">메뉴</h2>
-                <ul class="gnb">
-                    <li><a href="">what's DDju</a></li>
-                    <li><a href="">코스 대전</a></li>
-                    <li>
+                <ul class="gnb-list">
+                    <li class="gnb-item"><a href="">what's DDju</a></li>
+                    <li class="gnb-item"><a href="">코스 대전</a></li>
+                    <li class="gnb-item">
                         <a href="">대전의 모든 것</a>
                         <ul class="sub">
                             <li><a href="">오늘 뭐하지</a></li>
@@ -59,15 +59,18 @@
                             <li><a href="">오늘 뭐보지</a></li>
                         </ul>
                     </li>
-                    <li><a href="">contact</a></li>
+                    <li class="gnb-item"><a href="">contact</a></li>
                 </ul>
             </nav>
 
             <div class="button-group">
-                <button type="button" class="login-btn login-hidden">
+                <button type="button" class="login-btn">
                     <i class="fa-regular fa-user"></i>
                 </button>
-                <div class="mymenu login-show">
+                <div class="mymenu">
+                    <button type="button" class="logout-btn">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </button>
                     <button type="button" class="like-btn">
                         <i class="fa-solid fa-heart"></i>
                     </button>
@@ -80,10 +83,6 @@
         
 
         <main>
-            <section>test code1</section>
-            <section>test code2</section>
-            <section>test code3</section>
-            <section>test code4</section>
             <section>
                 <div class="search">
                     <div class="search-txt">
@@ -92,7 +91,9 @@
                     </div>
                     <div class="search-box">
                         <div class="search-bar">
-                            <div></div>
+                            <div>
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
                             <button type="button">검색</button>
                         </div>
                         <ul class="keywords-list">
