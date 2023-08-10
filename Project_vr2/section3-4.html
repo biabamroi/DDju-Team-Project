@@ -25,6 +25,9 @@
 <!-- Fontawesome -->
 <script src="https://kit.fontawesome.com/6105f934ac.js" crossorigin="anonymous"></script>
 
+<!-- iconify -->
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
 <!-- jQuery CDN -->
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 
@@ -37,125 +40,126 @@
 
 </head>
 <body>
-    <div class="wrapper" id="top">
-
-        <header class="global-header">
-            <h1 class="logo">
-                <a href="./index.html">DDju</a>
-            </h1>
-            <nav>
-                <h2 class="visually-hidden">메뉴</h2>
-                <ul class="gnb-list">
-                    <li class="gnb-item"><a href="">what's DDju</a></li>
-                    <li class="gnb-item"><a href="">코스 대전</a></li>
-                    <li class="gnb-item">
-                        <a href="">대전의 모든 것</a>
-                        <ul class="sub">
-                            <li><a href="">오늘 뭐하지</a></li>
-                            <li><a href="">오늘 뭐먹지</a></li>
-                            <li><a href="">오늘 뭐보지</a></li>
-                        </ul>
-                    </li>
-                    <li class="gnb-item"><a href="">contact</a></li>
-                </ul>
-            </nav>
-
-            <div class="button-group">
-                <button type="button" class="login-btn">
-                    <i class="fa-regular fa-user"></i>
-                </button>
-                <div class="mymenu">
-                    <button type="button" class="logout-btn">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    </button>
-                    <button type="button" class="like-btn">
-                        <i class="fa-solid fa-heart"></i>
-                    </button>
-                    <button type="button" class="mymenu-btn">
-                        <i class="fa-solid fa-user"></i>
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <main>
-          <section>
-            <h2 class="title">대전의 모든 것</h2>
-            <ul class="place">
-                <li><a href="">전체</a></li>
-                <li><a href="">관광지</a></li>
-                <li><a href="">맛집</a></li>
-                <li><a href="">축제/공연</a></li>
+  <div class="wrapper" id="top">
+    <header class="global-header">
+      <h1 class="logo">
+        <a href="./index.html">DDju</a>
+      </h1>
+      <nav>
+        <h2 class="visually-hidden">메뉴</h2>
+        <ul class="gnb-list">
+          <li class="gnb-item"><a href="">what's DDju</a></li>
+          <li class="gnb-item"><a href="">코스 대전</a></li>
+          <li class="gnb-item">
+            <a href="">대전의 모든 것</a>
+            <ul class="sub">
+              <li><a href="">오늘 뭐하지</a></li>
+              <li><a href="">오늘 뭐먹지</a></li>
+              <li><a href="">오늘 뭐보지</a></li>
             </ul>
+          </li>
+          <li class="gnb-item"><a href="">contact</a></li>
+        </ul>
+      </nav>
 
-            <div class="select">
-                <select name="district" id="district">
-                    <option value="">구</option>
-                    <option value="">동구</option>
-                    <option value="">대덕구</option>
-                    <option value="">서구</option>
-                    <option value="">유성구</option>
-                    <option value="">중구</option>
-                </select>
-                <div class="order">
-                    <p>인기순</p>
-                    <p>최신순</p>
-                </div>
-            </div>
-
-            <div class="place-list">
-                <div class="place-item">
-                    <img src="" alt="">
-                    <div class="text-box">
-                        <h3>서귀포</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, repellendus.</p>
-                        <ul class="keywords-list">
-                            <li>#키워드</li>
-                            <li>#키워드</li>
-                            <li>#키워드</li>
-                            <li>#키워드</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-          </section>
-        </main>
-
-        <footer>
-          <div class="global-footer">
-              <ul class="footer-link-list">
-                  <li class="footer-link-item"><a href="">About</a></li>
-                  <li class="footer-link-item"><a href="">개인정보 처리방침</a></li>
-                  <li class="footer-link-item"><a href="">위치정보 이용약관</a></li>
-                  <li class="footer-link-item"><a href="">사이트맵</a></li>
-              </ul>
-              <ul class="footer-info-list">
-                  <li><a href="./index.html">DDJu</a></li>
-                  <li>대표이사: 꼬타비, 서우, 한나, Kai</li>
-                  <li>사업자등록번호: 123-456-7890</li>
-                  <li>고객센터: 1234-1234</li>
-              </ul>
-              <ul class="footer-icon-list">
-                  <li><a href="https://github.com/Ji2unKo"><img src="https://avatars.githubusercontent.com/u/132882429?v=4" alt="꼬타비"></a></li>
-                  <li><a href="https://github.com/choiseowu"><img src="https://avatars.githubusercontent.com/u/132882346?v=4" alt="서우"></a></li>
-                  <li><a href="https://github.com/hanna0115"><img src="https://avatars.githubusercontent.com/u/132882278?v=4" alt="한나"></a></li>
-                  <li><a href="https://github.com/biabamroi"><img src="https://avatars.githubusercontent.com/u/132882475?v=4" alt="Kai"></a></li>
-              </ul>
-          </div>
-      </footer>
-
-      <div class="top-btn">
-          <a href="#top">
-              <i class="fa-solid fa-circle-arrow-up"></i>
-          </a>
+      <div class="button-group">
+        <button type="button" class="login-btn">
+          <i class="fa-regular fa-user"></i>
+        </button>
+        <div class="mymenu">
+          <button type="button" class="logout-btn">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+          <button type="button" class="like-btn">
+            <i class="fa-solid fa-heart"></i>
+          </button>
+          <button type="button" class="mymenu-btn">
+            <i class="fa-solid fa-user"></i>
+          </button>
+        </div>
       </div>
+    </header>
 
-      <aside></aside>
-      <div class="overlay"> </div>
+
+
+    <main>
+      <section>
+        <h2 class="title">대전의 모든 것</h2>
+        <ul class="place">
+          <li><a href="">전체</a></li>
+          <li><a href="">관광지</a></li>
+          <li><a href="">맛집</a></li>
+          <li><a href="">축제/공연</a></li>
+        </ul>
+
+        <div class="select">
+          <select name="district" id="district">
+            <option value="">구</option>
+            <option value="">동구</option>
+            <option value="">대덕구</option>
+            <option value="">서구</option>
+            <option value="">유성구</option>
+            <option value="">중구</option>
+          </select>
+          <div class="order">
+            <p>인기순</p>
+            <p>최신순</p>
+          </div>
+        </div>
+
+        <div class="place-list">
+          <div class="place-item">
+            <img src="" alt="">
+            <div class="text-box">
+              <h3>서귀포</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, repellendus.</p>
+              <ul class="keywords-list">
+                <li>#키워드</li>
+                <li>#키워드</li>
+                <li>#키워드</li>
+                <li>#키워드</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="global-footer">
+        <ul class="footer-link-list">
+          <li class="footer-link-item"><a href="">About</a></li>
+          <li class="footer-link-item"><a href="">개인정보 처리방침</a></li>
+          <li class="footer-link-item"><a href="">위치정보 이용약관</a></li>
+          <li class="footer-link-item"><a href="">사이트맵</a></li>
+        </ul>
+        <ul class="footer-info-list">
+          <li><a href="./index.html">DDju</a></li>
+          <li>대표이사: 꼬타비, 서우, 한나, Kai</li>
+          <li>사업자등록번호: 123-456-7890</li>
+          <li>고객센터: 1234-1234</li>
+        </ul>
+        <ul class="footer-icon-list">
+          <li><a href="https://github.com/Ji2unKo"><img src="https://avatars.githubusercontent.com/u/132882429?v=4" alt="꼬타비"></a></li>
+          <li><a href="https://github.com/choiseowu"><img src="https://avatars.githubusercontent.com/u/132882346?v=4" alt="서우"></a></li>
+          <li><a href="https://github.com/hanna0115"><img src="https://avatars.githubusercontent.com/u/132882278?v=4" alt="한나"></a></li>
+          <li><a href="https://github.com/biabamroi"><img src="https://avatars.githubusercontent.com/u/132882475?v=4" alt="Kai"></a></li>
+        </ul>
+      </div>
+  </footer>
+
+    <div class="top-btn">
+        <a href="#top">
+            <i class="fa-solid fa-circle-arrow-up"></i>
+        </a>
+    </div>
+
+    <aside></aside>
+    <div class="overlay"> </div>
 
       
   </div>
-  <script src="./js/script.js"></script>
+
   <script src="./js/header.js"></script>
   <script src="./js/footer.js"></script>
 
