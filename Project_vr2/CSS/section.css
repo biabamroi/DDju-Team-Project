@@ -1,4 +1,4 @@
-/* section1 */
+/* section1 search */
 
 section:nth-of-type(1) {
   position: relative;
@@ -100,6 +100,7 @@ section:nth-of-type(1) {
 
 
 /* section 2, 3 text 공통 스타일링 */
+
 .section-text {
   width: 100%;
   height: 200px;
@@ -119,7 +120,7 @@ section:nth-of-type(1) {
 
 
 
-/* section2 */
+/* section2 slide */
 
 .slide-wrapper {
   position: relative;
@@ -195,7 +196,7 @@ section:nth-of-type(1) {
 
 
 
-/* section3 */
+/* section3 hover box */
 
 .menu-box-wrapper {
   width: 900px;
