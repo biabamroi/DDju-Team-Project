@@ -1,8 +1,5 @@
 .global-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   display: flex;
   justify-content: space-between;
   padding: 20px 30px;
@@ -42,6 +39,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  display: none;
   width: 140px;
   text-align: center;
   background-color: #AAC4FF;
