@@ -22,6 +22,10 @@
 }
 
 
+.spaces {
+  padding: 15px 0;
+}
+
 
 .inputbox {
   display: flex;
