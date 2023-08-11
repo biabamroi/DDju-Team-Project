@@ -144,7 +144,7 @@ $('#year, #month, #date').focusout(function(){
     // is Not a Number
     $('.birth .warn').html('<span class="text-red">생년월일을 다시 확인해 주세요.</span>');
   } else if(now - year > 100) {
-    $('.birth .warn').html('<span class="text-red">정말이세요?</span>');
+    $('.birth .warn').html('<span class="text-red">과거에서 오셨나요?</span>');
   } else if(nowStamp < birth) {
     $('.birth .warn').html('<span class="text-red">미래에서 오셨군요!</span>');
   } else {
@@ -297,4 +297,3 @@ $('#joinbtn').on('click', function(e){
     $('input').trigger('focusout');
   }
 })
-
