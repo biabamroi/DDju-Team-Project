@@ -1,6 +1,7 @@
 section {
   width: 800px;
   margin: 0 auto;
+  color: #333;
 }
 
 .title {
@@ -17,6 +18,10 @@ section {
 .place li {
   position: relative;
   padding: 0 10px;
+}
+
+.place li a {
+  color: #666;
 }
 
 .place li::before {
@@ -36,9 +41,10 @@ section {
 .select {
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #666666;
-  border-bottom: 1px solid #666666;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   padding: 10px;
+  color: #666;
 }
 
 .order {
@@ -66,6 +72,7 @@ section {
 #district {
   border: none;
   padding: 0 20px;
+  color: #666;
 }
 
 .place-list {
@@ -84,7 +91,7 @@ section {
 .place-item img {
   width: 200px;
   height: 150px;
-  /* object-fit: cover; */
+  object-fit: cover;
 }
 
 .text-box {
