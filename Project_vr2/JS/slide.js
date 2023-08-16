@@ -13,7 +13,8 @@ prevBtn.addEventListener('click', function(){
     slideList.style.transform = 'translateX(-' + currentSlide * 800 + 'px)'
     slideList.style.transition = `${0.5}s ease-out`;
     nextBtn.style.display = 'block';
-  } 
+  }
+  
   if(currentSlide === 0) {
     prevBtn.style.display = 'none';
   }
