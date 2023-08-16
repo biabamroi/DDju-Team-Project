@@ -81,6 +81,7 @@ section {
   margin: 20px auto;
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);  
 }
 
 .place-item {
@@ -109,5 +110,14 @@ section {
 .keywords-list {
   display: flex;
   margin: 10px;
+}
+
+.keywords-list li {
+  margin-right: 15px;
+  padding:  5px 10px;
+  border-radius: 25px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #AAC4FF;
 }
 
