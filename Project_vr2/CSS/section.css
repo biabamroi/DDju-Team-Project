@@ -176,6 +176,7 @@ section:nth-of-type(1) {
 }
 
 .slide-content {
+  margin: 20px 0 30px 0;
   text-align: center;
 }
 
@@ -186,6 +187,7 @@ section:nth-of-type(1) {
 }
 
 #prev {
+  display: none;
   left: 200px;
 }
 
