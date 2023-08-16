@@ -35,7 +35,7 @@
 
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="./css/sub-header.css">
-<link rel="stylesheet" href="./CSS/section3.css">
+<link rel="stylesheet" href="./CSS/place-details.css">
 <link rel="stylesheet" href="./css/footer.css">
 <link rel="stylesheet" href="./CSS/aside.css">
 
@@ -82,106 +82,144 @@
     </header>
 
 
-
     <main>
       <section>
-        <h2 class="title">대전의 모든 것</h2>
         <ul class="place">
           <li><a href="">전체</a></li>
           <li><a href="">관광지</a></li>
           <li><a href="">맛집</a></li>
           <li><a href="">축제/공연</a></li>
         </ul>
+        <h2 class="title">한밭수목원</h2>
 
-        <div class="select">
-          <select name="district" id="district">
-            <option value="">구</option>
-            <option value="">동구</option>
-            <option value="">대덕구</option>
-            <option value="">서구</option>
-            <option value="">유성구</option>
-            <option value="">중구</option>
-          </select>
-          <div class="order">
-            <p>인기순</p>
-            <p>최신순</p>
+        <hr>
+
+        <div class="place-detail-box">
+          <img src="./images/detail-expo.jpg" alt="장소 사진">
+          <div class="icon-group">
+            <button type="button"><i class="fa-regular fa-heart"></i></button>
+            <button type="button"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
           </div>
+          <div class="place-detail-txt">
+            <p>도심 속에서 푸르름을 만끽하며 휴식할 수 있는 공간</p>
+            <ul class="place-detail-list">
+              <li class="place-detail-item">
+                <strong>주소 :</strong>
+                <span>대전 서구 둔산대로 169</span>
+              </li>
+              <li class="place-detail-item">
+                <strong>영업시간 :</strong>
+                <span>동원 - 하절기 21:00에 운영종료</span>
+              </li>
+              <li class="place-detail-item">
+                <strong>문의 및 안내 :</strong>
+                <span>042-270-8452</span>
+              </li>
+              <li class="place-detail-item">
+                <strong>홈페이지 :</strong>
+                <span>http://www.daejeon.go.kr/gar/index.do</span>
+              </li>
+            </ul>
+            <ul class="keywords-list">
+              <li>#키워드</li>
+              <li>#키워드</li>
+              <li>#키워드</li>
+              <li>#키워드</li>
+            </ul>
+          </div>
+          <div class="place-map"></div>
         </div>
 
-        <div class="place-list">
-          <div class="place-item">
-            <img src="./images/kumdori .jpg" alt="">
-            <div class="text-box">
-              <h3>대전 꿈돌이 도시</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, repellendus.</p>
-              <ul class="keywords-list">
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-              </ul>
-            </div>
+        <hr>
+
+        <div class="review-box">
+          <div class="review-title">
+            <p>후기</p>
+            <span>총 -건</span>
           </div>
-        </div>
-        <div class="place-list">
-          <div class="place-item">
-            <img src="./images/kumdori .jpg" alt="">
-            <div class="text-box">
-              <h3>대전 꿈돌이 도시</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, repellendus.</p>
-              <ul class="keywords-list">
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-              </ul>
+          <form action="" id="review-form">
+            <div class="write-review">
+              <div class="star-rating">
+                <label for="">
+                  <input type="radio" name="star-rating" id="1-star" value="1">
+                  <i class="fa-solid fa-star"></i>
+                </label>
+                <label for="">
+                  <input type="radio" name="star-rating" id="2-star" value="2">
+                  <i class="fa-solid fa-star"></i>
+                </label>
+                <label for="">
+                  <input type="radio" name="star-rating" id="3-star" value="3">
+                  <i class="fa-solid fa-star"></i>
+                </label>
+                <label for="">
+                  <input type="radio" name="star-rating" id="4-star" value="4">
+                  <i class="fa-solid fa-star"></i>
+                </label>
+                <label for="">
+                  <input type="radio" name="star-rating" id="5-star" value="5">
+                  <i class="fa-solid fa-star"></i>
+                </label>
+              </div>
+              <textarea name="review-txt" id="review-txt" placeholder="후기를 적어주세요."></textarea>
             </div>
-          </div>
-        </div>
-        <div class="place-list">
-          <div class="place-item">
-            <img src="./images/kumdori .jpg" alt="">
-            <div class="text-box">
-              <h3>대전 꿈돌이 도시</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, repellendus.</p>
-              <ul class="keywords-list">
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="place-list">
-          <div class="place-item">
-            <img src="./images/kumdori .jpg" alt="">
-            <div class="text-box">
-              <h3>대전 꿈돌이 도시</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, repellendus.</p>
-              <ul class="keywords-list">
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="place-list">
-          <div class="place-item">
-            <img src="./images/kumdori .jpg" alt="">
-            <div class="text-box">
-              <h3>대전 꿈돌이 도시</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, repellendus.</p>
-              <ul class="keywords-list">
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-              </ul>
-            </div>
-          </div>
+
+            <button type="submit" class="review-btn">작성하기</button>
+          </form>
+
+            <ul class="review-list">
+              <li class="review-item">
+                <div class="user-info">
+                  <img src="./images/kumdori .jpg" alt="">
+                  <p>이름</p>
+                </div>
+                <div class="review">
+                  <div class="star-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <p>후기 내용</p>
+                </div>
+                <p>작성시간</p>
+              </li>
+              <li class="review-item">
+                <div class="user-info">
+                  <img src="./images/kumdori .jpg" alt="">
+                  <p>이름</p>
+                </div>
+                <div class="review">
+                  <div class="star-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <p>후기 내용</p>
+                </div>
+                <p>작성시간</p>
+              </li>
+              <li class="review-item">
+                <div class="user-info">
+                  <img src="./images/kumdori .jpg" alt="">
+                  <p>이름</p>
+                </div>
+                <div class="review">
+                  <div class="star-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <p>후기 내용</p>
+                </div>
+                <p>작성시간</p>
+              </li>
+            </ul>
         </div>
       </section>
     </main>
