@@ -145,6 +145,14 @@ hr {
   margin-bottom: 10px;
 }
 
+.star-rating label:hover i {
+  color: #bbb;
+}
+
+.star-rating label.on i {
+  color: #FBC85B;
+}
+
 .star-rating input[type='radio'] {
   display: none;
 }
