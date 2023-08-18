@@ -1,6 +1,7 @@
 section {
   width: 800px;
   margin: 0 auto;
+  color: #333;
 }
 
 .title {
@@ -17,6 +18,10 @@ section {
 .place li {
   position: relative;
   padding: 0 10px;
+}
+
+.place li a {
+  color: #666;
 }
 
 .place li::before {
@@ -36,9 +41,10 @@ section {
 .select {
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #666666;
-  border-bottom: 1px solid #666666;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   padding: 10px;
+  color: #666;
 }
 
 .order {
@@ -66,6 +72,7 @@ section {
 #district {
   border: none;
   padding: 0 20px;
+  color: #666;
 }
 
 .place-list {
@@ -74,6 +81,7 @@ section {
   margin: 20px auto;
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);  
 }
 
 .place-item {
@@ -102,5 +110,14 @@ section {
 .keywords-list {
   display: flex;
   margin: 10px;
+}
+
+.keywords-list li {
+  margin-right: 15px;
+  padding:  5px 10px;
+  border-radius: 25px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #AAC4FF;
 }
 
