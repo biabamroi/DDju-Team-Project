@@ -60,6 +60,20 @@ hr {
   font-size: 20px;
 }
 
+.like-btn button:last-child {
+  display: none;
+}
+
+.like-btn.on button:first-child {
+  display: none;
+}
+
+.like-btn.on button:last-child {
+  display: block;
+  color: #FD8A8A;
+  animation: like 1s linear;
+}
+
 .place-detail-txt {
   margin: 20px;
 }
@@ -197,4 +211,16 @@ hr {
   width: 500px;
   height: 90px;
   margin: 0 25px;
+}
+
+@keyframes like {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
+  }
 }
