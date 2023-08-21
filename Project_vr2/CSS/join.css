@@ -159,26 +159,3 @@
   cursor: pointer;
 }
 
-.text-secondary {
-  color: #8e8e8e;
-}
-
-.text-red {
-  color: red;
-}
-
-.text-green {
-  color: #aac4ff;
-}
-
-.border-red {
-  border-color: red;
-}
-
-.border-act {
-  border-color: #aac4ff;
-}
-
-.warn {
-  margin: 15px 0;
-}
