@@ -1,0 +1,168 @@
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-wrap {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  height: 600px;
+  border: 1px solid #AAC4FF;
+  border-radius: 10px;
+  /* box-shadow: 0 0.5px 3px rgba(000,000,000,0.3); */
+}
+
+.login-top {
+  text-align: center;
+}
+
+.login-top p {
+  font-size: 48px;
+  font-weight: 700;
+  color: #aac4ff;
+}
+
+.login-top span {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+
+.join-box-list {
+  max-width: 468px;
+  margin: 0 auto;
+}
+
+.join-box-item {
+  margin-bottom: 20px;
+}
+
+
+.login-center {
+  margin-top: 40px;
+}
+
+
+.phonenum,
+.postnum {
+  display: flex;
+  align-items: center;
+}
+
+.phonenum .inputbox,
+.postnum .inputbox {
+  width: calc(100% - 120px);
+  margin-right: 5px;
+}
+
+.phonenum button,
+.postnum button {
+  width: 115px;
+  height: 52px;
+  margin-top: 10px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+.inputbox {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  background-color: #fff;
+  border: 1px solid #aac4ff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.inputbox input {
+  width: 70%;
+  height: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.inputbox div {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.inputbox p {
+  margin-right: 5px;
+}
+
+
+.inputbox select {
+  width: 100%;
+  font-size: 16px;
+  color: #777;
+  border: none;
+  outline: none;
+}
+
+
+.disinput,
+.disinput input {
+  cursor: not-allowed;
+  background-color: #f7f7f7;
+}
+
+.disagree {
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+}
+
+.disagree::before,
+.disagree::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: red;
+  left: 50%;
+  top: 50%;
+}
+
+.disagree::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.disagree::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.login-bottom button {
+  width: 300px;
+  height: 50px;
+  margin-top: 10px;
+  padding-left: 15px;
+  border: 1px solid #AAC4FF;
+  border-radius: 10px;
+  background-color: #AAC4FF;
+  color: white;
+  font-size: 16px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #aac4ff;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
