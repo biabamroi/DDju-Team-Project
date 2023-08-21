@@ -34,7 +34,7 @@
 
 <link rel="stylesheet" href="./CSS/style.css">
 <link rel="stylesheet" href="./CSS/sub-header.css">
-<link rel="stylesheet" href="./CSS/login.css">
+<link rel="stylesheet" href="./CSS/idpwsearch.css">
 <link rel="stylesheet" href="./CSS/footer.css">
 <link rel="stylesheet" href="./CSS/aside.css">
 
@@ -82,8 +82,57 @@
         
 
     <main>
-      
-      아이디/비밀번호 찾기
+      <div class="login-wrap">
+        <div class="login-top">
+          <p>DDju</p>
+          <span>Daejeon Date Place</span>
+        </div>
+
+
+        <div class="login-center">
+          <div class="join-box-item username">
+            <label>이름
+              <div class="inputbox">
+                <input type="text" name="username">
+              </div>
+            </label>
+            <p class="warn"></p>
+          </div>
+  
+          <div class="join-box-item phone">
+            <p>휴대전화</p>
+            <div class="inputbox">
+              <select name="country">
+                <option value="233">가나 +233</option>
+                <option value="30">그리스 +30</option>
+                <option value="82" selected>대한민국 +82</option>
+                <option value="49">독일 +49</option>
+                <option value="960">몰디브 +960</option>
+                <option value="1">미국/캐나다 +1</option>
+                <option value="254">케냐 +254</option>
+              </select>
+            </div>
+  
+            <div class="phonenum">
+              <div class="inputbox">
+                <input type="text" name="phonenum" placeholder="전화번호 입력">
+              </div>
+              <button type="button" id="veribtn" class="btn-primary">인증번호 받기</button>
+            </div>
+  
+            <div class="inputbox disinput">
+              <input disabled type="text" id="veritext" name="veritext" placeholder="인증번호를 입력하세요">
+              <div></div>
+            </div>
+            <p class="warn"></p>
+          </div>
+        </div>
+
+
+        <div class="login-bottom">
+          <button type="submit" id="loginbtn" class="btn-primary">아이디/비밀번호 찾기</button>
+        </div>
+      </div>
 
     </main>
 
@@ -124,6 +173,7 @@
   </div>
 
   <script src="./JS/header.js"></script>
+  <script src="./JS/IDPWsearch.js"></script>
   <script src="./JS/footer.js"></script>
 
 </body>
