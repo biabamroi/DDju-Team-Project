@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+
+*  {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrap {
+  /* 반응형 했을 때 모바일에서 제일 작은 폭이 350px -> 모바일에서 봤을 때 잘보이라고 340px*/
+  width: 900px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.profile {
+  width: 100%;
+}
+
+.profile img {
+  width: 200px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.profile h1{
+  font: bold 22px/1 "arial";
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.profile p {
+  font: bold 12px/1 "arial";
+  color: #bbb;
+  margin-bottom: 50px;
+}
+
+.txt {
+  position: absolute;
+  top: 30px;
+  left: 300px;
+  width: 500px;
+  height: 300px;
+  overflow: auto;
+}
+
+.contact {
+  margin-bottom: 25px;
+}
+
+.contact li {
+  width: 30%;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.contact li:last-child {
+  border-bottom: none;
+}
+
+.contact li i {
+  width: 20%;
+  text-align: center;
+  color: #555;
+  font-size: 15px;
+  text-shadow: 2px 2px 2px #ddd;
+}
+
+.contact li span {
+  font: 11px/1 "obitrion";
+  color: #555;
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+.name i {
+  color: #555;
+}
+
+.name p {
+  color: #8f8d8d;
+}
+
+.others {
+  position: absolute;
+  bottom: 50px;
+  right: 100px;
+  text-align: center;
+  /* 간격을 설정*/
+  font-size: 0;
+  margin-bottom: 20px;
+}
+
+.others a {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-color: gray;
+  border-radius: 50%;
+  margin: 0 10px;
+  opacity: 0.5;
+}
+
+.others a.on {
+  opacity: 5;
+}
+
+.others a:nth-of-type(1) {
+  background-color: #fac6cf;
+  box-shadow: 5px 5px 5px rgba(246, 168, 253, 0.5);
+}
+
+.others a:nth-of-type(2) {
+  background-color: #76c7e7;
+  box-shadow: 5px 5px 5px rgba(118, 199, 231, 0.5);
+}
+
+.others a:nth-of-type(3) {
+  background-color: #abe7a5;
+  box-shadow: 5px 5px 5px rgb(171, 231, 165 ,0.5);
+}
+
+.others a:nth-of-type(4) {
+  background-color: #adadad;
+  box-shadow: 5px 5px 5px rgba(165, 165, 165, 0.5);
+}
+
+/* member1*/
+.member1 {
+  background-color: pink;
+}
+.member1 img{
+  box-shadow: 5px 15px 30px rgba(243, 195, 203, 0.8);
+}
+
+.member1 .name {
+  position: absolute;
+  bottom: 20px;
+  right: 270px;
+}
+
+/* member2*/
+.member2 {
+  background-color: rgb(154, 214, 255);
+}
+.member2 img{
+  box-shadow: 5px 15px 30px rgba(142, 174, 243, 0.8);
+}
+
+.member2 .name {
+  position: absolute;
+  bottom: 20px;
+  right: 180px;
+}
+
+/* member3*/
+.member3 {
+  background-color: rgb(139, 212, 123);
+}
+.member3 img{
+  box-shadow: 5px 15px 30px rgba(144, 223, 174, 0.8);
+}
+
+.member3 .name {
+  position: absolute;
+  bottom: 20px;
+  right: 120px;
+}
+
+/* member3*/
+.member4 {
+  background-color: rgb(189, 189, 189);
+}
+.member4 img{
+  box-shadow: 5px 15px 30px rgba(100, 100, 100, 0.8);
+}
+
+.member4 .name {
+  position: absolute;
+  bottom: 20px;
+  right: 80px;
+}
+
