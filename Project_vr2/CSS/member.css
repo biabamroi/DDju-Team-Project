@@ -27,7 +27,7 @@ section {
   /* 반응형 했을 때 모바일에서 제일 작은 폭이 350px -> 모바일에서 봤을 때 잘보이라고 340px*/
   width: 900px;
   padding: 30px;
-  background-color: fff;
+  background-color: #fff;
   border-radius: 10px;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -91,6 +91,12 @@ section {
   color: #555;
   letter-spacing: 1px;
   font-size: 13px;
+}
+
+.name {
+  position: absolute;
+  bottom: 20px;
+  right: 275px;
 }
 
 .name i {

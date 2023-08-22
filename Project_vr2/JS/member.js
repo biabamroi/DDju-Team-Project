@@ -30,6 +30,9 @@ let profile = [
 ]
 
 
+
+document.querySelector('.wrapper').style.backgroundColor = "rgb(154, 214, 255)";
+
 let othersBtn = document.querySelectorAll('.others button');
 
 othersBtn.forEach(function(btn, index){
