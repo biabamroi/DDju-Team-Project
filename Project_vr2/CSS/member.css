@@ -23,11 +23,11 @@ a {
   align-items: center;
 }
 
-.wrap {
+section {
   /* 반응형 했을 때 모바일에서 제일 작은 폭이 350px -> 모바일에서 봤을 때 잘보이라고 340px*/
   width: 900px;
   padding: 30px;
-  background-color: #fff;
+  background-color: fff;
   border-radius: 10px;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -111,36 +111,37 @@ a {
   margin-bottom: 20px;
 }
 
-.others a {
+.others button {
   display: inline-block;
   width: 50px;
   height: 50px;
-  background-color: gray;
+  /* background-color: gray; */
+  border: none;
   border-radius: 50%;
   margin: 0 10px;
-  opacity: 0.5;
+  /* opacity: 0.5; */
 }
 
-.others a.on {
-  opacity: 5;
+.others button.on {
+  opacity: 1;
 }
 
-.others a:nth-of-type(1) {
-  background-color: #fac6cf;
-  box-shadow: 5px 5px 5px rgba(246, 168, 253, 0.5);
-}
-
-.others a:nth-of-type(2) {
+.others button:nth-of-type(1) {
   background-color: #76c7e7;
   box-shadow: 5px 5px 5px rgba(118, 199, 231, 0.5);
 }
 
-.others a:nth-of-type(3) {
+.others button:nth-of-type(2) {
+  background-color: #fac6cf;
+  box-shadow: 5px 5px 5px rgba(246, 168, 253, 0.5);
+}
+
+.others button:nth-of-type(3) {
   background-color: #abe7a5;
   box-shadow: 5px 5px 5px rgb(171, 231, 165 ,0.5);
 }
 
-.others a:nth-of-type(4) {
+.others button:nth-of-type(4) {
   background-color: #adadad;
   box-shadow: 5px 5px 5px rgba(165, 165, 165, 0.5);
 }
