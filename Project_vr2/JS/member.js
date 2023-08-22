@@ -41,6 +41,9 @@ boxItems.forEach(function(item, index){
   liTag[1].querySelector('span').innerHTML = profile[index].email;
 })
 
+
+document.querySelector('.wrapper').style.backgroundColor = "rgb(154, 214, 255)";
+
 let othersBtn = document.querySelectorAll('.others button');
 
 othersBtn.forEach(function(btn){
