@@ -23,6 +23,7 @@
 .title {
   font-size: 70px;
   font-weight: bold;
+  text-shadow: 4px 2px 2px gray;
 }
 
 .title-p {
