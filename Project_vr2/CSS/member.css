@@ -15,7 +15,7 @@ a {
   text-decoration: none;
 }
 
-.wrapper {
+section {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -23,8 +23,8 @@ a {
   align-items: center;
 }
 
-section {
-  /* 반응형 했을 때 모바일에서 제일 작은 폭이 350px -> 모바일에서 봤을 때 잘보이라고 340px*/
+.profile-wrap {
+  display: none;
   width: 900px;
   padding: 30px;
   background-color: #fff;
@@ -93,35 +93,21 @@ section {
   font-size: 13px;
 }
 
-.name {
-  position: absolute;
-  bottom: 20px;
-  right: 275px;
-}
-
-.name i {
-  color: #555;
-}
-
-.name p {
-  color: #8f8d8d;
-}
-
 .others {
-  position: absolute;
-  bottom: 50px;
-  right: 100px;
   text-align: center;
-  /* 간격을 설정*/
   font-size: 0;
   margin-bottom: 20px;
+}
+
+.others.active {
+  position: absolute;
+  top: 200px;
 }
 
 .others button {
   display: inline-block;
   width: 50px;
   height: 50px;
-  /* background-color: gray; */
   border: none;
   border-radius: 50%;
   margin: 0 10px;
@@ -133,78 +119,21 @@ section {
 }
 
 .others button:nth-of-type(1) {
-  background-color: #76c7e7;
+  background-color: rgb(154, 214, 255);
   box-shadow: 5px 5px 5px rgba(118, 199, 231, 0.5);
 }
 
 .others button:nth-of-type(2) {
-  background-color: #fac6cf;
-  box-shadow: 5px 5px 5px rgba(246, 168, 253, 0.5);
+  background-color: hsl(36, 100%, 90%);
+  box-shadow: 5px 5px 5px rgba(233, 169, 194, 0.5);
 }
 
 .others button:nth-of-type(3) {
-  background-color: #abe7a5;
-  box-shadow: 5px 5px 5px rgb(171, 231, 165 ,0.5);
+  background-color: rgb(139, 212, 123);
+  box-shadow: 5px 5px 5px rgba(157, 224, 150, 0.5);
 }
 
 .others button:nth-of-type(4) {
-  background-color: #adadad;
-  box-shadow: 5px 5px 5px rgba(165, 165, 165, 0.5);
+  background-color: rgb(164, 130, 184);
+  box-shadow: 5px 5px 5px rgba(214, 103, 190, 0.5);
 }
-
-/* member1*/
-.member1 {
-  background-color: pink;
-}
-.member1 img{
-  box-shadow: 5px 15px 30px rgba(243, 195, 203, 0.8);
-}
-
-.member1 .name {
-  position: absolute;
-  bottom: 20px;
-  right: 275px;
-}
-
-/* member2*/
-.member2 {
-  background-color: rgb(154, 214, 255);
-}
-.member2 img{
-  box-shadow: 5px 15px 30px rgba(142, 174, 243, 0.8);
-}
-
-.member2 .name {
-  position: absolute;
-  bottom: 20px;
-  right: 185px;
-}
-
-/* member3*/
-.member3 {
-  background-color: rgb(139, 212, 123);
-}
-.member3 img{
-  box-shadow: 5px 15px 30px rgba(144, 223, 174, 0.8);
-}
-
-.member3 .name {
-  position: absolute;
-  bottom: 20px;
-  right: 125px;
-}
-
-/* member3*/
-.member4 {
-  background-color: rgb(189, 189, 189);
-}
-.member4 img{
-  box-shadow: 5px 15px 30px rgba(100, 100, 100, 0.8);
-}
-
-.member4 .name {
-  position: absolute;
-  bottom: 20px;
-  right: 80px;
-}
-
