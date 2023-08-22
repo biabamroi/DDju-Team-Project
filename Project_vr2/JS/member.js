@@ -5,6 +5,8 @@ let profile = [
     txt : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? Repellendus deleniti saepe eum ipsum explicabo porro. Laborum rerum maxime odio, blanditiis molestias aliquam labore.',
     git : 'https://github.com/choiseowu',
     email : 'chldjtn95@nate.com',
+    color : 'rgb(154, 214, 255)',
+    shadow : 'rgba(142, 174, 243, 0.8)'
   },
   {
     img : 'https://avatars.githubusercontent.com/u/132882429?v=4',
@@ -12,26 +14,28 @@ let profile = [
     txt : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? Repellendus deleniti saepe eum ipsum explicabo porro. Laborum rerum maxime odio, blanditiis molestias aliquam labore.',
     git : 'https://github.com/Ji2unKo',
     email : 'wldnjs4983@naver.com',
+    color : 'rgb(252, 207, 214)',
+    shadow : 'rgba(243, 195, 203, 0.8)'
   },
   {
     img : 'https://avatars.githubusercontent.com/u/132882278?v=4',
     name : 'HANNA OH',
     txt : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? Repellendus deleniti saepe eum ipsum explicabo porro. Laborum rerum maxime odio, blanditiis molestias aliquam labore.',
     git : 'https://github.com/hanna0115',
-    email : 'wldnjs4983@naver.com',
+    email : 'hanna0115@naver.com',
+    color : 'rgb(139, 212, 123)',
+    shadow : 'rgba(162, 223, 148, 0.8)'
   },
   {
     img : 'https://avatars.githubusercontent.com/u/132882475?v=4',
-    name : 'JI EUN PRAK',
+    name : 'JI EUN PARK',
     txt : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? Repellendus deleniti saepe eum ipsum explicabo porro. Laborum rerum maxime odio, blanditiis molestias aliquam labore.',
     git : 'https://github.com/biabamroi',
-    email : 'wldnjs4983@naver.com',
+    email : 'biabamroi@gmail.com',
+    color : 'rgb(164, 130, 184)',
+    shadow : 'rgba(204, 167, 226, 0.8)'
   },
 ]
-
-
-
-document.querySelector('.wrapper').style.backgroundColor = "rgb(154, 214, 255)";
 
 let othersBtn = document.querySelectorAll('.others button');
 
@@ -41,9 +45,13 @@ othersBtn.forEach(function(btn, index){
       item.classList.remove('on');
     })
     btn.classList.add('on');
-    
+    document.querySelector('.wrapper').style.backgroundColor = profile[index].color
+    document.querySelector('.first').style.display = 'none'
+    document.querySelector('.profile-wrap').style.display = 'block'
+
     document.querySelector('.profile img').src = profile[index].img;
     document.querySelector('.profile img').alt = profile[index].title;
+    document.querySelector('.profile img').style.boxShadow = `5px 15px 30px ${profile[index].shadow}`
     document.querySelector('.profile h1').innerHTML = profile[index].name;
     document.querySelector('.txt p').innerHTML = profile[index].txt;
 
