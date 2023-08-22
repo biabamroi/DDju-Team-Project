@@ -35,7 +35,7 @@
 
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="./css/sub-header.css">
-<link rel="stylesheet" href="./CSS/section2.css">
+<link rel="stylesheet" href="./CSS/place-details-rain.css">
 <link rel="stylesheet" href="./css/footer.css">
 <link rel="stylesheet" href="./CSS/aside.css">
 
@@ -49,7 +49,7 @@
       <nav>
         <h2 class="visually-hidden">메뉴</h2>
         <ul class="gnb-list">
-          <li class="gnb-item"><a href="./introduce.html">what's DDju</a></li>
+          <li class="gnb-item"><a href="">what's DDju</a></li>
           <li class="gnb-item"><a href="">코스 대전</a></li>
           <li class="gnb-item">
             <a href="./section3-4.html">대전의 모든 것</a>
@@ -82,65 +82,89 @@
     </header>
 
 
-
-   <main>
+    <main>
       <section>
-        <h2 class="title">코스대전</h2>
-          <div class="order">
-            <p>인기순</p>
-            <p>최신순</p>
+        <ul class="place">
+          <li><a href="">전체</a></li>
+          <li><a href="">관광지</a></li>
+          <li><a href="">맛집</a></li>
+          <li><a href="">축제/공연</a></li>
+        </ul>
+        <h2 class="title">비오는 날 가고 싶은</h2>
+      </section>
+      
+      
+      <hr>
+      
+      
+      <section>
+        <div class="map-rain">
+          <div id="map" style="width:100%;height:400px;margin:20px 0;border:1px solid black;"></div>
+        </div>
+        <div class="map-wrap">
+          <span>비오는 날 딱인 데이트 코스!</span>
+          <div class="icon-group">
+            <div class="like-btn">
+              <button type="button"><i class="fa-regular fa-heart"></i></button>
+              <button type="button"><i class="fa-solid fa-heart"></i></button>
+            </div>
+            <button type="button"><i class="fa-regular fa-share-from-square"></i></button>
           </div>
         </div>
+      </section>
 
-        <div class="place-list">
-          <a href="./place-details.html">
-            <div class="place-item">
-              <img src="./images/detail-expo.jpg" alt="한밭수목원">
-              <div class="text-box">
-                <h3>한밭수목원</h3>
-              </div>
-            </div>
-          </a>
-          <a href="">
-            <div class="place-item">
-              <img src="./images/travel.jpg" alt="">
-              <div class="text-box">
-                <h3>대전 여행 코스</h3>
-              </div>
-            </div>
-          </a>
-          <a href="">
-            <div class="place-item">
-              <img src="./images/travel.jpg" alt="">
-              <div class="text-box">
-                <h3>대전 여행 코스</h3>
-              </div>
-            </div>
-          </a>
-          <a href="">
-            <div class="place-item">
-              <img src="./images/travel.jpg" alt="">
-              <div class="text-box">
-                <h3>대전 여행 코스</h3>
-              </div>
-            </div>
-          </a>
-          <a href="">
-            <div class="place-item">
-              <img src="./images/travel.jpg" alt="">
-              <div class="text-box">
-                <h3>대전 여행 코스</h3>
-              </div>
-            </div>
-          </a>
-          <a href="">
-            <div class="place-item">
-              <img src="./images/travel.jpg" alt="">
-              <div class="text-box">
-                <h3>대전 여행 코스</h3>
-              </div>
-            </div>
-          </a>
+
+      <section>
+        <div class="place-detail-box">
+          <div class="txt-wrap">
+            <h2>장소2</h2><span>-구</span><span>-동</span>
+          </div>
+          <img src="./images/detail-expo.jpg" alt="장소 사진">        
+          <div class="place-detail-txt">
+            <p>도심 속에서 푸르름을 만끽하며 휴식할 수 있는 공간</p>
+            <ul class="place-detail-list">
+              <li class="place-detail-item">
+                <strong>주소 :</strong>
+                <span>대전 서구 둔산대로 169</span>
+              </li>
+              <li class="place-detail-item">
+                <strong>영업시간 :</strong>
+                <span>동원 - 하절기 21:00에 운영종료</span>
+              </li>
+              <li class="place-detail-item">
+                <strong>문의 및 안내 :</strong>
+                <span>042-270-8452</span>
+              </li>
+              <li class="place-detail-item">
+                <strong>홈페이지 :</strong>
+                <span>http://www.daejeon.go.kr/gar/index.do</span>
+              </li>
+            </ul>
+            <ul class="keywords-list">
+              <li>#키워드</li>
+              <li>#키워드</li>
+              <li>#키워드</li>
+              <li>#키워드</li>
+            </ul>
+          </div>
+          <div class="place-map"></div>
+        </div>
+        <div class="map-list">
+          <div class="map-item bg1">
+            <p>한밭수목원</p>
+          </div>
+          <div class="map-item bg2">
+            <p>장소2</p>
+          </div>
+          <div class="map-item bg3">
+            <p>장소3</p>
+          </div>
+          <div class="map-item bg4">
+            <p>장소4</p>
+          </div>
+          <div class="map-item bg5">
+            <p>코스 후기</p>
+          </div>
         </div>
       </section>
     </main>
@@ -174,7 +198,7 @@
         </a>
     </div>
 
-    <aside></aside>
+      
     <div class="overlay"> </div>
 
       
@@ -182,6 +206,7 @@
 
   <script src="./JS/header.js"></script>
   <script src="./JS/footer.js"></script>
+  <script src="./JS/place-details.js"></script>
 
 </body>
 </html>
