@@ -29,21 +29,23 @@ let profile = [
   },
 ]
 
-let boxItems = document.querySelectorAll('.profile');
-
-boxItems.forEach(function(item, index){
-  item.querySelector('img').src = profile[index].img;
-  item.querySelector('.profile h1').innerHTML = profile[index].name;
-  document.querySelector('.txt p').innerHTML = profile[index].txt;
-
-  let liTag = document.querySelectorAll('.contact li');
-  document.querySelector('.contact a').href = profile[index].git;
-  liTag[1].querySelector('span').innerHTML = profile[index].email;
-})
 
 let othersBtn = document.querySelectorAll('.others button');
 
-othersBtn.forEach(function(btn){
-  btn.addEventListener('click',function(item, index){
+othersBtn.forEach(function(btn, index){
+  btn.addEventListener('click', function(){
+    othersBtn.forEach(function(item){
+      item.classList.remove('on');
+    })
+    btn.classList.add('on');
+    
+    document.querySelector('.profile img').src = profile[index].img;
+    document.querySelector('.profile img').alt = profile[index].title;
+    document.querySelector('.profile h1').innerHTML = profile[index].name;
+    document.querySelector('.txt p').innerHTML = profile[index].txt;
+
+    let liTag = document.querySelectorAll('.contact li');
+    liTag[0].querySelector('a').href = profile[index].git;
+    liTag[1].querySelector('span').innerHTML = profile[index].email;
   })
 })
