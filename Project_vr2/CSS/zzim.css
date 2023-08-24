@@ -1,0 +1,39 @@
+.zzim-title {
+  margin: 40px 0 40px 200px;
+  color: #666;
+  font-size: 28px;
+  font-family: 'Orbit', sans-serif;
+}
+
+.zzim-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.zzim-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+  width: 1200px;
+  border: 5px double #666;
+  border-radius: 10px;
+}
+
+.zzim-item {
+  width: 300px;
+  margin: 20px;
+}
+
+.zzim-item img {
+  width: 250px;
+  border-radius: 5px;
+}
+
+.zzim-text {
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
