@@ -1,4 +1,4 @@
-let slideList = document.querySelector('.slide-item-box');
+let slideList = document.querySelector('.slide-list');
 let slideItems = document.querySelectorAll('.slide-item');
 
 const prevBtn = document.querySelector('#prev');
