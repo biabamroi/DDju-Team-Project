@@ -28,7 +28,7 @@ let profile = [
   },
   {
     img : 'https://avatars.githubusercontent.com/u/132882475?v=4',
-    name : 'JI EUN PARK',
+    name : 'KAI',
     txt : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? RepellendusUt pariatur fugit saepe possimus accusamus facere? Repellendus deleniti saepe eum ipsum explicabo porro. Laborum rerum maxime odio, blanditiis molestias aliquam labore.',
     git : 'https://github.com/biabamroi',
     email : 'biabamroi@gmail.com',
@@ -47,7 +47,7 @@ othersBtn.forEach(function(btn, index){
     btn.classList.add('on');
     // document.querySelector('.wrapper').style.backgroundColor = profile[index].color
     document.querySelector('.first h1').style.display = 'none'
-    document.querySelector('.profile-wrap').style.display = 'block'
+    document.querySelector('.profile-wrapper').style.display = 'block'
 
     document.querySelector('.profile img').src = profile[index].img;
     document.querySelector('.profile img').alt = profile[index].title;
