@@ -20,6 +20,7 @@ section {
 .order p {
   padding-left: 20px;
   position: relative;
+  cursor: pointer;
 }
 
 .order p::after {
@@ -53,6 +54,10 @@ section {
   padding: 10px;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);  
 } 
+
+.place-item:hover {
+  opacity: .7;
+}
 
 .place-item img {
   width: 280px;
