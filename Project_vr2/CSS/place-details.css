@@ -117,7 +117,7 @@ hr {
 
 .review-title {
   display: flex;
-  align-items: center;
+  align-items: end;
 }
 
 .review-title p {
