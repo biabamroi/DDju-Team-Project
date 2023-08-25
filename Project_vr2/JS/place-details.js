@@ -4,6 +4,11 @@ $('.like-btn').on('click', function(){
 })
 
 
+// 리뷰 건수 count
+let reviewCount = $('.review-list').children().length;
+$('.review-title span').text(`총 ${reviewCount}건`);
+
+
 // 리뷰 작성 칸 별점 체크
 $('.star-rating label').on('click', function(){
   $('.star-rating label').removeClass('on');
