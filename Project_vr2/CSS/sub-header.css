@@ -1,21 +1,55 @@
 .global-header {
   position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
-  padding: 20px 30px;
-  background-color: #AAC4FF;
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+  padding: 15px 30px;
+  background-color: rgba(238, 241, 255, 0.4);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 100;
 }
 
-.logo a {
-  color: #fff;
-  font-weight: 700;
+h1 a {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  font-size: 40px;
+  color: #080808;
+  transition: all 0.4s ease 0s;
+  text-transform: capitalize;
+}
+
+h1 a span {
+  display: block;
+  line-height: 1.3;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 30px;
+  padding-left: 4px;
+  color: rgba(0, 0, 0, 0.4);
+  padding-bottom: 10px;
+}
+
+h1 a:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 2px;
+  background-color: #AAC4FF;
 }
 
 .gnb-list {
   position: absolute;
   bottom: 0;
+  right: 200px;
   display: flex;
 }
 
@@ -23,43 +57,99 @@
   position: relative;
 }
 
-.gnb-list li a {
+.gnb-item a {
+  position: relative;
   display: block;
-  padding: 16px;
-  color: #fff;
-  transition: all 300ms ease-in-out;
+  padding: 15px 25px;
+  color: #666;
+  letter-spacing: 0;
+  transition: all 400ms ease-in-out;
 }
 
-.gnb-list a:hover {
-  color: #AAC4FF;
-  background-color: #fff;
+.gnb-item > a:hover,
+.gnb-item > a:active,
+.gnb-item > a.on {
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+.gnb-item > a:after,
+.gnb-item > a:before {
+  content: '';
+  position: relative;
+  right: 3px;
+  display: block;
+  width: 0;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0);
+  transition: all 400ms ease-in-out;
+}
+
+.gnb-item > a:after {
+  bottom: -10px;
+}
+
+.gnb-item > a:before {
+  top: -10px;
+}
+
+.gnb-item > a:hover:after,
+.gnb-item > a:hover:before,
+.gnb-item > a.on:after,
+.gnb-item > a.on:before {
+  border-color: #AAC4FF;
+  transition: width 350ms ease-in-out;
+  width: 100%;
 }
 
 .sub {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  width: 150px;
   display: none;
-  width: 140px;
   text-align: center;
-  background-color: #AAC4FF;
+  background-color: rgba(238, 241, 255, 0.8);
 }
 
-.global-header .button-group {
+.sub a:hover {
+  font-weight: 700;
+}
+
+.sub a:after {
+  content: '';
+  position: relative;
+  bottom: -10px;
+  right: 3px;
+  display: block;
+  width: 0;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0);
+  /* transition: all 400ms ease-in-out; */
+}
+
+.sub a:hover:after {
+  border-color: #AAC4FF;
+  transition: width 350ms ease-in-out;
+  width: 100%;
+}
+
+.user-menu-btn {
   display: flex;
   align-items: center;
 }
 
-.global-header .button-group button i {
+.user-menu-btn button i {
+  margin: 5px;
   font-size: 25px;
-  color: #fff;
+  color: #888;
 }
 
-.global-header .button-group.login .login-btn {
+.user-menu-btn.login .login-btn {
   display: none;
 }
 
-.global-header .button-group.login .mymenu {
+.user-menu-btn.login .mymenu {
   display: flex;
 }
 
