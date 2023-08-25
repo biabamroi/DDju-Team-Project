@@ -57,7 +57,7 @@ $('#veribtn').on('click', function(){
   }
 
   if(phoneLeng && phoneNum) {
-    $('.phone .warn').html('<span class="text-green">인증번호를 발송했습니다. (유효시간 30분)<br>인증번호가 오지 않으면 입력한 정보를 다시 확인해 주세요. 이미 가입된 번호거나 가상전화번호는 인증번호를 받을 수 없습니다.</span>');
+    $('.phone .warn').html('<span class="text-green">인증번호를 발송했습니다.</span>');
     $('#veritext').attr('disabled', false);
     $('#veritext').parent('.inputbox').removeClass('disinput');
   } else {
