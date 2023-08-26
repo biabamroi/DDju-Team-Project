@@ -3,38 +3,14 @@ section {
   margin: 0 auto;
 }
 
-.place {
-  display: flex;
-  margin-top: 80px;
-}
-
-.place li {
-  position: relative;
-  padding: 0 10px;
-}
-
-.place li::before {
-  content: "";
-  width: 2px;
-  height: 15px;
-  background-color: #ccc;
-  position: absolute;
-  top: 3px;
-  left: 0;
-} 
-
-.place li:first-child::before {
-  content: none;
-}
-
 .title {
   font-size: 48px;
   font-family: 'Gowun Dodum', sans-serif;
-  margin: 0 10px 10px 10px;
+  margin: 80px 10px 10px;
 }
 
 hr {
-  width: 820px;
+  width: 800px;
   margin: 0 auto;
   color:  #666666;
 }
