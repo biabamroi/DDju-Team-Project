@@ -290,7 +290,7 @@ function sample6_execDaumPostcode() {
 
 // 가입하기
 $('#joinbtn').on('click', function(e){
-  if(idveri && pwveriidveri && pwchkveriidveri && nameveriidveri && bitrhveriidveri && genderveriidveri && phoneveriidveri && addressveri && mailveri){
+  if(idveri && pwveri && pwchkveri && nameveri && bitrhveri && genderveri && phoneveri && addressveri && mailveri){
     $('#join-form').submit();
   } else {
     e.preventDefault();
