@@ -11,7 +11,7 @@
   z-index: 100;
 }
 
-h1 a {
+.logo a {
   position: relative;
   padding: 0;
   margin: 0;
@@ -23,7 +23,7 @@ h1 a {
   text-transform: capitalize;
 }
 
-h1 a span {
+.logo a span {
   display: block;
   line-height: 1.3;
   font-size: 13px;
@@ -36,7 +36,7 @@ h1 a span {
   padding-bottom: 10px;
 }
 
-h1 a:before {
+.logo a:before {
   content: '';
   position: absolute;
   left: 0;
