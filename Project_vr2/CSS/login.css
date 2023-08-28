@@ -47,16 +47,12 @@ main {
   font-size: 15px;
 }
 
-.login-center input:last-child {
-  margin-top: 10px;
-}
-
 
 
 .login-bottom button {
   width: 300px;
   height: 40px;
-  margin-top: 10px;
+  margin: 20px 0;
   padding-left: 15px;
   border: 1px solid #AAC4FF;
   border-radius: 10px;
