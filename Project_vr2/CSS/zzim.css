@@ -1,0 +1,145 @@
+
+main {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.zzim-title {
+  font-family: 'Gowun Dodum', sans-serif;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.zzim-title i {
+  margin-right: 10px;
+}
+
+hr {
+  width: 800px;
+  margin: 0 auto;
+  color:  #666666;
+} 
+
+.zzim-place,
+.zzim-course {
+  position: relative;
+  font-family: 'Gowun Dodum', sans-serif;
+  display: flex;
+  align-items: center;
+  width: 210px;
+  padding: 20px 0;
+  font-size: 35px;
+}
+
+.zzim-place-count,
+.zzim-course-count {
+  position: absolute;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+.zzim-place-count i,
+.zzim-course-count i {
+  color: rgb(248, 111, 134);
+}
+
+.zzim-place-count p,
+.zzim-course-count p {
+  font-size: 15px;
+  margin-left: 3px;
+}
+
+.zzim-place-list,
+.zzim-course-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  flex-wrap: wrap;
+  border: 1px solid #aac4ff;
+  border-radius: 5px;
+}
+
+.zzim-place-item {
+  width: 250px;
+  margin: 5px;
+  padding: 10px 0;
+}
+
+.zzim-place-item img {
+  width: 250px;
+  height: 220px;
+  object-fit: cover;
+}
+
+.zzim-text {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.like-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.like-btn button i {
+  font-size: 20px;
+  color: rgb(248, 111, 134);
+}
+
+.like-btn button:last-child {
+  display: none;
+}
+
+.like-btn.on button:first-child {
+  display: none;
+}
+
+.like-btn.on button:last-child {
+  display: block;
+  color: #FD8A8A;
+  animation: like 1s linear;
+}
+
+@keyframes like {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+
+
+/* 데이트 코스 */
+
+.zzim-course {
+ padding-top: 80px;
+}
+
+.zzim-course-item {
+  width: 380px;
+  margin: 5px;
+  padding: 10px;
+}
+
+.zzim-course-item img {
+  width: 370px;
+  height: 380px;
+  object-fit: cover;
+}
+
+

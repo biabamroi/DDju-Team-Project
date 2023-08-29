@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+
+section {
+  width: 100%;
+  height: 100vh;
+}
+
+section video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn-pro {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-pro button{
+  margin-bottom: 20px;
+  font-size: 30px;
+  color: #57b2e7;
+  font-family: 'Nanum Pen Script', cursive;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn-pro button i {
+  color: rgb(178, 226, 194);
+  font-size: 25px;
+}
+
+.profile-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  width: 900px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.profile {
+  width: 100%;
+}
+
+.profile img {
+  width: 200px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.profile h1{
+  font: bold 22px/1 "arial";
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.profile p {
+  font: bold 12px/1 "arial";
+  color: #bbb;
+  margin-bottom: 50px;
+}
+
+.txt {
+  position: absolute;
+  top: 30px;
+  left: 300px;
+  width: 500px;
+  height: 300px;
+  overflow: auto;
+}
+
+.contact {
+  margin-bottom: 25px;
+}
+
+.contact li {
+  width: 30%;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.contact li:last-child {
+  border-bottom: none;
+}
+
+.contact li i {
+  width: 20%;
+  text-align: center;
+  color: #555;
+  font-size: 15px;
+  text-shadow: 2px 2px 2px #ddd;
+}
+
+.contact li span {
+  font: 11px/1 "obitrion";
+  color: #555;
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+
+.others {
+  z-index: 100;
+  position: absolute;
+  top: 85%;
+  left: 68%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 0;
+  margin-bottom: 20px;
+}
+
+.others.active {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content:end;
+  align-items: end;
+}
+
+.others button {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 10px;
+  opacity: 1;
+}
+
+.others button.on {
+  opacity: 1;
+}
+
+.others.active button {
+  opacity: 0.5;
+}
+
+.others button:nth-of-type(1) {
+  background-color: rgb(154, 214, 255);
+  box-shadow: 5px 5px 5px rgba(118, 199, 231, 0.5);
+}
+
+.others button:nth-of-type(2) {
+  background-color: hsl(36, 100%, 90%);
+  box-shadow: 5px 5px 5px rgba(233, 169, 194, 0.5);
+}
+
+.others button:nth-of-type(3) {
+  background-color: rgb(139, 212, 123);
+  box-shadow: 5px 5px 5px rgba(157, 224, 150, 0.5);
+}
+
+.others button:nth-of-type(4) {
+  background-color: rgb(164, 130, 184);
+  box-shadow: 5px 5px 5px rgba(214, 103, 190, 0.5);
+}

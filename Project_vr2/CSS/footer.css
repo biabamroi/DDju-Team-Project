@@ -1,6 +1,7 @@
 
 footer {
   padding: 20px 0;
+  font-family: "Raleway", sans-serif;
   background-color: #eef1ff;
 }
 
@@ -34,10 +35,11 @@ footer {
   padding: 5px 0;
 }
 
-.footer-info-list span {
+.footer-info-list li a {
   font-size: 28px;
   font-weight: 700;
   color: #aac4ff;
+  cursor: pointer;
 }
 
 .footer-icon-list {
@@ -79,4 +81,3 @@ footer {
   color: rgb(235,27,27);
   transition: background-color 300ms ease-in-out;
 }
-

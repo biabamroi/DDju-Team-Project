@@ -1,0 +1,36 @@
+.wrapper{  
+  width: 100vw;
+  height: 100vh;
+}
+
+.background {
+  background-image: url(https://images.unsplash.com/photo-1604881990409-b9f246db39da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+.introduce {
+  width: 700px;
+  height: 100vh;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+  padding-top: 100px;
+}
+
+.title {
+  font-size: 70px;
+  font-weight: bold;
+  text-shadow: 4px 2px 2px gray;
+}
+
+.title-p {
+  font-size: 30px;
+}
+
+.content {
+  margin-top: 80px;
+  font-size: 20px;
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="데이트는 대전이쥬~">
+  <meta name="keywords" content="대전, 여행, 맛집, 데이트, 기념일, 관광">
+  <meta name="author" content="꼬타비, 서우, 한나, Kai">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+  <link rel="manifest" href="./favicon/site.webmanifest">
+  <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    
+  <!-- Fontawesome -->
+  <script src="https://kit.fontawesome.com/6105f934ac.js" crossorigin="anonymous"></script>
+
+  <!-- iconify -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+  <title>DDju My Page</title>
+
+  <link rel="stylesheet" href="./CSS/style.css">
+  <link rel="stylesheet" href="./CSS/header.css">
+  <link rel="stylesheet" href="./CSS/footer.css">
+  <link rel="stylesheet" href="./CSS/aside.css">
+
+</head>
+<body>
+  <div class="wrapper" id="top">
+    <header class="global-header">
+      <h1 class="logo">
+        <a href="./index.html">DDju
+          <span>date deajeon is U</span>
+        </a>
+      </h1>
+      
+      <nav>
+        <h2 class="visually-hidden">메뉴</h2>
+        <ul class="gnb-list">
+          <li class="gnb-item"><a href="./about.html">ABOUT</a></li>
+          <li class="gnb-item"><a href="./course-daejeon.html">코스 대전</a></li>
+          <li class="gnb-item">
+            <a href="./today-all.html">대전의 모든 것</a>
+            <ul class="sub">
+              <li><a href="./today-do.html">오늘 뭐하지</a></li>
+              <li><a href="./today-eat.html">오늘 뭐먹지</a></li>
+              <li><a href="./today-see.html">오늘 뭐보지</a></li>
+            </ul>
+          </li>
+          <li class="gnb-item"><a href="./contact.html">CONTACT</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-menu-btn">
+        <button type="button" class="login-btn">
+          <a href="./login.html">
+            <i class="fa-regular fa-user"></i>
+          </a>
+        </button>
+        <div class="mymenu">
+          <button type="button" class="logout-btn">
+            <a href="">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </a>
+          </button>
+          <button type="button" class="like-btn">
+            <a href="">
+              <i class="fa-solid fa-heart"></i>
+            </a>
+          </button>
+          <button type="button" class="mymenu-btn">
+            <a href="">
+              <i class="fa-solid fa-user"></i>
+            </a>
+          </button>
+        </div>
+      </div>
+    </header>
+        
+
+    <main>
+    
+      <div class="main-header">
+        <div class="main-logo">
+          <p>DDju</p>
+        </div>
+      </div>
+  
+      <section class="join-box-list">
+        <form action="./submit.html" id="join-form">
+
+          <div class="join-box-item username">
+            이름
+          </div>
+
+          <div class="userid">
+            아이디
+          </div>
+  
+          <div class="join-box-item userpw">
+            <label for="inp" class="inp">
+              <div class="inputbox">
+                <input type="password" name="userpw" id="userpw" placeholder="&nbsp;">
+                <span class="label">비밀번호</span>
+                <div class="focus-bg"></div>
+                <div>
+                  <p></p>
+                  <iconify-icon icon="solar:heart-lock-line-duotone" style="color: #6f86ae; font-size: 24px;"></iconify-icon>
+                </div>
+              </div>
+            </label>
+            <p class="warn"></p>
+          </div> 
+          
+          <div class="join-box-item userpw-chk">
+            <label for="inp" class="inp">
+              <div class="inputbox">
+                <input type="password" name="userpw-chk" id="userpw-chk" placeholder="&nbsp;">
+                <span class="label">비밀번호 재확인</span>
+                <div class="focus-bg"></div>
+                <div>
+                  <iconify-icon icon="solar:heart-lock-broken" style="color: #6f86ae; font-size: 24px;"></iconify-icon>
+                </div>
+              </div>
+            </label>
+            <p class="warn"></p>
+          </div>
+  
+          <div class="join-box-item phone">
+            <p>휴대전화</p>
+            <div class="inputbox">
+              <select name="country">
+                <option value="233">가나 +233</option>
+                <option value="30">그리스 +30</option>
+                <option value="82" selected>대한민국 +82</option>
+                <option value="49">독일 +49</option>
+                <option value="960">몰디브 +960</option>
+                <option value="1">미국/캐나다 +1</option>
+                <option value="254">케냐 +254</option>
+              </select>
+            </div>
+  
+            <div class="phonenum">
+              <div class="inputbox">
+                <input type="text" name="phonenum" placeholder="전화번호 입력">
+              </div>
+              <button type="button" id="veribtn" class="btn-primary">인증번호 받기</button>
+            </div>
+  
+            <div class="inputbox disinput">
+              <input disabled type="text" id="veritext" name="veritext" placeholder="인증번호를 입력하세요">
+              <div></div>
+            </div>
+            <p class="warn"></p>
+          </div>
+      </section>
+
+    </main>
+
+
+    <footer>
+      <div class="global-footer">
+        <ul class="footer-link-list">
+          <li class="footer-link-item"><a href="./about.html">About</a></li>
+          <li class="footer-link-item"><a href="./privacy.html">개인정보 처리방침</a></li>
+          <li class="footer-link-item"><a href="./policy.html">위치정보 이용약관</a></li>
+          <li class="footer-link-item"><a href="./sitemap.html">사이트맵</a></li>
+        </ul>
+        <ul class="footer-info-list">
+          <li><a href="./index.html">DDju</a></li>
+          <li>대표이사: 꼬타비, 서우, 한나, Kai</li>
+          <li>사업자등록번호: 123-456-7890</li>
+          <li>고객센터: 1234-1234</li>
+        </ul>
+        <ul class="footer-icon-list">
+          <li><a href="https://github.com/Ji2unKo"><img src="https://avatars.githubusercontent.com/u/132882429?v=4" alt="꼬타비"></a></li>
+          <li><a href="https://github.com/choiseowu"><img src="https://avatars.githubusercontent.com/u/132882346?v=4" alt="서우"></a></li>
+          <li><a href="https://github.com/hanna0115"><img src="https://avatars.githubusercontent.com/u/132882278?v=4" alt="한나"></a></li>
+          <li><a href="https://github.com/biabamroi"><img src="https://avatars.githubusercontent.com/u/132882475?v=4" alt="Kai"></a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <div class="top-btn">
+      <a href="#top">
+        <i class="fa-solid fa-circle-arrow-up"></i>
+      </a>
+    </div>
+
+  </div>
+
+  <script src="./JS/header.js"></script>
+  <script src="./JS/footer.js"></script>
+
+</body>
+</html>
