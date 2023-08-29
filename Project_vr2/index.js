@@ -6,10 +6,8 @@ app.listen(3000, function(){
   console.log('Server listening on port 3000');
 })
 
-app.use('/Project_vr2', express.static(path.join(__dirname, '/Project_vr2')));  
-app.use('/CSS', express.static(path.join(__dirname, '/CSS')));  
-app.use('/images', express.static(path.join(__dirname, '/images')));  
-app.use('/JS', express.static(path.join(__dirname, '/JS')));  
+// 모든 정적 파일 제공
+app.use(express.static(__dirname));
 
 app.get('/', function(requests, response){
   response.sendFile(__dirname + '/index.html');
