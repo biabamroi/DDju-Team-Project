@@ -28,14 +28,14 @@ main {
 
 .find-title i {
   margin-right: 10px;
-  color: #8caefd;
+  /* color: #8caefd; */
 }
 
 .find-title span {
   font-family: 'Gowun Dodum', sans-serif;
   font-size: 18px;
-  font-weight: 700;
-  color: #8caefd;
+  /* font-weight: 700; */
+  /* color: #8caefd; */
 }
 
 .find-top {

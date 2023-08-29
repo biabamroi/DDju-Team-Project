@@ -24,7 +24,7 @@ $('.userpw input').focusout(function(){
 
   if(userPw.length == 0) {
     $('.userpw .warn').html('<span class="text-red">비밀번호를 입력해 주세요.</span>');
-    $('.userpw .inputbox span').empty();
+    // $('.userpw .inputbox span').empty();
   } else if(!pwExp.test(userPw)) {
     $('.userpw .warn').html('<span class="text-red">비밀번호를 확인해 주세요.</span>')
   } else {

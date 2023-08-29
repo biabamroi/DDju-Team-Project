@@ -32,6 +32,7 @@
   <link rel="stylesheet" href="./CSS/style.css">
   <link rel="stylesheet" href="./CSS/header.css">
   <link rel="stylesheet" href="./CSS/login.css">
+  <link rel="stylesheet" href="./CSS/input_label.css">
   <link rel="stylesheet" href="./CSS/footer.css">
   <link rel="stylesheet" href="./CSS/aside.css">
 
@@ -104,18 +105,22 @@
         <div class="login-center">
           <form action="./submit.html" id="login-form">
             <div class="login-box-item userid">
-              <label>
+              <label for="inp" class="inp">
                 <div class="inputbox">
-                  <input type="text" name="userid" placeholder="아이디">
+                  <input type="text" name="userid" placeholder="&nbsp;">
+                  <span class="label">아이디</span>
+                  <div class="focus-bg"></div>
                 </div>
               </label>
               <p class="warn"></p>
             </div>
     
             <div class="login-box-item userpw">
-              <label>
+              <label for="inp" class="inp">
                 <div class="inputbox">
-                  <input type="password" name="userpw" placeholder="비밀번호">
+                  <input type="password" name="userpw" placeholder="&nbsp;">
+                  <span class="label">비밀번호</span>
+                  <div class="focus-bg"></div>
                 </div>
               </label>
               <p class="warn"></p>

@@ -6,11 +6,48 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+
+
+.inputbox {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  background-color: #fff;
+  border: 1px solid #aac4ff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.inputbox input {
+  width: 70%;
+  height: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.inputbox div {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.inputbox p {
+  margin-right: 5px;
+}
+
+
+
 .inp {
   position: relative;
   margin: auto;
   width: 100%;
-  max-width: 280px;
+  /* max-width: 280px; */
   overflow: hidden;
 }
 .inp .label {
