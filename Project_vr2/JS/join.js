@@ -49,7 +49,7 @@ $('.userpw input').focusout(function(){
 
   if(userPw.length == 0) {
     $('.userpw .warn').html('<span class="text-red">비밀번호를 입력해 주세요.</span>');
-    $('.userpw .inputbox span').empty();
+    // $('.userpw .inputbox span').empty();
     $('.userpw .inputbox iconify-icon').attr({
       icon : 'solar:heart-lock-bold',
       style : 'color: #6f86ae; font-size: 24px;'
