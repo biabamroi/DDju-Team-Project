@@ -35,6 +35,13 @@ video {
 .first h1 {
   margin-bottom: 20px;
   font-size: 30px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.first p {
+  color: #666;
+  font-size: 18px;
 }
 
 .others {
