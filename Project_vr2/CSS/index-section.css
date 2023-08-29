@@ -1,3 +1,9 @@
+/* index header만 fixed로 */
+
+.global-header {
+  position: fixed;
+}
+
 /* section1 search */
 
 section:nth-of-type(1) {
