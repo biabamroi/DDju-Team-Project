@@ -85,9 +85,14 @@ hr {
   font-weight: bold;
 }
 
-.like-btn button {
-  width: 20px;
-  font-size: 18px;
+.like-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.like-btn button i {
+  font-size: 20px;
   color: rgb(248, 111, 134);
 }
 
@@ -105,7 +110,7 @@ hr {
   animation: like 1s linear;
 }
 
-/* @keyframes like {
+@keyframes like {
   0%{
     transform: scale(1);
   }
@@ -115,7 +120,9 @@ hr {
   100%{
     transform: scale(1);
   }
-} */
+}
+
+
 
 /* 데이트 코스 */
 
@@ -124,16 +131,15 @@ hr {
 }
 
 .zzim-course-item {
-  display: flex;
-  justify-content: center;
   width: 380px;
   margin: 5px;
   padding: 10px;
 }
-
 
 .zzim-course-item img {
   width: 370px;
   height: 380px;
   object-fit: cover;
 }
+
+
