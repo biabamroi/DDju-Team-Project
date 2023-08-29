@@ -138,7 +138,7 @@
               <li>#키워드</li>
             </ul>
           </div>
-          <div class="place-map"></div>
+          <div id="map" style="width:760px;height:400px;margin:20px 10px;"></div>
         </div>
 
         <hr>
@@ -265,6 +265,18 @@
     </div>
 
   </div>
+
+  <!-- 카카오 맵 -->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b30aabb752a0a95816e403bb318ea0b1"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(36.321655, 127.378953),
+			level: 3
+		};
+
+		var map = new kakao.maps.Map(container, options);
+	</script>
 
   <script src="./JS/header.js"></script>
   <script src="./JS/place-details.js"></script>
