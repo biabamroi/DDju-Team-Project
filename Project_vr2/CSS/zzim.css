@@ -91,6 +91,31 @@ hr {
   color: rgb(248, 111, 134);
 }
 
+.like-btn button:last-child {
+  display: none;
+}
+
+.like-btn.on button:first-child {
+  display: none;
+}
+
+.like-btn.on button:last-child {
+  display: block;
+  color: #FD8A8A;
+  animation: like 1s linear;
+}
+
+/* @keyframes like {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
+  }
+} */
 
 /* 데이트 코스 */
 
