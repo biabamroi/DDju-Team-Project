@@ -6,7 +6,7 @@ app.listen(3000, function(){
   console.log('Server listening on port 3000');
 })
 
-// app.use(express.static('CSS'));
+// app.use('/CSS', express.static(__dirname, '/CSS'));
 
 app.get('/', function(requests, response){
   response.sendFile(__dirname + '/index.html');
