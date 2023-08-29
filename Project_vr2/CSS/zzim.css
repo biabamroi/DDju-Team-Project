@@ -1,39 +1,107 @@
+
+main {
+  width: 800px;
+  margin: 0 auto;
+}
+
 .zzim-title {
-  margin: 40px 0 40px 200px;
-  color: #666;
-  font-size: 28px;
-  font-family: 'Orbit', sans-serif;
+  font-family: 'Gowun Dodum', sans-serif;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  font-size: 48px;
+  font-weight: bold;
 }
 
-.zzim-wrapper {
-  width: 100%;
-  height: 100vh;
+.zzim-title i {
+  margin-right: 10px;
 }
 
-.zzim-list {
+hr {
+  width: 800px;
+  margin: 0 auto;
+  color:  #666666;
+} 
+
+.zzim-place,
+.zzim-course {
+  position: relative;
+  font-family: 'Gowun Dodum', sans-serif;
+  display: flex;
+  align-items: center;
+  width: 210px;
+  padding: 20px 0;
+  font-size: 35px;
+}
+
+.zzim-place-count,
+.zzim-course-count {
+  position: absolute;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+.zzim-place-count i,
+.zzim-course-count i {
+  color: rgb(248, 111, 134);
+}
+
+.zzim-place-count p,
+.zzim-course-count p {
+  font-size: 15px;
+  margin-left: 3px;
+}
+
+.zzim-place-list,
+.zzim-course-list {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 50px auto;
-  width: 1200px;
-  border: 5px double #666;
-  border-radius: 10px;
-}
-
-.zzim-item {
-  width: 300px;
-  margin: 20px;
-}
-
-.zzim-item img {
-  width: 250px;
+  width: 800px;
+  flex-wrap: wrap;
+  border: 1px solid #aac4ff;
   border-radius: 5px;
 }
 
+.zzim-place-item {
+  width: 250px;
+  margin: 5px;
+  padding: 10px 0;
+}
+
 .zzim-text {
-  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
   font-size: 20px;
   font-weight: bold;
-  color: #333;
-  text-align: center;
+}
+
+.zzim-place-item img {
+  width: 250px;
+  height: 220px;
+  object-fit: cover;
+}
+
+/* 데이트 코스 */
+
+.zzim-course {
+ padding-top: 80px;
+}
+
+.zzim-course-item {
+  display: flex;
+  justify-content: center;
+  width: 380px;
+  margin: 5px;
+  padding: 10px;
+}
+
+
+.zzim-course-item img {
+  width: 370px;
+  height: 380px;
+  object-fit: cover;
 }
