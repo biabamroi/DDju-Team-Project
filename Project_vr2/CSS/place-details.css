@@ -1,4 +1,4 @@
-section {
+main {
   width: 800px;
   margin: 0 auto;
   color: #333;
@@ -51,13 +51,13 @@ hr {
   object-fit: cover;
 }
 
-.place-detail-box .icon-group {
+.place-detail-box .btn-group {
   display: flex;
   justify-content: space-between;
   margin: 10px 15px;
 }
 
-.place-detail-box .icon-group i {
+.place-detail-box .btn-group i {
   font-size: 20px;
 }
 

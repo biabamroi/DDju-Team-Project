@@ -1,29 +1,29 @@
-section {
+main {
   width: 800px;
   margin: 0 auto;
   color: #333;
 }
 
-.title {
+.course-header .title {
   font-size: 48px;
   font-family: 'Gowun Dodum', sans-serif;
   margin: 80px 10px 10px;
 }
 
-.order {
+.course-header .order {
   display: flex;
   justify-content: end;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   padding: 10px;
 }
-.order p {
+.course-header .order p {
   padding-left: 20px;
   position: relative;
   cursor: pointer;
 }
 
-.order p::after {
+.course-header .order p::after {
   content: "";
   width: 2px;
   height: 15px;
@@ -33,7 +33,7 @@ section {
   left: 10px;
 }
 
-.order p:first-child::after {
+.course-header .order p:first-child::after {
   content: none;
 }
 
@@ -66,7 +66,7 @@ section {
   object-fit: cover;
 }
 
-.text-box h3 {
+.course-item .text-box h3 {
   margin: 10px 0;
 }
 

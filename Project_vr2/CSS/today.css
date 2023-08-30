@@ -1,30 +1,30 @@
-section {
+main {
   width: 800px;
   margin: 0 auto;
   color: #333;
 }
 
-.title {
+.place-header .title {
   font-size: 48px;
   font-family: 'Gowun Dodum', sans-serif;
   margin: 80px 10px 0;
 }
 
-.place-menu {
+.place-header .place-menu {
   display: flex;
   margin: 10px 0;
 }
 
-.place-menu li {
+.place-header .place-menu li {
   position: relative;
   padding: 0 10px;
 }
 
-.place-menu li a {
+.place-header .place-menu li a {
   color: #666;
 }
 
-.place-menu li::before {
+.place-header .place-menu li::before {
   content: "";
   width: 2px;
   height: 15px;
@@ -34,11 +34,11 @@ section {
   left: 0;
 } 
 
-.place-menu li:first-child::before {
+.place-header .place-menu li:first-child::before {
   content: none;
 }
 
-.select {
+.place-header .select {
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #ccc;
@@ -47,15 +47,15 @@ section {
   color: #666;
 }
 
-.order {
+.place-header .order {
   display: flex;
 }
-.order p {
+.place-header .order p {
   padding-left: 20px;
   position: relative;
 }
 
-.order p::after {
+.place-header .order p::after {
   content: "";
   width: 2px;
   height: 15px;
@@ -65,11 +65,11 @@ section {
   left: 10px;
 }
 
-.order p:first-child::after {
+.place-header .order p:first-child::after {
   content: none;
 }
 
-#district {
+.place-header #district {
   border: none;
   padding: 0 20px;
   color: #666;
@@ -95,15 +95,15 @@ section {
   object-fit: cover;
 }
 
-.text-box {
+.place-item .text-box {
   margin: 0 20px;
 }
 
-.text-box h3 {
+.place-item .text-box h3 {
   padding: 10px;
 }
 
-.text-box p {
+.place-item .text-box p {
   padding: 10px;
 }
 
