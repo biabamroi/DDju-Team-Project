@@ -10,21 +10,21 @@ section {
   margin: 80px 10px 0;
 }
 
-.place {
+.place-menu {
   display: flex;
   margin: 10px 0;
 }
 
-.place li {
+.place-menu li {
   position: relative;
   padding: 0 10px;
 }
 
-.place li a {
+.place-menu li a {
   color: #666;
 }
 
-.place li::before {
+.place-menu li::before {
   content: "";
   width: 2px;
   height: 15px;
@@ -34,7 +34,7 @@ section {
   left: 0;
 } 
 
-.place li:first-child::before {
+.place-menu li:first-child::before {
   content: none;
 }
 
