@@ -1,5 +1,5 @@
 main {
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,7 @@ main {
   flex-direction: column;
   align-items: center;
   width: 500px;
-  padding: 40px 0;
+  padding: 80px 0;
   border: 1px solid #AAC4FF;
   border-radius: 10px;
   /* box-shadow: 0 0.5px 3px rgba(000,000,000,0.3); */
@@ -21,22 +21,31 @@ main {
   display: flex;
   justify-content: left;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 40px;
   width: 65%;
   /* border: 1px solid red; */
 }
 
 .find-title i {
   margin-right: 10px;
+  color: #ccc;
   /* color: #8caefd; */
 }
 
 .find-title span {
-  font-family: 'Gowun Dodum', sans-serif;
+  /* font-family: 'Gowun Dodum', sans-serif; */
   font-size: 18px;
   /* font-weight: 700; */
+  color: #ccc;
   /* color: #8caefd; */
 }
+
+
+
+.find-center {
+  margin-top: 30px;
+}
+
 
 .find-top {
   text-align: center;
@@ -64,9 +73,6 @@ main {
 }
 
 
-.find-center {
-  margin-top: 10px;
-}
 
 
 .phonenum,
@@ -174,7 +180,7 @@ main {
 }
 
 .find-bottom button {
-  width: 300px;
+  width: 340px;
   height: 50px;
   margin-top: 10px;
   padding-left: 15px;
