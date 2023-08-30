@@ -4,9 +4,12 @@ main {
   color: #333;
 }
 
+.place-details-header {
+  margin-top: 80px;
+}
+
 .place-menu {
   display: flex;
-  margin-top: 80px;
 }
 
 .place-menu li {
