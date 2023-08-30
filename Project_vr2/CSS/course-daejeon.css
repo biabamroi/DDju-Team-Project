@@ -37,7 +37,7 @@ section {
   content: none;
 }
 
-.place-list {
+.course-list {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -46,7 +46,7 @@ section {
   overflow: hidden;
 }
 
-.place-item {
+.course-item {
   margin: 10px;
   border: 1px solid #AAC4FF;
   border-radius: 10px;
@@ -55,11 +55,11 @@ section {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);  
 } 
 
-.place-item:hover {
+.course-item:hover {
   opacity: .7;
 }
 
-.place-item img {
+.course-item img {
   width: 280px;
   height: 150px;
   object-fit: cover;
