@@ -28,15 +28,24 @@ main {
 
 .find-title i {
   margin-right: 10px;
+  color: #ccc;
   /* color: #8caefd; */
 }
 
 .find-title span {
-  font-family: 'Gowun Dodum', sans-serif;
+  /* font-family: 'Gowun Dodum', sans-serif; */
   font-size: 18px;
   /* font-weight: 700; */
+  color: #ccc;
   /* color: #8caefd; */
 }
+
+
+
+.find-center {
+  margin-top: 30px;
+}
+
 
 .find-top {
   text-align: center;
@@ -64,9 +73,6 @@ main {
 }
 
 
-.find-center {
-  margin-top: 20px;
-}
 
 
 .phonenum,
