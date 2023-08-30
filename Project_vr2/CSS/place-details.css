@@ -4,9 +4,12 @@ main {
   color: #333;
 }
 
+.place-details-header {
+  margin-top: 80px;
+}
+
 .place-menu {
   display: flex;
-  margin-top: 80px;
 }
 
 .place-menu li {
@@ -48,6 +51,7 @@ hr {
 
 .place-detail-box > img {
   width: 780px;
+  height: 450px;
   object-fit: cover;
 }
 
