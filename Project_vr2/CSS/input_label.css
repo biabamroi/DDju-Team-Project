@@ -32,7 +32,6 @@ body {
   text-transform: uppercase;
   letter-spacing: 4px;
   line-height: 30px;
-  padding-left: 4px;
   color: rgba(0, 0, 0, 0.4);
   padding-bottom: 10px;
 }
@@ -40,9 +39,9 @@ body {
 .main-logo a:before {
   content: '';
   position: absolute;
-  left: 0;
+  left: 5px;
   bottom: 0;
-  width: 90px;
+  width: 80px;
   height: 2px;
   background-color: #AAC4FF;
 }
