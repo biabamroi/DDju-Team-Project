@@ -73,7 +73,7 @@ section:nth-of-type(1) {
 
 .search-bar div input:focus {
   outline: 1px solid #666;
-  border: none;
+  border-color: transparent;
 }
 
 .search-bar button {
