@@ -1,19 +1,19 @@
-
 main {
   width: 800px;
   margin: 0 auto;
 }
 
-.zzim-title {
+.zzim-header {
   font-family: 'Gowun Dodum', sans-serif;
   display: flex;
   align-items: center;
   height: 100px;
+  margin-top: 80px;
   font-size: 48px;
   font-weight: bold;
 }
 
-.zzim-title i {
+.zzim-header i {
   margin-right: 10px;
 }
 
