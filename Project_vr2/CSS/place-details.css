@@ -51,6 +51,7 @@ hr {
 
 .place-detail-box > img {
   width: 780px;
+  height: 450px;
   object-fit: cover;
 }
 
