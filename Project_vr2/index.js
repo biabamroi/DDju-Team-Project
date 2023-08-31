@@ -17,6 +17,9 @@ app.use(bodyParser.urlencoded({extended : true}));
 // MongoDB 연결
 const MongoClient = require('mongodb').MongoClient;
 
+// .ejs 사용 세팅
+app.set('view engine', 'ejs');
+
 // 모든 정적 파일 제공
 app.use(express.static(__dirname));
 
@@ -30,7 +33,7 @@ MongoClient.connect('mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.n
   if(error){
     return console.log(error);
   }
-  
+
   db = client.db('DDju');
   app.listen('3000', function(){
     console.log('success');
