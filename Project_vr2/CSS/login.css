@@ -1,5 +1,4 @@
 main {
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,52 +11,23 @@ main {
   align-items: center;
   width: 500px;
   height: 600px;
+  margin: 100px 0;
   border: 1px solid #AAC4FF;
   border-radius: 10px;
-  /* box-shadow: 0 0.5px 3px rgba(000,000,000,0.3); */
 }
-
 
 .inputbox {
   width: 300px;
 }
 
-/* .login-top {
-  text-align: center;
-}
-
-.login-top p {
-  font-size: 48px;
-  font-weight: 700;
-  color: #aac4ff;
-}
-
-.login-top span {
-  font-size: 15px;
-  font-weight: 400;
-}
-*/
-
 .login-center {
   margin-top: 40px;
 }
-
-/* .login-center input {
-  width: 300px;
-  height: 40px;
-  padding-left: 15px;
-  border: 1px solid #AAC4FF;
-  border-radius: 10px;
-  font-size: 15px;
-} */
-
-
 
 .login-bottom button {
   width: 300px;
   height: 40px;
   margin: 20px 0;
-  padding-left: 15px;
   border: 1px solid #AAC4FF;
   border-radius: 10px;
   background-color: #AAC4FF;
@@ -68,9 +38,6 @@ main {
 .login-list-wrap {
   margin-top: 10px;
   text-align: center;
-}
-
-.login-list-wrap span {
   font-size: 15px;
 }
 
