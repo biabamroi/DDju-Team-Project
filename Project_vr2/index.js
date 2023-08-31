@@ -42,31 +42,42 @@ MongoClient.connect('mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.n
 
 
 // 회원가입, 로그인 수정 중 --------------------------------------------------------------------
-app.post('/user', function(requests, response){
-  response.send('전송완료!')
-  console.log(requests.body)
+app.post('/add', function(requests, response){
 
-  // 내 콜렉션 이름 / insertOne 오브젝트 값 중괄호 db에 넘겨줄 값, 콜백함수 (error, 결과값 받아볼 변수)
-  db.collection('user').insertOne({
-    _id : 1, 
-    아이디 : requests.body.userid, 
-    비밀번호 : requests.body.userpw, 
-    이름 : requests.body.username,
-    생년월일 : requests.body.year + requests.body.month + requests.body.date,
-    성별 : requests.body.gender,
-    이메일 : requests.body.usermail,
-    휴대전화 : requests.body.country + requests.body.phonenum + requests.body.veritext,
-    주소 : requests.body.adress
-    }, function(error, result){
-    console.log('가입하기');
+  db.collection('total').findOne({name:'dataLength'}, function(error, result){
+    console.log(result.totalData);
+    let totalDataLength = result.totalData;
+
+    db.collection('user').insertOne({
+      _id : totalDataLength+1, 
+      아이디 : requests.body.userid, 
+      비밀번호 : requests.body.userpw, 
+      이름 : requests.body.username,
+      생년월일 : requests.body.year + requests.body.month + requests.body.date,
+      성별 : requests.body.gender,
+      이메일 : requests.body.usermail,
+      휴대전화 : requests.body.country + requests.body.phonenum + requests.body.veritext,
+      주소 : requests.body.adress
+      }, function(error, result){
+      console.log('가입하기');
+    })
+
+    db.collection('total').updateOne({name : 'dataLength'},
+    {$inc : {totalData:1}},
+    function(error, result){
+      if(error){
+        return console.log(error);
+      }
+    })
   })
 })
+
 
 // data 꺼내오는 ------------------------------------------------------------------------------
 app.get('/user', function(requests, response){
   db.collection('user').find().toArray(function(error, result){
     console.log(result);
-    response.render('data.ejs', {log : result})
+    response.render('보여줄 곳', {log : result})
   })
 })
 
