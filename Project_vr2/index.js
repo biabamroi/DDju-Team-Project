@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+// 데이터를 저장할 변수
+let db;
 
 // 포트 3000 연결
 app.listen(3000, function(){
