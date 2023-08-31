@@ -52,6 +52,20 @@ app.post('/user', function(requests, response){
   })
 })
 
+// data 꺼내오는 ------------------------------------------------------------------------------
+app.get('/user', function(requests, response){
+  db.collection('user').find().toArray(function(error, result){
+    console.log(result);
+    response.render('data.ejs', {log : result})
+  })
+})
+
+// join 값을 데이터베이스에 전송 -> login/find에서 데이터를 찾아서 꺼내오기
+// login 상태에서 zzim 값을 데이터베이스에서 받아서 -> zzim 페이지에서 꺼내오기
+
+
+
+
 // 기본 홈페이지 첫 화면
 app.get('/', function(requests, response){
   response.sendFile(__dirname + '/index.html');
