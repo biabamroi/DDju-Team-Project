@@ -8,6 +8,10 @@ app.listen(3000, function(){
   console.log('Server listening on port 3000');
 })
 
+// bodyParser 사용 선언
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended : true}));
+
 // 모든 정적 파일 제공
 app.use(express.static(__dirname));
 
