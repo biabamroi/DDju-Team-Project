@@ -47,8 +47,18 @@ app.post('/user', function(requests, response){
   console.log(requests.body)
 
   // 내 콜렉션 이름 / insertOne 오브젝트 값 중괄호 db에 넘겨줄 값, 콜백함수 (error, 결과값 받아볼 변수)
-  db.collection('user').insertOne({아이디 : requests.body.id, 비밀번호 : requests.body.pw}, function(error, result){
-    console.log('db저장완료');
+  db.collection('user').insertOne({
+    _id : 1, 
+    아이디 : requests.body.userid, 
+    비밀번호 : requests.body.userpw, 
+    이름 : requests.body.username,
+    생년월일 : requests.body.year + requests.body.month + requests.body.date,
+    성별 : requests.body.gender,
+    이메일 : requests.body.usermail,
+    휴대전화 : requests.body.country + requests.body.phonenum + requests.body.veritext,
+    주소 : requests.body.adress
+    }, function(error, result){
+    console.log('가입하기');
   })
 })
 
