@@ -12,6 +12,9 @@ app.listen(3000, function(){
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended : true}));
 
+// MongoDB 연결
+const MongoClient = require('mongodb').MongoClient;
+
 // 모든 정적 파일 제공
 app.use(express.static(__dirname));
 
