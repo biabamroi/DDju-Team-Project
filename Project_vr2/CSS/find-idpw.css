@@ -1,5 +1,4 @@
 main {
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,67 +10,38 @@ main {
   flex-direction: column;
   align-items: center;
   width: 500px;
-  padding: 80px 0;
+  margin: 100px 0;
+  padding: 60px 0;
   border: 1px solid #AAC4FF;
   border-radius: 10px;
-  /* box-shadow: 0 0.5px 3px rgba(000,000,000,0.3); */
 }
 
 .find-title {
   display: flex;
-  justify-content: left;
   align-items: center;
   margin-top: 40px;
   width: 65%;
-  /* border: 1px solid red; */
 }
 
 .find-title i {
   margin-right: 10px;
   color: #ccc;
-  /* color: #8caefd; */
 }
 
 .find-title span {
-  /* font-family: 'Gowun Dodum', sans-serif; */
-  font-size: 18px;
-  /* font-weight: 700; */
-  color: #ccc;
-  /* color: #8caefd; */
+  font-size: 16px;
+  font-weight: 700;
+  color: #bbb;
 }
-
-
 
 .find-center {
-  margin-top: 30px;
+  margin-top: 40px;
 }
-
-
-.find-top {
-  text-align: center;
-}
-
-.find-top p {
-  font-size: 48px;
-  font-weight: 700;
-  color: #aac4ff;
-}
-
-.find-top span {
-  font-size: 15px;
-  font-weight: 400;
-}
-
 
 .find-box-list {
   max-width: 468px;
   margin: 0 auto;
 }
-
-.find-box-item {
-  margin-bottom: 20px;
-}
-
 
 
 
@@ -95,40 +65,6 @@ main {
   font-size: 14px;
   border-radius: 10px;
 }
-
-.inputbox {
-  display: flex;
-  align-items: center;
-  height: 52px;
-  margin-top: 10px;
-  padding: 10px 12px;
-  background-color: #fff;
-  border: 1px solid #aac4ff;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.inputbox input {
-  width: 70%;
-  height: 100%;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.inputbox div {
-  width: 30%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.inputbox p {
-  margin-right: 5px;
-}
-
 
 .inputbox select {
   width: 100%;
