@@ -106,7 +106,7 @@
       <section class="join-box-list">
         <form action="/join" method="post" id="join-form">
           <div class="join-box-item userid">
-            <label for="inp" class="inp">
+            <label for="userid" class="inp">
               <div class="inputbox">
                 <input type="text" name="userid" id="userid" placeholder="&nbsp;">
                 <span class="label">아이디</span>
@@ -120,7 +120,7 @@
           </div>
   
           <div class="join-box-item userpw">
-            <label for="inp" class="inp">
+            <label for="userpw" class="inp">
               <div class="inputbox">
                 <input type="password" name="userpw" id="userpw" placeholder="&nbsp;">
                 <span class="label">비밀번호</span>
@@ -135,7 +135,7 @@
           </div> 
           
           <div class="join-box-item userpw-chk">
-            <label for="inp" class="inp">
+            <label for="userpw-chk" class="inp">
               <div class="inputbox">
                 <input type="password" name="userpw-chk" id="userpw-chk" placeholder="&nbsp;">
                 <span class="label">비밀번호 재확인</span>
@@ -195,15 +195,15 @@
             <div class="three-box">
               <div class="inputbox">
                 <p>남자</p>
-                <input type="radio" name="gender" value="0" id="male">
+                <input type="radio" name="gender" value="mail" id="male">
               </div>
               <div class="inputbox">
                 <p>여자</p>
-                <input type="radio" name="gender" value="1" id="female">
+                <input type="radio" name="gender" value="female" id="female">
               </div>
               <div class="inputbox">
                 <p>선택안함</p>
-                <input type="radio" name="gender" value="2" id="no-gender">
+                <input type="radio" name="gender" value="no-gender" id="no-gender">
               </div>
             </div>
           </div>
@@ -250,21 +250,21 @@
             <p>주소</p>
             <div class="postnum">
               <div class="inputbox">
-                <input id="sample6_postcode" type="text" placeholder="우편번호">
+                <input id="sample6_postcode" name="sample6_postcode" type="text" placeholder="우편번호">
               </div>
               <button onclick="sample6_execDaumPostcode()" type="button" class="btn-primary">우편번호 찾기</button>
             </div>
   
             <div class="inputbox">
-              <input id="sample6_address" type="text" placeholder="주소">
+              <input id="sample6_address" name="sample6_address" type="text" placeholder="주소">
             </div>
   
             <div class="inputbox">
-              <input id="sample6_detailAddress" type="text" placeholder="상세주소">
+              <input id="sample6_detailAddress" name="sample6_detailAddress" type="text" placeholder="상세주소">
             </div>
   
             <div class="inputbox">
-              <input id="sample6_extraAddress" type="text" placeholder="참고항목">
+              <input id="sample6_extraAddress" name="sample6_extraAddress" type="text" placeholder="참고항목">
             </div>
           </div>
           <button type="submit" id="joinbtn" class="btn-primary">가입하기</button>
