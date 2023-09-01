@@ -6,9 +6,9 @@ const path = require('path');
 let db;
 
 // 포트 3000 연결
-app.listen(3000, function(){
-  console.log('Server listening on port 3000');
-})
+// app.listen(3000, function(){
+//   console.log('Server listening on port 3000');
+// })
 
 // bodyParser 사용 선언
 const bodyParser = require('body-parser');
@@ -23,6 +23,8 @@ app.set('view engine', 'ejs');
 // 모든 정적 파일 제공
 app.use(express.static(__dirname));
 
+
+
 // Database : Data
 // 저장소 DDju
 // 콜렉션 user (회원)
@@ -36,14 +38,13 @@ MongoClient.connect('mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.n
 
   db = client.db('DDju');
   app.listen('3000', function(){
-    console.log('success');
+    console.log('포트 3000 연결 성공');
   });
 })
 
 
-// 회원가입, 로그인 수정 중 --------------------------------------------------------------------
-app.post('/add', function(requests, response){
-
+// 회원가입 --------------------------------------------------------------------
+app.post('/join', function(requests, response){
   db.collection('total').findOne({name:'dataLength'}, function(error, result){
     console.log(result.totalData);
     let totalDataLength = result.totalData;
@@ -57,9 +58,11 @@ app.post('/add', function(requests, response){
       성별 : requests.body.gender,
       이메일 : requests.body.usermail,
       휴대전화 : requests.body.country + requests.body.phonenum + requests.body.veritext,
-      주소 : requests.body.adress
-      }, function(error, result){
-      console.log('가입하기');
+      주소 : requests.body.sample6_postcode + requests.body.sample6_address + requests.body.sample6_detailAddress + requests.body.sample6_extraAddress
+    }, function(error, result){
+      if(error){
+        return console.log(error);
+      }
     })
 
     db.collection('total').updateOne({name : 'dataLength'},
@@ -70,16 +73,17 @@ app.post('/add', function(requests, response){
       }
     })
   })
+  response.redirect("/login.html");
 })
 
 
 // data 꺼내오는 ------------------------------------------------------------------------------
-app.get('/user', function(requests, response){
-  db.collection('user').find().toArray(function(error, result){
-    console.log(result);
-    response.render('보여줄 곳', {log : result})
-  })
-})
+// app.get('/user', function(requests, response){
+//   db.collection('user').find().toArray(function(error, result){
+//     console.log(result);
+//     response.render('보여줄 곳', {log : result})
+//   })
+// })
 
 // join 값을 데이터베이스에 전송 -> login/find에서 데이터를 찾아서 꺼내오기
 // login 상태에서 zzim 값을 데이터베이스에서 받아서 -> zzim 페이지에서 꺼내오기
