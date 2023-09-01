@@ -1,4 +1,4 @@
-let idveri = phoneveri = mailveri = false;
+let idveri = pwveri = false;
 
 
 // 아이디
