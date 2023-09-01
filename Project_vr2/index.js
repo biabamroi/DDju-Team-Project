@@ -43,6 +43,9 @@ MongoClient.connect('mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.n
 })
 
 
+// 회원가입 시 아이디 중복체크 ??
+
+
 // 회원가입 --------------------------------------------------------------------
 app.post('/join', function(requests, response){
   db.collection('total').findOne({name:'dataLength'}, function(error, result){
@@ -51,14 +54,14 @@ app.post('/join', function(requests, response){
 
     db.collection('user').insertOne({
       _id : totalDataLength+1, 
-      아이디 : requests.body.userid, 
-      비밀번호 : requests.body.userpw, 
-      이름 : requests.body.username,
-      생년월일 : requests.body.year + requests.body.month + requests.body.date,
-      성별 : requests.body.gender,
-      이메일 : requests.body.usermail,
-      휴대전화 : requests.body.country + requests.body.phonenum + requests.body.veritext,
-      주소 : requests.body.sample6_postcode + requests.body.sample6_address + requests.body.sample6_detailAddress + requests.body.sample6_extraAddress
+      ID : requests.body.userid, 
+      PW : requests.body.userpw, 
+      name : requests.body.username,
+      birth : requests.body.year + requests.body.month + requests.body.date,
+      gender : requests.body.gender,
+      email : requests.body.usermail,
+      phone : requests.body.country + requests.body.phonenum + requests.body.veritext,
+      adress : requests.body.sample6_postcode + requests.body.sample6_address + requests.body.sample6_detailAddress + requests.body.sample6_extraAddress
     }, function(error, result){
       if(error){
         return console.log(error);
@@ -77,15 +80,26 @@ app.post('/join', function(requests, response){
 })
 
 
-// data 꺼내오는 ------------------------------------------------------------------------------
-// app.get('/user', function(requests, response){
-//   db.collection('user').find().toArray(function(error, result){
-//     console.log(result);
-//     response.render('보여줄 곳', {log : result})
-//   })
-// })
+// 로그인 --------------------------------------------------------------------
 
-// join 값을 데이터베이스에 전송 -> login/find에서 데이터를 찾아서 꺼내오기
+app.post('/login', function(requests, response){
+  db.collection('user').findOne({
+    ID : requests.body.userid, 
+    PW : requests.body.userpw 
+  }, (function(error, users){
+    if(error){
+      return console.log(error);
+    }
+    if(!users){
+      return response.redirect('/login.html');
+      // response.send("<script>alert('아이디와 비밀번호를 다시 한 번 확인해 주세요.');</script>");
+    }
+    // 로그인 세션 또는 쿠키, 토큰 유지 기능 구현 필요
+    // requests.
+    return response.redirect('/index.html');
+  }))
+})
+
 // login 상태에서 zzim 값을 데이터베이스에서 받아서 -> zzim 페이지에서 꺼내오기
 
 
