@@ -10,13 +10,23 @@
     <p id="data"></p>
     <script>
       const url =
-        "https://api.odcloud.kr/api/15075891/v1/uddi:7cc7242f-7fd2-446a-8889-826404107afb?page=1&perPage=10&serviceKey=fxLRuUUZ7TMTxyDTe8hd%2BQJ2IKlrN3dwy6tCL4bsKC2rMy3tGC6Z8Phj6dbY9l7wixhan8f7%2Fn8l1Fk%2BrtSFYw%3D%3D";
+        "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?MobileOS=ect&MobileApp=DDju&_type=json&areaCode=3&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D";
 
-      fetch(url)
+      // fetch(url)
+      //   .then((res) => res.json())
+      //   .then((myJson) => {
+      //     document.getElementById("data").innerText = JSON.stringify(myJson, null, 1);
+      //   });
+
+        fetch(url)
         .then((res) => res.json())
         .then((myJson) => {
-          document.getElementById("data").innerText = JSON.stringify(myJson, null, 1);
-        });
+          let daejeon = myJson.response.body.items.item;
+          daejeon.forEach((item, index) => {
+            console.log(item, index)
+            console.log(item.title)
+          });
+          })
     </script>
   </body>
 </html>
