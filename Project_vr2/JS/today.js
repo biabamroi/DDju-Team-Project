@@ -6,23 +6,25 @@ fetch(url)
 .then((myJson) => {
   let daejeon = myJson.response.body.items.item;
   daejeon.forEach((item, index) => {
+    let placeItem = `
+    <div class="place-item">
+    <img src = "${item.firstimage}" alt = "${item.title}">
+    <div class="text-box">
+    <h3>${item.title}</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, repellendus.</p>
+            <ul class="keywords-list">
+              <li>#키워드</li>
+              <li>#키워드</li>
+              <li>#키워드</li>
+              <li>#키워드</li>
+            </ul>
+          </div>
+        </div>
+    `
+
     console.log(item, index)
-    console.log(item.title)
+    console.log(item.contentid)
+    document.querySelector('.place-list').insertAdjacentHTML('beforeend' , placeItem)
   });
   })
 
-
-// products.forEach(function(item){
-//   let boxItem = `
-//    <div class="box-item">
-//      <img src = "${item.img}" alt = "${item.title}">
-//      <div class = "sho-info">
-//        <h3>${item.title}</h3>
-//        <p>${item.price}</p>
-//        <p>${item.size}</p>
-//      </div>
-//    </div>
-//   `
-
-//   document.querySelector('.box-list').insertAdjacentHTML('beforeend' , boxItem)
-// })
