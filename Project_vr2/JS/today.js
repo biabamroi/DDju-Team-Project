@@ -2,6 +2,16 @@ let sigunguCode = '';
 const url =
 "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?MobileOS=ect&MobileApp=DDju&_type=json&areaCode=3" + sigunguCode + "&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D";
 
+document.getElementById('district').addEventListener('change', function(e){
+  sigunguCode = this.value;
+  console.log(sigunguCode)
+
+})
+
+
+
+
+
 fetch(url)
 .then((res) => res.json())
 .then((myJson) => {
@@ -22,9 +32,6 @@ fetch(url)
           </div>
         </div>
     `
-
-    console.log(item, index)
-    console.log(item.contentid)
     document.querySelector('.place-list').insertAdjacentHTML('beforeend' , placeItem)
   });
   })
