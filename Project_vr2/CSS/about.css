@@ -31,6 +31,8 @@
 }
 
 .content {
-  margin-top: 80px;
-  font-size: 20px;
+  font-family: 'Gowun Dodum', sans-serif;
+  margin-top: 60px;
+  font-size: 25px;
+  letter-spacing: 3px;
 }
