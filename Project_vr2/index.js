@@ -21,8 +21,7 @@ app.use(express.static(__dirname));
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended : true}));
 
-// cookie and session assign middleWare
-// npm install cookie-parser --save
+// cookieParser
 app.use(cookieParser());
 
 
@@ -33,6 +32,8 @@ const MongoClient = require('mongodb').MongoClient;
 // 저장소 DDju
 // 콜렉션 user (회원)
 // 콜렉션 zzim (좋아요) 
+// 콜렉션 review (리뷰)
+// 콜렉션 api (API)
 
 // Database ID admin PW zbJIiHYEKSsLa6Jg
 MongoClient.connect('mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.net/?retryWrites=true&w=majority', function(error, client){
