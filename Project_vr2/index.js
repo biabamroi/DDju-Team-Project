@@ -22,6 +22,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended : true}));
 
 // cookieParser
+// 인스톨 npm install cookie-parser --save
 app.use(cookieParser());
 
 
@@ -88,91 +89,91 @@ app.post('/join', function(requests, response){
 // 로그인 --------------------------------------------------------------------
 
 // 세션 환경세팅
-// app.use(
-//   expressSession({
-//     secret: "my key",
-//     resave: true,
-//     saveUninitialized: true
-//   })
-// );
+app.use(
+  expressSession({
+    secret: "my key",
+    resave: true,
+    saveUninitialized: true
+  })
+);
 
-// const userID = req.body.userid || req.query.userid;
-// const userPW = req.body.userpw || req.query.userpw;
+const userID = req.body.userid || req.query.userid;
+const userPW = req.body.userpw || req.query.userpw;
 
-// if (requests.session.user) {
-//   // 세션에 유저가 존재한다면
-//   response.redirect("/index.html");
-// } else {
-//   response.redirect("/login.html");
-// }
+if (requests.session.user) {
+  // 세션에 유저가 존재한다면
+  response.redirect("/index.html");
+} else {
+  response.redirect("/login.html");
+}
 
-// if (req.session.user) {
-//   // 세션에 유저가 존재한다면
-//   console.log("이미 로그인중입니다.");
-//   res.writeHead(200, { "Content-Type": "text/html; charset=utf8" });
-//   res.write("<h1> already Login</h1>");
-//   res.write(`[ID] : ${userID} [PW] : ${userPW}`);
-//   res.write('<a href="/process/example">예시로</a>');
-//   res.end();
-// } else {
-//   req.session.user = {
-//     id: userID,
-//     pw: userPW,
-//     name: username,
-//     authorized: true,
-//   };
-//   res.writeHead(200, { "Content-Type": "text/html; charset=utf8" });
-//   res.write("<h1>Login Success</h1>");
-//   res.write(`[ID] : ${userID} [PW] : ${userPW}`);
-//   res.write('<a href="/index">Move</a>');
-//   res.end();
-// }
+if (req.session.user) {
+  // 세션에 유저가 존재한다면
+  console.log("이미 로그인중입니다.");
+  res.writeHead(200, { "Content-Type": "text/html; charset=utf8" });
+  res.write("<h1> already Login</h1>");
+  res.write(`[ID] : ${userID} [PW] : ${userPW}`);
+  res.write('<a href="/process/example">예시로</a>');
+  res.end();
+} else {
+  req.session.user = {
+    id: userID,
+    pw: userPW,
+    name: username,
+    authorized: true,
+  };
+  res.writeHead(200, { "Content-Type": "text/html; charset=utf8" });
+  res.write("<h1>Login Success</h1>");
+  res.write(`[ID] : ${userID} [PW] : ${userPW}`);
+  res.write('<a href="/index">Move</a>');
+  res.end();
+}
 
-// app.post('/login', function(requests, response){
-//   db.collection('user').findOne({
-//     ID : requests.body.userid, 
-//     PW : requests.body.userpw 
-//   }, (function(error, users){
-//     if(error){
-//       return console.log(error);
-//     }
-//     if(!users){
-//       return response.redirect('/login.html');
-//       // response.send("<script>alert('아이디와 비밀번호를 다시 한 번 확인해 주세요.');</script>");
-//     }
-//     // 로그인 세션 또는 쿠키, 토큰 유지 기능 구현 필요
-//     // requests.
-//     return response.redirect('/index.html');
-//   }))
-// })
+app.post('/login', function(requests, response){
+  db.collection('user').findOne({
+    ID : requests.body.userid, 
+    PW : requests.body.userpw 
+  }, (function(error, users){
+    if(error){
+      return console.log(error);
+    }
+    if(!users){
+      return response.redirect('/login.html');
+      // response.send("<script>alert('아이디와 비밀번호를 다시 한 번 확인해 주세요.');</script>");
+    }
+    // 로그인 세션 또는 쿠키, 토큰 유지 기능 구현 필요
+    // requests.
+    return response.redirect('/index.html');
+  }))
+})
 
 // 세션 로그인, 로그아웃 --------------------------------------------------------------------
 
 
-// app.get("/logout", (req, res) => {
-//   console.log("로그아웃");
+app.get("/logout", (req, res) => {
+  console.log("로그아웃");
 
-//   if (req.session.user) {
-//     console.log("로그아웃중입니다!");
-//     req.session.destroy((err) => {
-//       if (err) {
-//         console.log("세션 삭제 에러가 발생했습니다.");
-//         return;
-//       }
-//       console.log("세션이 삭제됐습니다.");
-//       res.redirect("/login.html");
-//     });
-//   } else {
-//     console.log("로그인이 필요합니다.");
-//     res.redirect("/login.html");
-//   }
-// });
+  if (req.session.user) {
+    console.log("로그아웃중입니다!");
+    req.session.destroy((err) => {
+      if (err) {
+        console.log("세션 삭제 에러가 발생했습니다.");
+        return;
+      }
+      console.log("세션이 삭제됐습니다.");
+      res.redirect("/login.html");
+    });
+  } else {
+    console.log("로그인이 필요합니다.");
+    res.redirect("/login.html");
+  }
+});
 
-// const appServer = http.createServer(app);
+const appServer = http.createServer(app);
 
-// appServer.listen(app.get("port"), () => {
-//   console.log(`${app.get("port")}에서 서버실행중.`);
-// });
+appServer.listen(app.get("port"), () => {
+  console.log(`${app.get("port")}에서 서버실행중.`);
+});
 
 
 
