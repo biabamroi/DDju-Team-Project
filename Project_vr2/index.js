@@ -233,7 +233,9 @@ app.get('/place-details', function(requests, response){
   response.sendFile(__dirname + '/place-details.html');
 })
 app.get('/today-all', function(requests, response){
-  response.sendFile(__dirname + '/today-all.html');
+  db.collection('api').find().toArray(function(error, result){
+    response.render('today-all.ejs', {api : result})
+  })
 })
 app.get('/today-do', function(requests, response){
   response.sendFile(__dirname + '/today-do.html');
