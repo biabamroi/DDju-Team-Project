@@ -119,8 +119,8 @@
 
       <div class="place-list">
         <input type="text" id="totalCount" value="<%= api.length %>" style="display: none;">
-        <!-- <a href="/place-details">
-          <% for(let i = 0; i < api.length; i++) { %>
+        <% for(let i = 0; i < api.length; i++) { %>
+        <a href="/place-details/<%= api[i]._id%>">
             <div class="place-item">
               <img src = "<%= api[i].img %>" alt = "<%= api[i].title%>">
               <div class="text-box">
@@ -134,8 +134,8 @@
                 </ul>
                 </div>
               </div>
-            <% } %>
-          </a> -->
+            </a>
+          <% } %>
       </div>
 
       <div class="pagination">
