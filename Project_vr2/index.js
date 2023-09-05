@@ -180,11 +180,46 @@ app.post('/join', function(requests, response){
 //   },
 // }));
 
+// app.get('/delete', (req, res) => {
+//   res.clearCookie('user').redirect('/')
+// })
+
+// 참조용 코드
+// const morgan = require('morgan');
+// const nunjucks = require('nunjucks');
+
+// app.use(morgan('dev'));
+// app.use(cookieParser());
+// app.set('view engine', 'html');
+// nunjucks.configure('views', {
+//   express: app,
+//   watch: true,
+// });
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+
+
+// app.get('/', (req, res) => {
+//     const { user } = req.cookies;
+//     if(user){
+//         res.render('login', { user });
+//         return;
+//     }
+    
+//     res.render('index')
+// })
+
+// app.post('/', (req, res) => {
+//     const { name } = req.body;
+//     res.cookie('user', name).redirect('/');
+// })
+
+
 
 // 로그인 --------------------------------------------------------------------
 
-const userID = req.body.userid || req.query.userid;
-const userPW = req.body.userpw || req.query.userpw;
+// const userID = req.body.userid || req.query.userid;
+// const userPW = req.body.userpw || req.query.userpw;
 
 app.post('/login', function(requests, response){
   db.collection('user').findOne({
