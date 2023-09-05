@@ -218,9 +218,6 @@ app.post('/join', function(requests, response){
 
 // 로그인 --------------------------------------------------------------------
 
-// const userID = req.body.userid || req.query.userid;
-// const userPW = req.body.userpw || req.query.userpw;
-
 app.post('/login', function(requests, response){
   db.collection('user').findOne({
     ID : requests.body.userid, 
