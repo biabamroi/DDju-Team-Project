@@ -154,13 +154,12 @@
 }
 
 .mymenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 120px;
+}
+
+.hidden {
   display: none;
-}
-
-.mymenu button {
-  margin-right: 10px;
-}
-
-.mymenu button:last-child {
-  margin-right: 0;
 }
