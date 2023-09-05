@@ -15,7 +15,7 @@ app.use(express.static(__dirname));
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
-
+// npm install -g nodemon ★ 전역 설치 ★
 
 // MongoDB 연결
 const MongoClient = require('mongodb').MongoClient;
@@ -202,6 +202,15 @@ app.get('/', function(requests, response){
 app.get('/index', function(requests, response){
   response.sendFile(__dirname + '/index.html');
 })
+app.get('/join', function(requests, response){
+  response.sendFile(__dirname + '/join.html');
+})
+app.get('/login', function(requests, response){
+  response.sendFile(__dirname + '/login.html');
+})
+app.get('/find-idpw', function(requests, response){
+  response.sendFile(__dirname + '/find-idpw.html');
+})
 app.get('/map', function(requests, response){
   response.sendFile(__dirname + '/map.html');
 })
@@ -216,15 +225,6 @@ app.get('/course-daejeon', function(requests, response){
 })
 app.get('/course-details', function(requests, response){
   response.sendFile(__dirname + '/course-details.html');
-})
-app.get('/find-idpw', function(requests, response){
-  response.sendFile(__dirname + '/find-idpw.html');
-})
-app.get('/join', function(requests, response){
-  response.sendFile(__dirname + '/join.html');
-})
-app.get('/login', function(requests, response){
-  response.sendFile(__dirname + '/login.html');
 })
 app.get('/member-info', function(requests, response){
   response.sendFile(__dirname + '/member-info.html');
@@ -248,6 +248,18 @@ app.get('/today-see', function(requests, response){
 })
 app.get('/zzim', function(requests, response){
   response.sendFile(__dirname + '/zzim.html');
+})
+app.get('/policy', function(requests, response){
+  response.sendFile(__dirname + '/policy.html');
+})
+app.get('/privacy', function(requests, response){
+  response.sendFile(__dirname + '/privacy.html');
+})
+app.get('/sitemap', function(requests, response){
+  response.sendFile(__dirname + '/sitemap.html');
+})
+app.get('/search', function(requests, response){
+  response.sendFile(__dirname + '/search.html');
 })
 
 
