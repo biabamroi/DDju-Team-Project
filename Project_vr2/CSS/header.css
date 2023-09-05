@@ -1,3 +1,7 @@
+.lg-hidden{
+  display: none;
+}
+
 .global-header {
   position: relative;
   top: 0;
@@ -162,4 +166,52 @@
 
 .hidden {
   display: none;
+}
+
+.mymenu button {
+  margin-right: 10px;
+}
+
+.mymenu button:last-child {
+  margin-right: 0;
+}
+
+
+  
+  /* 1200px 이하 해당 스타일링 적용 */
+  @media screen and (max-width : 1200px) {
+    .lg-only {
+      display: none; 
+    }
+  
+    .lg-hidden {
+      display: block;
+    }
+
+    .user-menu-btn {
+      width: 100px;
+      justify-content: space-between;
+    }
+
+  }
+
+/* 768px 이하 해당 스타일링 적용 */
+@media screen and (max-width : 768px) {
+  .logo a {
+    font-weight: 200;
+    font-size: 35px;
+  }
+
+  .logo a span {
+    font-size: 10px;
+    font-weight: 450;
+  }
+
+  .user-menu-btn {
+    width: 80px;
+  }
+
+  .user-menu-btn button i {
+    font-size: 23px;
+  }
 }
