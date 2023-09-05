@@ -233,7 +233,9 @@ app.get('/place-details', function(requests, response){
   response.sendFile(__dirname + '/place-details.html');
 })
 app.get('/today-all', function(requests, response){
-  response.sendFile(__dirname + '/today-all.html');
+  db.collection('api').find().toArray(function(error, result){
+    response.render('today-all.ejs', {api : result})
+  })
 })
 app.get('/today-do', function(requests, response){
   response.sendFile(__dirname + '/today-do.html');
@@ -299,8 +301,8 @@ app.get('/search', function(requests, response){
 // app.get('/api', function(requests, response){
 //   db.collection('api').find().toArray(function(error, result){
 //     // console.log(result.length)
-//     for(let i = 0; i < 10; i++) {
-//       let url = 'https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ect&MobileApp=DDju&_type=json&contentId=' + result[i]._id + '&defaultYN=Y&overviewYN=Y&serviceKey=SLJe0Elsk0DOYqHIPeUB7PP2WOW3J0LjCct3gZhtNfafIAU7cyzRTDGocxAQWuLvgm2cRPKIAJPkJmUJnWO%2FrA%3D%3D';
+//     for(let i = 600; i < 767; i++) {
+//       let url = 'https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ect&MobileApp=DDju&_type=json&contentId=' + result[i]._id + '&defaultYN=Y&overviewYN=Y&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
 
 //       fetch(url)
 //       .then((res) => res.json())
