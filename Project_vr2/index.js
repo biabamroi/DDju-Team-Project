@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 // 모든 정적 파일 제공
 app.use(express.static(__dirname));
 
-// npm install method-override 라이브러리
+// npm install method-override 라이브러리 ★ 설치 ★
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
@@ -40,12 +40,13 @@ MongoClient.connect('mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.n
 
 
 
+// npm install body-parser  ★ 설치 ★
 // bodyParser 사용 선언
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended : true}));
 
 // cookieParser
-// npm install cookie-parser --save
+// npm install cookie-parser --save  ★ 설치 ★
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
@@ -57,39 +58,10 @@ app.get('/', function (req, res) {
   console.log('Signed Cookies: ', req.signedCookies)
 });
 
-// 구문 ---------------------------수정할 부분------------------------
-// cookieParser(secret)
-//  서버 쿠키 설정
-// res.cookie(key, value, option)
-// option : expires 날짜 만료 기간
-// maxAge 초단위 만료 기간
-
-
-// 세션 설치
-// npm install -s express-session
+// 세션
+// npm install -s express-session  ★ 설치 ★
 const session = require('express-session');
 
-// 세션 환경세팅 ---------------------------작업중--------------------
-app.use(
-  ({
-    secret: "my key",
-    resave: true,
-    saveUninitialized: true
-  })
-);
-
-app.use(session({
-  resave: false,
-  saveUninitialized: false,
-  secret: process.env.COOKIE_SECRET,
-  cookie: {
-    // httpOnly: true 쿠키 접근 불가
-    httpOnly: true,
-    // secure: HTTPS일 경우만 쿠키 전송
-    secure: false,
-  },
-}));
-// -------------------------------------------------------------------
 
 
 // 기본 홈페이지 첫 화면
@@ -187,39 +159,32 @@ app.post('/join', function(requests, response){
 })
 
 
+// 세션 환경세팅 ---------------------------작업중--------------------
+// app.use(
+//   ({
+//     secret: "my key",
+//     resave: true,
+//     saveUninitialized: true
+//   })
+// );
+
+// app.use(session({
+//   resave: false,
+//   saveUninitialized: false,
+//   secret: process.env.COOKIE_SECRET,
+//   cookie: {
+//     // httpOnly: true 쿠키 접근 불가
+//     httpOnly: true,
+//     // secure: HTTPS일 경우만 쿠키 전송
+//     secure: false,
+//   },
+// }));
+
+
 // 로그인 --------------------------------------------------------------------
 
 const userID = req.body.userid || req.query.userid;
 const userPW = req.body.userpw || req.query.userpw;
-
-if (requests.session.user) {
-  // 세션에 유저가 존재한다면
-  response.redirect("/index.html");
-} else {
-  response.redirect("/login.html");
-}
-
-if (req.session.user) {
-  // 세션에 유저가 존재한다면
-  console.log("이미 로그인중입니다.");
-  res.writeHead(200, { "Content-Type": "text/html; charset=utf8" });
-  res.write("<h1> already Login</h1>");
-  res.write(`[ID] : ${userID} [PW] : ${userPW}`);
-  res.write('<a href="/process/example">예시로</a>');
-  res.end();
-} else {
-  req.session.user = {
-    id: userID,
-    pw: userPW,
-    name: username,
-    authorized: true,
-  };
-  res.writeHead(200, { "Content-Type": "text/html; charset=utf8" });
-  res.write("<h1>Login Success</h1>");
-  res.write(`[ID] : ${userID} [PW] : ${userPW}`);
-  res.write('<a href="/index">Move</a>');
-  res.end();
-}
 
 app.post('/login', function(requests, response){
   db.collection('user').findOne({
@@ -239,33 +204,9 @@ app.post('/login', function(requests, response){
   }))
 })
 
-// 세션 로그인, 로그아웃 --------------------------------------------------------------------
+app.post('/logout', function(requests, response){
 
-app.get("/logout", (req, res) => {
-  console.log("로그아웃");
-
-  if (req.session.user) {
-    console.log("로그아웃중입니다!");
-    req.session.destroy((err) => {
-      if (err) {
-        console.log("세션 삭제 에러가 발생했습니다.");
-        return;
-      }
-      console.log("세션이 삭제됐습니다.");
-      res.redirect("/login.html");
-    });
-  } else {
-    console.log("로그인이 필요합니다.");
-    res.redirect("/login.html");
-  }
-});
-
-const appServer = http.createServer(app);
-
-appServer.listen(app.get("port"), () => {
-  console.log(`${app.get("port")}에서 서버실행중.`);
-});
-
+})
 
 
 
