@@ -63,65 +63,6 @@ app.get('/', function (req, res) {
 const session = require('express-session');
 
 
-
-// 기본 홈페이지 첫 화면
-app.get('/', function(requests, response){
-  response.sendFile(__dirname + '/index.html');
-})
-
-// 외 페이지
-app.get('/index', function(requests, response){
-  response.sendFile(__dirname + '/index.html');
-})
-app.get('/map', function(requests, response){
-  response.sendFile(__dirname + '/map.html');
-})
-app.get('/about', function(requests, response){
-  response.sendFile(__dirname + '/about.html');
-})
-app.get('/contact', function(requests, response){
-  response.sendFile(__dirname + '/contact.html');
-})
-app.get('/course-daejeon', function(requests, response){
-  response.sendFile(__dirname + '/course-daejeon.html');
-})
-app.get('/course-details', function(requests, response){
-  response.sendFile(__dirname + '/course-details.html');
-})
-app.get('/find-idpw', function(requests, response){
-  response.sendFile(__dirname + '/find-idpw.html');
-})
-app.get('/join', function(requests, response){
-  response.sendFile(__dirname + '/join.html');
-})
-app.get('/login', function(requests, response){
-  response.sendFile(__dirname + '/login.html');
-})
-app.get('/member-info', function(requests, response){
-  response.sendFile(__dirname + '/member-info.html');
-})
-app.get('/place-details', function(requests, response){
-  response.sendFile(__dirname + '/place-details.html');
-})
-app.get('/today-all', function(requests, response){
-  response.sendFile(__dirname + '/today-all.html');
-})
-app.get('/today-do', function(requests, response){
-  response.sendFile(__dirname + '/today-do.html');
-})
-app.get('/today-eat', function(requests, response){
-  response.sendFile(__dirname + '/today-eat.html');
-})
-app.get('/today-see', function(requests, response){
-  response.sendFile(__dirname + '/today-see.html');
-})
-app.get('/zzim', function(requests, response){
-  response.sendFile(__dirname + '/zzim.html');
-})
-
-
-
-
 // 회원가입 시 아이디 중복체크 - 추후 업데이트
 
 
@@ -243,6 +184,71 @@ app.post('/logout', function(requests, response){
 
 
 // login 상태에서 zzim 값을 데이터베이스에서 받아서 -> zzim 페이지에서 꺼내오기
+
+
+
+
+
+
+
+// 기본 홈페이지 첫 화면
+app.get('/', function(requests, response){
+  response.sendFile(__dirname + '/index.html');
+})
+
+
+
+// 외 페이지
+app.get('/index', function(requests, response){
+  response.sendFile(__dirname + '/index.html');
+})
+app.get('/map', function(requests, response){
+  response.sendFile(__dirname + '/map.html');
+})
+app.get('/about', function(requests, response){
+  response.sendFile(__dirname + '/about.html');
+})
+app.get('/contact', function(requests, response){
+  response.sendFile(__dirname + '/contact.html');
+})
+app.get('/course-daejeon', function(requests, response){
+  response.sendFile(__dirname + '/course-daejeon.html');
+})
+app.get('/course-details', function(requests, response){
+  response.sendFile(__dirname + '/course-details.html');
+})
+app.get('/find-idpw', function(requests, response){
+  response.sendFile(__dirname + '/find-idpw.html');
+})
+app.get('/join', function(requests, response){
+  response.sendFile(__dirname + '/join.html');
+})
+app.get('/login', function(requests, response){
+  response.sendFile(__dirname + '/login.html');
+})
+app.get('/member-info', function(requests, response){
+  response.sendFile(__dirname + '/member-info.html');
+})
+app.get('/place-details', function(requests, response){
+  response.sendFile(__dirname + '/place-details.html');
+})
+app.get('/today-all', function(requests, response){
+  response.sendFile(__dirname + '/today-all.html');
+})
+app.get('/today-do', function(requests, response){
+  response.sendFile(__dirname + '/today-do.html');
+})
+app.get('/today-eat', function(requests, response){
+  response.sendFile(__dirname + '/today-eat.html');
+})
+app.get('/today-see', function(requests, response){
+  response.sendFile(__dirname + '/today-see.html');
+})
+app.get('/zzim', function(requests, response){
+  response.sendFile(__dirname + '/zzim.html');
+})
+
+
 
 
 // api 데이터 파싱 --------------------------------------------------------------------------
