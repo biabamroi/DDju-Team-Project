@@ -23,7 +23,26 @@ app.use(bodyParser.urlencoded({extended : true}));
 
 // cookieParser
 // 인스톨 npm install cookie-parser --save
+const cookieParser = require('cookie-parser');
 app.use(cookieParser());
+
+app.get('/', function (req, res) {
+  // Cookies that have not been signed 서명되지 않은 쿠키
+  console.log('Cookies: ', req.cookies)
+
+  // Cookies that have been signed 서명된 쿠키
+  console.log('Signed Cookies: ', req.signedCookies)
+});
+
+// 구문
+// cookieParser(secret)
+//  서버 쿠키 설정
+// res.cookie(key, value, option)
+// option : expires 날짜 만료 기간
+// httpOnly true 시 쿠키 접근 불가
+// maxAge 초단위 만료 기간
+// secure HTTPS일 경우만 쿠키 전송
+
 
 
 // MongoDB 연결
@@ -43,9 +62,7 @@ MongoClient.connect('mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.n
   }
 
   db = client.db('DDju');
-  app.listen('3000', function(){
-    console.log('포트 3000 연결 성공');
-  });
+  app.listen('3000');
 })
 
 
@@ -87,6 +104,9 @@ app.post('/join', function(requests, response){
 
 
 // 로그인 --------------------------------------------------------------------
+
+// 세션 설치
+// npm install -s express-session
 
 // 세션 환경세팅
 app.use(
