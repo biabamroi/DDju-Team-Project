@@ -218,9 +218,6 @@ app.post('/join', function(requests, response){
 
 // 로그인 --------------------------------------------------------------------
 
-// const userID = req.body.userid || req.query.userid;
-// const userPW = req.body.userpw || req.query.userpw;
-
 app.post('/login', function(requests, response){
   db.collection('user').findOne({
     ID : requests.body.userid, 
@@ -248,3 +245,91 @@ app.post('/logout', function(requests, response){
 // login 상태에서 zzim 값을 데이터베이스에서 받아서 -> zzim 페이지에서 꺼내오기
 
 
+// api 데이터 파싱 --------------------------------------------------------------------------
+
+// 1. 기본정보(콘텐츠id, 제목, 관광타입, 시군구코드, 이미지, 주소, 우편번호, 지도좌표, 등록일)
+// let url = "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=785&MobileOS=ect&MobileApp=DDju&_type=json&areaCode=3&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D";
+
+// fetch(url)
+// .then((res) => res.json())
+// .then((myJson) => {
+//   let daejeon = myJson.response.body.items.item;
+//   for(let i = 0; i < daejeon.length; i++) {
+//     db.collection('api').insert({_id : daejeon[i].contentid,
+//       'title' : daejeon[i].title, 'contenttypeid' : daejeon[i].contenttypeid,
+//       'sigungucode' : daejeon[i].sigungucode, 'img' : daejeon[i].firstimage,
+//       'addr1' : daejeon[i].addr1, 'addr2' : daejeon[i].addr2, 'zipcode' : daejeon[i].zipcode,
+//       'mapx' : daejeon[i].mapx, 'mapy' : daejeon[i].mapy,
+//       'createdtime' : daejeon[i].createdtime}, function(error, result){
+//       console.log('db에 저장완료!')
+//     })
+//   }
+// })
+
+// 2. 필요없는 데이터 삭제하기 : contenttypeid가 32(숙소)인 데이터
+// app.get('/api', function(){
+//   db.collection('api').deleteMany({contenttypeid : '32'}, function(error, result){
+//     console.log('삭제 완료!')
+//     if(error) {
+//       console.log(error)
+//     }
+//   })
+// })
+
+// 3. Mongodb에서 데이터 가져와서 일치하는 id값에 필요한 Key값 추가하기
+// (1) 개요, 홈페이지 주소
+// app.get('/api', function(requests, response){
+//   db.collection('api').find().toArray(function(error, result){
+//     // console.log(result.length)
+//     for(let i = 0; i < 10; i++) {
+//       let url = 'https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ect&MobileApp=DDju&_type=json&contentId=' + result[i]._id + '&defaultYN=Y&overviewYN=Y&serviceKey=SLJe0Elsk0DOYqHIPeUB7PP2WOW3J0LjCct3gZhtNfafIAU7cyzRTDGocxAQWuLvgm2cRPKIAJPkJmUJnWO%2FrA%3D%3D';
+
+//       fetch(url)
+//       .then((res) => res.json())
+//       .then((json) => {
+//         let text = json.response.body.items.item;
+//         // console.log(text[0].overview, text[0].hmpg)
+        
+//         db.collection('api').update({_id : result[i]._id}, {$set : {'overview' : text[0].overview, 'hmpg' : text[0].hmpg}}, function(error, result){
+//           if(error) {
+//             return console.log(error)
+//           } 
+//           console.log('db에 저장완료!' + i)
+//         })
+//       })
+//     }
+//   })
+// })
+
+// (2) 이용시간, 쉬는날, 문의 및 안내 등
+  // contenttypeid -> find, url 값 같게 설정
+  // result.length 확인 후 i 설정
+  // 데이터 한개 먼저 시범으로 확인 후 update 시작
+  // 12 : {$set : {'usetime' : text[0].usetime, 'restdate' : text[0].restdate, 'infocenter' : text[0].infocenter}}
+  // 14 : {$set : {'usetime' : text[0].usetimeculture, 'restdate' : text[0].restdateculture, 'infocenter' : text[0].infocenterculture}}
+  // 행사 홈페이지 정보 필요한지 확인
+  // 15 : {$set : {'startdate' : text[0].eventstartdate, 'enddate' : text[0].eventenddate, 'eventplace' : text[0].eventplace}}
+  // 28 : {$set : {'usetime' : text[0].usetimeleports, 'restdate' : text[0].restdateleports, 'infocenter' : text[0].infocenterleports}}
+  // 38 : {$set : {'opentime' : text[0].opentime, 'restdate' : text[0].restdateshopping, 'infocenter' : text[0].infocentershopping}}
+  // 39 : {$set : {'opentime' : text[0].opentimefood, 'restdate' : text[0].restdatefood, 'infocenter' : text[0].infocenterfood}}
+// app.get('/api', function(requests, response){
+//   db.collection('api').find({contenttypeid : '39'}).toArray(function(error, result){
+//     // console.log(result.length)
+//     for(let i = 200; i < 417; i++) {
+//       let url = 'https://apis.data.go.kr/B551011/KorService1/detailIntro1?MobileOS=ect&MobileApp=DDju&_type=json&contentId=' + result[i]._id + '&contentTypeId=39&serviceKey=SLJe0Elsk0DOYqHIPeUB7PP2WOW3J0LjCct3gZhtNfafIAU7cyzRTDGocxAQWuLvgm2cRPKIAJPkJmUJnWO%2FrA%3D%3D';
+//       fetch(url)
+//       .then((res) => res.json())
+//       .then((json) => {
+//         let text = json.response.body.items.item;
+
+//         db.collection('api').update({_id : result[i]._id},
+//           {$set : {'opentime' : text[0].opentimefood, 'restdate' : text[0].restdatefood, 'infocenter' : text[0].infocenterfood}}, function(error, result){
+//             if(error) {
+//               return console.log(error)
+//             } 
+//             console.log('db에 저장완료!' + i)
+//         })
+//       })
+//     }
+//   })
+// })
