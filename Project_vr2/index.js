@@ -139,7 +139,7 @@ app.post('/join', function(requests, response){
       birth : requests.body.year + requests.body.month + requests.body.date,
       gender : requests.body.gender,
       email : requests.body.usermail,
-      phone : requests.body.country + requests.body.phonenum + requests.body.veritext,
+      phone : requests.body.country + requests.body.phonenum,
       adress : requests.body.sample6_postcode + requests.body.sample6_address + requests.body.sample6_detailAddress + requests.body.sample6_extraAddress
     }, function(error, result){
       if(error){
@@ -155,7 +155,7 @@ app.post('/join', function(requests, response){
       }
     })
   })
-  response.redirect("/login.html");
+  response.redirect('/login');
 })
 
 
