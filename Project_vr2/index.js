@@ -134,16 +134,17 @@ app.get('/fail', function(requests, response){
 })
 
 passport.use(new LocalStrategy({
-  usernameField : 'id',
-  passwordField : 'pw',
+  usernameField : 'userid',
+  passwordField : 'userpw',
   session : true,
   passReqToCallback : false
 }, function(userID, userPW, done){
-  db.collection('user').findOne({id : userID}, function(error, result){
+  db.collection('user').findOne({ID : userID}, function(error, result){
+    // console.log(error)
     if(!result){
       return done(null, false, {message : '존재하지 않는 아이디입니다.'})
     }
-    if(userPW == result.pw){
+    if(userPW == result.userpw){
       return done(null, result)
     }else{
       return done(null, false, {message : '비밀번호가 일치하지 않습니다.'})
@@ -152,11 +153,11 @@ passport.use(new LocalStrategy({
 }))
 
 passport.serializeUser(function(user, done){
-  done(null, user.id)
+  done(null, user.userid)
 })
 
 passport.deserializeUser(function(id, done){
-  db.collection('user').findOne({id : id}, function(error, result){
+  db.collection('user').findOne({ID : id}, function(error, result){
     done(null, result)
   })
 })
