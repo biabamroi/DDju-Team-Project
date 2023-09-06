@@ -58,15 +58,22 @@ app.get('/', function (req, res) {
   console.log('Signed Cookies: ', req.signedCookies)
 });
 
-// 세션
-// npm install -s express-session  ★ 설치 ★
+// 세션  ★ 설치 ★
+// npm install passport   
+// npm install passport-local   
+// npm install express-session  
+// npm install -s express-session 
 const session = require('express-session');
+
 
 
 // 회원가입 시 아이디 중복체크 - 추후 업데이트
 
 
 // 회원가입 --------------------------------------------------------------------
+app.get('/join', function(requests, response){
+  response.render('join.ejs');
+})
 app.post('/join', function(requests, response){
   db.collection('total').findOne({name:'dataLength'}, function(error, result){
     console.log(result.totalData);
@@ -202,9 +209,9 @@ app.get('/', function(requests, response){
 app.get('/index', function(requests, response){
   response.sendFile(__dirname + '/index.html');
 })
-app.get('/join', function(requests, response){
-  response.sendFile(__dirname + '/join.html');
-})
+// app.get('/join', function(requests, response){
+//   response.sendFile(__dirname + '/join.html');
+// })
 app.get('/login', function(requests, response){
   response.sendFile(__dirname + '/login.html');
 })
