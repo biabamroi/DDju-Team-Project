@@ -77,9 +77,11 @@ app.use(passport.session());
 
 
 // 회원가입 --------------------------------------------------------------------
+
 app.get('/join', function(requests, response){
   response.render('join.ejs');
 })
+
 app.post('/join', function(requests, response){
   db.collection('total').findOne({name:'dataLength'}, function(error, result){
     console.log(result.totalData);
@@ -113,64 +115,12 @@ app.post('/join', function(requests, response){
 })
 
 
-// 세션 환경세팅 ---------------------------작업중--------------------
-// app.use(
-//   ({
-//     secret: "my key",
-//     resave: true,
-//     saveUninitialized: true
-//   })
-// );
-
-// app.use(session({
-//   resave: false,
-//   saveUninitialized: false,
-//   secret: process.env.COOKIE_SECRET,
-//   cookie: {
-//     // httpOnly: true 쿠키 접근 불가
-//     httpOnly: true,
-//     // secure: HTTPS일 경우만 쿠키 전송
-//     secure: false,
-//   },
-// }));
-
-// app.get('/delete', (req, res) => {
-//   res.clearCookie('user').redirect('/')
-// })
-
-// 참조용 코드
-// const morgan = require('morgan');
-// const nunjucks = require('nunjucks');
-
-// app.use(morgan('dev'));
-// app.use(cookieParser());
-// app.set('view engine', 'html');
-// nunjucks.configure('views', {
-//   express: app,
-//   watch: true,
-// });
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-
-
-// app.get('/', (req, res) => {
-//     const { user } = req.cookies;
-//     if(user){
-//         res.render('login', { user });
-//         return;
-//     }
-    
-//     res.render('index')
-// })
-
-// app.post('/', (req, res) => {
-//     const { name } = req.body;
-//     res.cookie('user', name).redirect('/');
-// })
-
-
 
 // 로그인 --------------------------------------------------------------------
+
+app.get('/login', function(requests, response){
+  response.render('login.ejs');
+})
 
 app.post('/login', function(requests, response){
   db.collection('user').findOne({
@@ -218,12 +168,12 @@ app.get('/index', function(requests, response){
 // app.get('/join', function(requests, response){
 //   response.sendFile(__dirname + '/join.html');
 // })
-app.get('/login', function(requests, response){
-  response.sendFile(__dirname + '/login.html');
-})
-app.get('/find-idpw', function(requests, response){
-  response.sendFile(__dirname + '/find-idpw.html');
-})
+// app.get('/login', function(requests, response){
+//   response.sendFile(__dirname + '/login.html');
+// })
+// app.get('/find-idpw', function(requests, response){
+//   response.sendFile(__dirname + '/find-idpw.html');
+// })
 app.get('/map', function(requests, response){
   response.sendFile(__dirname + '/map.html');
 })
