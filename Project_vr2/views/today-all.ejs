@@ -104,11 +104,11 @@
         <div class="select">
           <select name="district" id="district">
             <option value="">전체(구)</option>
-            <option value="&sigunguCode=1">대덕구</option>
-            <option value="&sigunguCode=2">동구</option>
-            <option value="&sigunguCode=3">서구</option>
-            <option value="&sigunguCode=4">유성구</option>
-            <option value="&sigunguCode=5">중구</option>
+            <option value="1">대덕구</option>
+            <option value="2">동구</option>
+            <option value="3">서구</option>
+            <option value="4">유성구</option>
+            <option value="5">중구</option>
           </select>
           <div class="order">
             <p>인기순</p>
@@ -118,7 +118,6 @@
       </div>
 
       <div class="place-list">
-        <input type="text" id="totalCount" value="<%= api.length %>" style="display: none;">
         <% for(let i = 0; i < api.length; i++) { %>
         <a href="/place-details/<%= api[i]._id%>">
             <div class="place-item">
@@ -178,39 +177,7 @@
   </div>
 
   <script>
-    // pagination
-    // 1. 총 페이지 개수 계산하기
-    const totalCount = document.getElementById('totalCount').value;
-    const limit = 10;
-
-    let totalPage = Math.ceil(totalCount / limit);
-
-    // 2. 현재 페이지의 그룹 계산하기
-    let currentPage = 1;
-    const pageCount = 10;
-
-    let pageGroup = Math.ceil(currentPage / pageCount);
-
-    // 3. 현재 페이지 그룹의 첫번째/마지막 숫자 구하기
-    let lastNumber = pageGroup * pageCount;
-    if (lastNumber > totalPage) {
-      lastNumber = totalPage;
-    }
-    let firstNumber = lastNumber - (pageCount - 1);
-
-    const next = lastNumber + 1;
-    const prev = firstNumber - 1;
-
-    for (let i = firstNumber; i <= lastNumber; i++) {
-      document.querySelector('.number-btn').innerHTML += `<button type="button" class="pageNumber" id="page_${i}">${i}</button>`
-    }
-
-    $('.prev-btn').on('click', function(){
-      if(currentPage != 1) {
-        currentPage = currentPage - 1;
-      }
-    })
-
+    console.log(<%- JSON.stringify(api) %>)
   </script>
   <script src="./JS/header.js"></script>
   <script src="./JS/footer.js"></script>
