@@ -63,8 +63,14 @@ app.get('/', function (req, res) {
 // npm install passport-local   
 // npm install express-session  
 // npm install -s express-session 
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 
+app.use(session({secret : 'secret', resave : true, saveUninitialized : false}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // 회원가입 시 아이디 중복체크 - 추후 업데이트
