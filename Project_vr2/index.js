@@ -227,8 +227,10 @@ app.get('/course-details', function(requests, response){
 app.get('/member-info', function(requests, response){
   response.sendFile(__dirname + '/member-info.html');
 })
-app.get('/place-details', function(requests, response){
-  response.sendFile(__dirname + '/place-details.html');
+app.get('/place-details/:id', function(requests, response){
+  db.collection('api').findOne({_id : requests.params.id}, function(error, result){
+    response.render('place-details.ejs', {api : result});
+  })
 })
 app.get('/today-all', function(requests, response){
   db.collection('api').find().toArray(function(error, result){

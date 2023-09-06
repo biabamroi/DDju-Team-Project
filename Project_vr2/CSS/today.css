@@ -111,7 +111,7 @@ main {
 
 .place-item .text-box p {
   width: 520px;
-  height: 67px;
+  height: 65px;
   padding: 0 10px;
   /* 3줄만 보이게 */
   display: -webkit-box;
