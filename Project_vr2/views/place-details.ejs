@@ -152,88 +152,57 @@
             <p>후기</p>
             <span></span>
           </div>
-          <form action="" id="review-form">
+          <form action="/place-details/<%= api._id %>" method="POST" id="review-form">
             <div class="write-review">
               <div class="star-rating">
                 <label for="">
-                  <input type="radio" name="star-rating" id="1-star" value="1">
+                  <input type="radio" name="star" id="1-star" value="1">
                   <i class="fa-solid fa-star"></i>
                 </label>
                 <label for="">
-                  <input type="radio" name="star-rating" id="2-star" value="2">
+                  <input type="radio" name="star" id="2-star" value="2">
                   <i class="fa-solid fa-star"></i>
                 </label>
                 <label for="">
-                  <input type="radio" name="star-rating" id="3-star" value="3">
+                  <input type="radio" name="star" id="3-star" value="3">
                   <i class="fa-solid fa-star"></i>
                 </label>
                 <label for="">
-                  <input type="radio" name="star-rating" id="4-star" value="4">
+                  <input type="radio" name="star" id="4-star" value="4">
                   <i class="fa-solid fa-star"></i>
                 </label>
                 <label for="">
-                  <input type="radio" name="star-rating" id="5-star" value="5">
+                  <input type="radio" name="star" id="5-star" value="5">
                   <i class="fa-solid fa-star"></i>
                 </label>
               </div>
-              <textarea name="review-txt" id="review-txt" placeholder="후기를 적어주세요."></textarea>
+              <textarea name="reviewTxt" id="review-txt" placeholder="후기를 적어주세요."></textarea>
             </div>
 
             <button type="submit" class="review-btn">작성하기</button>
           </form>
 
             <ul class="review-list">
-              <li class="review-item">
-                <div class="user-info">
-                  <img src="../images/kumdori .jpg" alt="프로필 사진">
-                  <p>이름</p>
-                </div>
-                <div class="review">
-                  <div class="star-rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+              <!-- <% for(let i = 0; i < review.length; i++) { %>
+                <li class="review-item">
+                  <div class="user-info">
+                    <img src="../images/kumdori .jpg" alt="프로필 사진">
+                    <p>이름</p>
                   </div>
-                  <p>후기 내용</p>
-                </div>
-                <p>작성시간</p>
-              </li>
-              <li class="review-item">
-                <div class="user-info">
-                  <img src="../images/kumdori .jpg" alt="프로필 사진">
-                  <p>이름</p>
-                </div>
-                <div class="review">
-                  <div class="star-rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+                  <div class="review">
+                    <div class="star-rating">
+                      <% for(let i = 1; i <= review.star; i++) { %>
+                        <i class="fa-solid fa-star" style="color: #FBC85B;"></i>
+                      <% } %>
+                      <% for(let i = 1; i <= 5 - review.star; i++) { %>
+                        <i class="fa-solid fa-star"></i>
+                      <% } %>
+                    </div>
+                    <p><%= review.reviewTxt %></p>
                   </div>
-                  <p>후기 내용</p>
-                </div>
-                <p>작성시간</p>
-              </li>
-              <li class="review-item">
-                <div class="user-info">
-                  <img src="../images/kumdori .jpg" alt="프로필 사진">
-                  <p>이름</p>
-                </div>
-                <div class="review">
-                  <div class="star-rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
-                  <p>후기 내용</p>
-                </div>
-                <p>작성시간</p>
-              </li>
+                  <p>작성시간</p>
+                </li>
+              <% } %> -->
             </ul>
         </div>
       </section>
@@ -275,6 +244,7 @@
 	<script>
     // 받아온 데이터 배열로 생성
     let apiArray = <%- JSON.stringify(api) %>;
+    console.log(<%- JSON.stringify(api) %>)
 
     // 지도 생성 및 위도, 경도 설정
 		var container = document.getElementById('map');
@@ -305,7 +275,27 @@
     }
 
 
-
+    // 행사, 축제일 때 상세설명
+    if(apiArray.contenttypeid == '15') {
+      $('.place-detail-list').html(`
+        <li class="place-detail-item">
+          <strong>행사 시작일 :</strong>
+          <span>${apiArray.startdate}</span>
+        </li>
+        <li class="place-detail-item">
+          <strong>행사 종료일 :</strong>
+          <span>${apiArray.enddate}</span>
+        </li>
+        <li class="place-detail-item">
+          <strong>행사 장소 :</strong>
+          <span>${apiArray.eventplace}</span>
+        </li>
+        <li class="place-detail-item">
+          <strong>홈페이지 :</strong>
+          <span><a href="${apiArray.hmpg}">${apiArray.hmpg}</a></span>
+        </li>
+      `);
+    }
 	</script>
 
   <script src="../JS/header.js"></script>
