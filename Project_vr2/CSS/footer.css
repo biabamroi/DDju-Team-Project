@@ -81,3 +81,28 @@ footer {
   color: rgb(235,27,27);
   transition: background-color 300ms ease-in-out;
 }
+
+
+/* 1200px 이하 해당 스타일링 적용 */
+@media screen and (max-width : 1200px) {
+  .footer-info-list li a {
+    font-size: 20px;
+  }
+
+  .footer-icon-list img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .footer-link-list,
+  .footer-info-list {
+    font-size: 13px;
+  }
+
+}
+
+
+/* 768px 이하 해당 스타일링 적용 */
+@media screen and (max-width : 768px) {
+
+}
