@@ -9,11 +9,11 @@
   <meta name="author" content="꼬타비, 서우, 한나, Kai">
 
   <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
-  <link rel="manifest" href="./favicon/site.webmanifest">
-  <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#ffc40d">
   <meta name="theme-color" content="#ffffff">
 
@@ -141,8 +141,6 @@
             </ul>
           </div>
           <div id="map" style="width:760px;height:400px;margin:20px 10px;"></div>
-          <input type="text" id="mapx" value="<%= api.mapx %>" style="display: none;">
-          <input type="text" id="mapy" value="<%= api.mapy %>" style="display: none;">
         </div>
       </section>
       
@@ -187,7 +185,7 @@
             <ul class="review-list">
               <li class="review-item">
                 <div class="user-info">
-                  <img src="./images/kumdori .jpg" alt="프로필 사진">
+                  <img src="../images/kumdori .jpg" alt="프로필 사진">
                   <p>이름</p>
                 </div>
                 <div class="review">
@@ -204,7 +202,7 @@
               </li>
               <li class="review-item">
                 <div class="user-info">
-                  <img src="./images/kumdori .jpg" alt="프로필 사진">
+                  <img src="../images/kumdori .jpg" alt="프로필 사진">
                   <p>이름</p>
                 </div>
                 <div class="review">
@@ -221,7 +219,7 @@
               </li>
               <li class="review-item">
                 <div class="user-info">
-                  <img src="./images/kumdori .jpg" alt="프로필 사진">
+                  <img src="../images/kumdori .jpg" alt="프로필 사진">
                   <p>이름</p>
                 </div>
                 <div class="review">
@@ -272,21 +270,47 @@
 
   </div>
 
-  <!-- 카카오 맵 -->
+  <!-- 카카오 맵 api 연결 -->
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b30aabb752a0a95816e403bb318ea0b1"></script>
 	<script>
+    // 받아온 데이터 배열로 생성
+    let apiArray = <%- JSON.stringify(api) %>;
+
+    // 지도 생성 및 위도, 경도 설정
 		var container = document.getElementById('map');
 		var options = {
-			center: new kakao.maps.LatLng(127.3459101875, 36.3588278590),
+			center: new kakao.maps.LatLng(apiArray.mapy, apiArray.mapx),
 			level: 3
 		};
 
 		var map = new kakao.maps.Map(container, options);
+
+    // 지도에 마커 생성 및 나타내기
+    var markerPosition  = new kakao.maps.LatLng(apiArray.mapy, apiArray.mapx); 
+
+    var marker = new kakao.maps.Marker({
+        position: markerPosition
+    });
+
+    marker.setMap(map);
+
+    
+    // 해당하는 .place-menu li 색 변경
+    if(apiArray.contenttypeid == '39') {
+      $('.place-menu li').eq(2).find('a').css('color', '#AAC4FF');
+    } else if(apiArray.contenttypeid == '15') {
+      $('.place-menu li').eq(3).find('a').css('color', '#AAC4FF');
+    } else {
+      $('.place-menu li').eq(1).find('a').css('color', '#AAC4FF');
+    }
+
+
+
 	</script>
 
-  <script src="./JS/header.js"></script>
-  <script src="./JS/place-details.js"></script>
-  <script src="./JS/footer.js"></script>
+  <script src="../JS/header.js"></script>
+  <script src="../JS/place-details.js"></script>
+  <script src="../JS/footer.js"></script>
 
 </body>
 </html>
