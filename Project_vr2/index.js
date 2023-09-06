@@ -229,8 +229,17 @@ app.get('/member-info', function(requests, response){
   response.sendFile(__dirname + '/member-info.html');
 })
 app.get('/place-details/:id', function(requests, response){
-  db.collection('api').findOne({_id : requests.params.id}, function(error, result){
+  db.collection('api').find({_id : requests.params.id}).toArray(function(error, result){
     response.render('place-details.ejs', {api : result});
+  })
+
+  // db.collection('review').find({name : parseInt(requests.params.id)}).toArray(function(error, result){
+  //   response.render('place-details.ejs', {review : result});
+  // })
+})
+app.post('/place-details/:id', function(requests, response){
+  db.collection('review').insertOne({name : parseInt(requests.params.id), 'star' : parseInt(requests.body.star), 'review' : requests.body.reviewTxt}, function(error, result){
+    console.log('review DB에 저장 완료!')
   })
 })
 app.get('/today-all', function(requests, response){
