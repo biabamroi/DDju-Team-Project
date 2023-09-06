@@ -162,15 +162,15 @@
 }
 
 .mymenu {
-  display: none;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   width: 120px;
 }
 
-/* .hidden {
+.hidden {
   display: none;
-} */
+}
 
 .mymenu button {
   margin-right: 10px;
