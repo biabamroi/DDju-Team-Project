@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="데이트는 대전이쥬~">
+  <meta name="keywords" content="대전, 여행, 맛집, 데이트, 기념일, 관광">
+  <meta name="author" content="꼬타비, 서우, 한나, Kai">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+  <link rel="manifest" href="./favicon/site.webmanifest">
+  <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    
+  <!-- Fontawesome -->
+  <script src="https://kit.fontawesome.com/6105f934ac.js" crossorigin="anonymous"></script>
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+  <title>DDju 로그인</title>
+
+  <link rel="stylesheet" href="./CSS/style.css">
+  <link rel="stylesheet" href="./CSS/header.css">
+  <link rel="stylesheet" href="./CSS/login.css">
+  <link rel="stylesheet" href="./CSS/input_label.css">
+  <link rel="stylesheet" href="./CSS/footer.css">
+  <link rel="stylesheet" href="./CSS/aside.css">
+
+</head>
+<body>
+  <div class="wrapper" id="top">
+    <header class="global-header">
+      <h1 class="logo">
+        <a href="/index">DDju
+          <span>date deajeon is U</span>
+        </a>
+      </h1>
+      
+      <nav>
+        <h2 class="visually-hidden">메뉴</h2>
+        <ul class="gnb-list">
+          <li class="gnb-item"><a href="/about">ABOUT</a></li>
+          <li class="gnb-item"><a href="/course-daejeon">코스 대전</a></li>
+          <li class="gnb-item">
+            <a href="/today-all">대전의 모든 것</a>
+            <ul class="sub">
+              <li><a href="/today-do">오늘 뭐하지</a></li>
+              <li><a href="/today-eat">오늘 뭐먹지</a></li>
+              <li><a href="/today-see">오늘 뭐보지</a></li>
+            </ul>
+          </li>
+          <li class="gnb-item"><a href="/contact">CONTACT</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-menu-btn">
+        <button type="button" class="login-btn">
+          <a href="/login">
+            <i class="fa-regular fa-user"></i>
+          </a>
+        </button>
+        <div class="mymenu hidden">
+          <button type="button" class="logout-btn">
+            <a href="/logout">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </a>
+          </button>
+          <button type="button" class="like-btn">
+            <a href="/zzim">
+              <i class="fa-solid fa-heart"></i>
+            </a>
+          </button>
+          <button type="button" class="mymenu-btn">
+            <a href="">
+              <i class="fa-solid fa-user"></i>
+            </a>
+          </button>
+        </div>
+      </div>
+    </header>
+        
+
+    <main>
+      <div class="login-wrap">
+        <h1 class="main-logo">
+          <a href="/index">DDju
+            <span>date deajeon is U</span>
+          </a>
+        </h1>
+
+        <div class="login-center">
+          <form action="/login" method="post" id="login-form">
+            <div class="login-box-item userid">
+              <label for="userid" class="inp">
+                <div class="inputbox">
+                  <input type="text" name="userid" placeholder="&nbsp;">
+                  <span class="label">아이디</span>
+                  <div class="focus-bg"></div>
+                </div>
+              </label>
+              <p class="warn"></p>
+            </div>
+    
+            <div class="login-box-item userpw">
+              <label for="userpw" class="inp">
+                <div class="inputbox">
+                  <input type="password" name="userpw" placeholder="&nbsp;">
+                  <span class="label">비밀번호</span>
+                  <div class="focus-bg"></div>
+                </div>
+              </label>
+              <p class="warn"></p>
+            </div>
+        </div>
+
+        <div class="login-bottom">
+          <button type="submit" id="loginbtn" class="btn-primary">로그인</button>
+          <div class="login-list-wrap">
+            <span><a href="/find-idpw">아이디/비밀번호 찾기</a></span>
+            <span><a href="/join">회원가입하기</a></span>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+
+    <footer>
+      <div class="global-footer">
+        <ul class="footer-link-list">
+          <li class="footer-link-item"><a href="/about">About</a></li>
+          <li class="footer-link-item"><a href="/privacy">개인정보 처리방침</a></li>
+          <li class="footer-link-item"><a href="/policy">위치정보 이용약관</a></li>
+          <li class="footer-link-item"><a href="/sitemap">사이트맵</a></li>
+        </ul>
+        <ul class="footer-info-list">
+          <li><a href="/index">DDju</a></li>
+          <li>대표이사: 꼬타비, 서우, 한나, Kai</li>
+          <li>사업자등록번호: 123-456-7890</li>
+          <li>고객센터: 1234-1234</li>
+        </ul>
+        <ul class="footer-icon-list">
+          <li><a href="https://github.com/Ji2unKo"><img src="https://avatars.githubusercontent.com/u/132882429?v=4" alt="꼬타비"></a></li>
+          <li><a href="https://github.com/choiseowu"><img src="https://avatars.githubusercontent.com/u/132882346?v=4" alt="서우"></a></li>
+          <li><a href="https://github.com/hanna0115"><img src="https://avatars.githubusercontent.com/u/132882278?v=4" alt="한나"></a></li>
+          <li><a href="https://github.com/biabamroi"><img src="https://avatars.githubusercontent.com/u/132882475?v=4" alt="Kai"></a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <div class="top-btn">
+      <a href="#top">
+        <i class="fa-solid fa-circle-arrow-up"></i>
+      </a>
+    </div>
+
+  </div>
+
+  <style>
+    /* 포커스 */
+    input:focus { outline: none !important; border-color: #AAC4FF; box-shadow: 0 0.5px 3px #AAC4FF; }
+  </style>
+
+  <script src="./JS/header.js"></script>
+  <script src="./JS/login.js"></script>
+  <script src="./JS/footer.js"></script>
+
+</body>
+</html>
