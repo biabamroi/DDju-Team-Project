@@ -123,26 +123,60 @@ app.get('/login', function(requests, response){
   response.render('login.ejs');
 })
 
-app.post('/login', function(requests, response){
-  db.collection('user').findOne({
-    ID : requests.body.userid, 
-    PW : requests.body.userpw 
-  }, (function(error, users){
-    if(error){
-      return console.log(error);
+app.post('/login', passport.authenticate('local', {
+  failureRedirect : '/fail'
+}), function(requests, response){
+  response.redirect('/')
+})
+
+app.get('/fail', function(requests, response){
+  response.send('로그인 정보가 일치하지 않습니다.')
+})
+
+passport.use(new LocalStrategy({
+  usernameField : 'id',
+  passwordField : 'pw',
+  session : true,
+  passReqToCallback : false
+}, function(userID, userPW, done){
+  db.collection('user').findOne({id : userID}, function(error, result){
+    if(!result){
+      return done(null, false, {message : '존재하지 않는 아이디입니다.'})
     }
-    if(!users){
-      return response.redirect('/login.html');
-      // response.send("<script>alert('아이디와 비밀번호를 다시 한 번 확인해 주세요.');</script>");
+    if(userPW == result.pw){
+      return done(null, result)
+    }else{
+      return done(null, false, {message : '비밀번호가 일치하지 않습니다.'})
     }
-    // 로그인 세션 또는 쿠키, 토큰 유지 기능 구현 필요
-    // requests.
-    return response.redirect('/index.html');
-  }))
+  })
+}))
+
+passport.serializeUser(function(user, done){
+  done(null, user.id)
+})
+
+passport.deserializeUser(function(id, done){
+  db.collection('user').findOne({id : id}, function(error, result){
+    done(null, result)
+  })
+})
+
+function getLogin(requests, response, next){
+  if(requests.user){
+    next()
+  }else{
+    response.send('로그인이 필요한 페이지입니다.');
+  }
+}
+
+app.get('/mypage', getLogin, function(requests, response){
+  console.log(requests.user)
+  response.render('mypage.ejs', {info : requests.user})
 })
 
 app.post('/logout', function(requests, response){
-
+  requests.session.destroy();
+  response.redirect('/login');
 })
 
 
