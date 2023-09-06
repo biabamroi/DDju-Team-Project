@@ -108,7 +108,7 @@
           <div class="join-box-item userid">
             <label for="userid" class="inp">
               <div class="inputbox">
-                <input value="<%= data.userid %>" type="text" name="userid" id="userid" placeholder="&nbsp;">
+                <input type="text" name="userid" id="userid" placeholder="&nbsp;">
                 <span class="label">아이디</span>
                 <div class="focus-bg"></div>
                 <div>
@@ -122,7 +122,7 @@
           <div class="join-box-item userpw">
             <label for="userpw" class="inp">
               <div class="inputbox">
-                <input value="<%= data.userpw %>" type="password" name="userpw" id="userpw" placeholder="&nbsp;">
+                <input type="password" name="userpw" id="userpw" placeholder="&nbsp;">
                 <span class="label">비밀번호</span>
                 <div class="focus-bg"></div>
                 <div>
@@ -153,7 +153,7 @@
           <div class="join-box-item username">
             <label>이름
               <div class="inputbox">
-                <input value="<%= data.username %>" type="text" name="username">
+                <input type="text" name="username">
               </div>
             </label>
             <p class="warn"></p>
@@ -163,10 +163,10 @@
             <label>생년월일
               <div class="three-box">
                 <div class="inputbox">
-                  <input value="<%= data.year %>" class="birth-item" type="text" name="year" id="year" maxlength="4" placeholder="년(4자)">
+                  <input class="birth-item" type="text" name="year" id="year" maxlength="4" placeholder="년(4자)">
                 </div>
                 <div class="inputbox">
-                  <select value="<%= data.month %>" class="birth-item" name="month" id="month">
+                  <select class="birth-item" name="month" id="month">
                     <option value="">월</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -183,7 +183,7 @@
                   </select>
                 </div>
                 <div class="inputbox">
-                  <input value="<%= data.date %>" class="birth-item" type="text" name="date" id="date" maxlength="2" placeholder="일">
+                  <input class="birth-item" type="text" name="date" id="date" maxlength="2" placeholder="일">
                 </div>
               </div>
             </label>
@@ -195,15 +195,15 @@
             <div class="three-box">
               <div class="inputbox">
                 <p>남자</p>
-                <input value="<%= data.male %>" type="radio" name="gender" id="male">
+                <input type="radio" name="gender" value="mail" id="male">
               </div>
               <div class="inputbox">
                 <p>여자</p>
-                <input value="<%= data.female %>" type="radio" name="gender" id="female">
+                <input type="radio" name="gender" value="female" id="female">
               </div>
               <div class="inputbox">
                 <p>선택안함</p>
-                <input  value="<%= data.no-gender %>" type="radio" name="gender" id="no-gender">
+                <input type="radio" name="gender" value="no-gender" id="no-gender">
               </div>
             </div>
           </div>
@@ -212,7 +212,7 @@
             <label>본인 확인 이메일
               <span class="text-secondary">(선택)</span>
               <div class="inputbox">
-                <input value="<%= data.usermail %>" type="text" name="usermail" id="email" placeholder="선택입력">
+                <input type="text" name="usermail" id="email" placeholder="선택입력">
               </div>
             </label>
             <p class="warn"></p>
@@ -221,7 +221,7 @@
           <div class="join-box-item phone">
             <p>휴대전화</p>
             <div class="inputbox">
-              <select value="<%= data.country %>" name="country">
+              <select name="country">
                 <option value="233">가나 +233</option>
                 <option value="30">그리스 +30</option>
                 <option value="82" selected>대한민국 +82</option>
@@ -234,7 +234,7 @@
   
             <div class="phonenum">
               <div class="inputbox">
-                <input value="<%= data.phonenum %>" type="text" name="phonenum" placeholder="전화번호 입력">
+                <input type="text" name="phonenum" placeholder="전화번호 입력">
               </div>
               <button type="button" id="veribtn" class="btn-primary">인증번호 받기</button>
             </div>
@@ -250,21 +250,21 @@
             <p>주소</p>
             <div class="postnum">
               <div class="inputbox">
-                <input value="<%= data.sample6_postcode %>" id="sample6_postcode" name="sample6_postcode" type="text" placeholder="우편번호">
+                <input id="sample6_postcode" name="sample6_postcode" type="text" placeholder="우편번호">
               </div>
               <button onclick="sample6_execDaumPostcode()" type="button" class="btn-primary">우편번호 찾기</button>
             </div>
   
             <div class="inputbox">
-              <input value="<%= data.sample6_address %>" id="sample6_address" name="sample6_address" type="text" placeholder="주소">
+              <input id="sample6_address" name="sample6_address" type="text" placeholder="주소">
             </div>
   
             <div class="inputbox">
-              <input value="<%= data.sample6_detailAddress %>" id="sample6_detailAddress" name="sample6_detailAddress" type="text" placeholder="상세주소">
+              <input id="sample6_detailAddress" name="sample6_detailAddress" type="text" placeholder="상세주소">
             </div>
   
             <div class="inputbox">
-              <input value="<%= data.sample6_extraAddress %>" id="sample6_extraAddress" name="sample6_extraAddress" type="text" placeholder="참고항목">
+              <input id="sample6_extraAddress" name="sample6_extraAddress" type="text" placeholder="참고항목">
             </div>
           </div>
           <button type="submit" id="joinbtn" class="btn-primary">가입하기</button>

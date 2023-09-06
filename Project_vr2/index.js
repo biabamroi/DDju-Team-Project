@@ -58,15 +58,31 @@ app.get('/', function (req, res) {
   console.log('Signed Cookies: ', req.signedCookies)
 });
 
-// 세션
-// npm install -s express-session  ★ 설치 ★
+
+// 세션  ★ 설치 ★
+// npm install passport   
+// npm install passport-local   
+// npm install express-session  
+// npm install -s express-session 
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
+
+app.use(session({secret : 'secret', resave : true, saveUninitialized : false}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // 회원가입 시 아이디 중복체크 - 추후 업데이트
 
 
 // 회원가입 --------------------------------------------------------------------
+
+app.get('/join', function(requests, response){
+  response.render('join.ejs');
+})
+
 app.post('/join', function(requests, response){
   db.collection('total').findOne({name:'dataLength'}, function(error, result){
     console.log(result.totalData);
@@ -100,85 +116,67 @@ app.post('/join', function(requests, response){
 })
 
 
-// 세션 환경세팅 ---------------------------작업중--------------------
-// app.use(
-//   ({
-//     secret: "my key",
-//     resave: true,
-//     saveUninitialized: true
-//   })
-// );
-
-// app.use(session({
-//   resave: false,
-//   saveUninitialized: false,
-//   secret: process.env.COOKIE_SECRET,
-//   cookie: {
-//     // httpOnly: true 쿠키 접근 불가
-//     httpOnly: true,
-//     // secure: HTTPS일 경우만 쿠키 전송
-//     secure: false,
-//   },
-// }));
-
-// app.get('/delete', (req, res) => {
-//   res.clearCookie('user').redirect('/')
-// })
-
-// 참조용 코드
-// const morgan = require('morgan');
-// const nunjucks = require('nunjucks');
-
-// app.use(morgan('dev'));
-// app.use(cookieParser());
-// app.set('view engine', 'html');
-// nunjucks.configure('views', {
-//   express: app,
-//   watch: true,
-// });
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-
-
-// app.get('/', (req, res) => {
-//     const { user } = req.cookies;
-//     if(user){
-//         res.render('login', { user });
-//         return;
-//     }
-    
-//     res.render('index')
-// })
-
-// app.post('/', (req, res) => {
-//     const { name } = req.body;
-//     res.cookie('user', name).redirect('/');
-// })
-
-
 
 // 로그인 --------------------------------------------------------------------
 
-app.post('/login', function(requests, response){
-  db.collection('user').findOne({
-    ID : requests.body.userid, 
-    PW : requests.body.userpw 
-  }, (function(error, users){
-    if(error){
-      return console.log(error);
+app.get('/login', function(requests, response){
+  response.render('login.ejs');
+})
+
+app.post('/login', passport.authenticate('local', {
+  failureRedirect : '/fail'
+}), function(requests, response){
+  response.redirect('/')
+})
+
+app.get('/fail', function(requests, response){
+  response.send('로그인 정보가 일치하지 않습니다.')
+})
+
+passport.use(new LocalStrategy({
+  usernameField : 'id',
+  passwordField : 'pw',
+  session : true,
+  passReqToCallback : false
+}, function(userID, userPW, done){
+  db.collection('user').findOne({id : userID}, function(error, result){
+    if(!result){
+      return done(null, false, {message : '존재하지 않는 아이디입니다.'})
     }
-    if(!users){
-      return response.redirect('/login.html');
-      // response.send("<script>alert('아이디와 비밀번호를 다시 한 번 확인해 주세요.');</script>");
+    if(userPW == result.pw){
+      return done(null, result)
+    }else{
+      return done(null, false, {message : '비밀번호가 일치하지 않습니다.'})
     }
-    // 로그인 세션 또는 쿠키, 토큰 유지 기능 구현 필요
-    // requests.
-    return response.redirect('/index.html');
-  }))
+  })
+}))
+
+passport.serializeUser(function(user, done){
+  done(null, user.id)
+})
+
+passport.deserializeUser(function(id, done){
+  db.collection('user').findOne({id : id}, function(error, result){
+    done(null, result)
+  })
+})
+
+function getLogin(requests, response, next){
+  if(requests.user){
+    next()
+  }else{
+    response.send('로그인이 필요한 페이지입니다.');
+  }
+}
+
+app.get('/mypage', getLogin, function(requests, response){
+  console.log(requests.user)
+  response.render('mypage.ejs', {info : requests.user})
 })
 
 app.post('/logout', function(requests, response){
-
+  requests.session.destroy();
+  response.redirect('/login');
 })
 
 
@@ -202,15 +200,15 @@ app.get('/', function(requests, response){
 app.get('/index', function(requests, response){
   response.sendFile(__dirname + '/index.html');
 })
-app.get('/join', function(requests, response){
-  response.sendFile(__dirname + '/join.html');
-})
-app.get('/login', function(requests, response){
-  response.sendFile(__dirname + '/login.html');
-})
-app.get('/find-idpw', function(requests, response){
-  response.sendFile(__dirname + '/find-idpw.html');
-})
+// app.get('/join', function(requests, response){
+//   response.sendFile(__dirname + '/join.html');
+// })
+// app.get('/login', function(requests, response){
+//   response.sendFile(__dirname + '/login.html');
+// })
+// app.get('/find-idpw', function(requests, response){
+//   response.sendFile(__dirname + '/find-idpw.html');
+// })
 app.get('/map', function(requests, response){
   response.sendFile(__dirname + '/map.html');
 })
