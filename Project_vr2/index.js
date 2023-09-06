@@ -58,6 +58,7 @@ app.get('/', function (req, res) {
   console.log('Signed Cookies: ', req.signedCookies)
 });
 
+
 // 세션  ★ 설치 ★
 // npm install passport   
 // npm install passport-local   
