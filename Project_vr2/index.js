@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+var static = require('serve-static');
+var errorHandler = require('errorhandler');
 
 // 데이터를 저장할 변수
 let db;
@@ -74,6 +76,35 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+// 라우터 객체 설정
+var router = express.Router();
+app.use('/', router);
+
+
+// ------------- 연구중 -------------------------------------------
+// router.route('/process/showCookie').get(function(req,res){
+//   res.send(req.cookies);
+// });
+// router.route('/process/setUserCookie').get(function(req,res){    
+//     // 쿠키 설정
+//     res.cookie('user', {
+//       id : 'mike',
+//       name : '소녀시대',
+//       authorized : true
+//     });
+//     // redirect로 응답
+//     res.redirect('/process/showCookie');
+// });
+// router.route('/process/product').get(function(req,res){  
+//   if(req.session.user){
+//     res.redirect('/');
+//   }else{
+//     res.redirect('/login.html');
+//   }
+// });
+
+
+
 // 회원가입 시 아이디 중복체크 - 추후 업데이트
 
 
@@ -118,6 +149,8 @@ app.post('/join', function(requests, response){
 
 
 // 로그인 --------------------------------------------------------------------
+
+
 
 app.get('/login', function(requests, response){
   response.render('login.ejs');
