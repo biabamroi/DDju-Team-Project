@@ -48,7 +48,7 @@
       
       <nav>
         <h2 class="visually-hidden">메뉴</h2>
-        <ul class="gnb-list">
+        <ul class="gnb-list lg-only">
           <li class="gnb-item"><a href="/about">ABOUT</a></li>
           <li class="gnb-item"><a href="/course-daejeon">코스 대전</a></li>
           <li class="gnb-item">
@@ -63,7 +63,11 @@
         </ul>
       </nav>
 
+      
       <div class="user-menu-btn">
+        <button type="button" class="lg-hidden gnb-icon-button is-menu" aria-label="메뉴 열기 버튼">
+          <i class="fa-solid fa-bars"></i>
+        </button>
         <button type="button" class="login-btn">
           <a href="/login">
             <i class="fa-regular fa-user"></i>
@@ -239,6 +243,52 @@
       </section>
     </main>
 
+       <!-- aside menu -->
+       <aside class="sidebar">
+        <nav class="sidebar-nav">
+          <h2 class="visually-hidden">메뉴</h2>
+            <div class="drawer-menu">
+              <a href="./about.html">
+                <button class="drawer-menu-button"  type="button">
+                  ABOUT
+                </button>
+              </a>
+            </div>
+            <div class="drawer-menu">
+              <a href="./course-daejeon.html">
+                <button class="drawer-menu-button" type="button">
+                  코스대전
+                </button>
+              </a>
+            </div>
+            <div class="drawer-menu is-info">
+              <button class="drawer-menu-button" type="button">
+                대전의 모든 것
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              
+              <div class="drawer-menu-content">
+                <ul class="drawer-menu-list">
+                  <li class="drawer-menu-item"><a href="/">오늘 뭐하지</a></li>
+                  <li class="drawer-menu-item"><a href="/">오늘 뭐먹지</a></li>
+                  <li class="drawer-menu-item"><a href="/">오늘 뭐보지</a></li>
+                  <li class="drawer-menu-item"><a href="/">대전의 모든 것</a></li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="drawer-menu">
+              <a href="./contact.html">
+                <button class="drawer-menu-button"  type="button">
+                  CONTACT
+                </button>
+              </a>
+            </div>
+          </nav>
+        </aside>
+      
+      <div class="overlay"></div>
+
     <footer>
       <div class="global-footer">
         <ul class="footer-link-list">
@@ -285,6 +335,7 @@
   <script src="./JS/header.js"></script>
   <script src="./JS/place-details.js"></script>
   <script src="./JS/footer.js"></script>
+  <script src="./JS/sidebar.js"></script>
 
 </body>
 </html>
