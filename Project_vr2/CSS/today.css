@@ -54,12 +54,12 @@ main {
 .place-header .order {
   display: flex;
 }
-.place-header .order p {
+.place-header .order li {
   padding-left: 20px;
   position: relative;
 }
 
-.place-header .order p::after {
+.place-header .order li::after {
   content: "";
   width: 2px;
   height: 15px;
@@ -69,7 +69,7 @@ main {
   left: 10px;
 }
 
-.place-header .order p:first-child::after {
+.place-header .order li:first-child::after {
   content: none;
 }
 
@@ -154,6 +154,6 @@ main {
   font-size: 18px;
 }
 
-.number-btn button.selected {
+.selected {
   color: #AAC4FF;
 }

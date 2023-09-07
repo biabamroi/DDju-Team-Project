@@ -99,7 +99,7 @@
       <div class="place-header">
         <h2 class="title">대전의 모든 것</h2>
         <ul class="place-menu">
-          <li><a href="/today-all">전체</a></li>
+          <li><a href="/today-all" style="color: #AAC4FF;">전체</a></li>
           <li><a href="/today-do">관광지</a></li>
           <li><a href="/today-eat">맛집</a></li>
           <li><a href="/today-see">축제/공연</a></li>
@@ -114,14 +114,21 @@
             <option value="&sigunguCode=4">유성구</option>
             <option value="&sigunguCode=5">중구</option>
           </select>
-          <div class="order">
-            <p>인기순</p>
-            <p>최신순</p>
-          </div>
+          <ul class="order">
+            <li class="selected">제목순</li>
+            <li>등록일순</li>
+            <li>인기순</li>
+          </ul>
         </div>
       </div>
 
       <div class="place-list">
+      </div>
+
+      <div class="pagination">
+        <button type="button" class="prev"><i class="fa-solid fa-angle-left"></i></button>
+        <div class="number-btn"></div>
+        <button type="button" class="next"><i class="fa-solid fa-angle-right"></i></button>
       </div>
     </main>
 
