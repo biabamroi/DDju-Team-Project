@@ -65,6 +65,10 @@
   position: relative;
 }
 
+.is-menu {
+  cursor: pointer;
+}
+
 .gnb-item a {
   position: relative;
   display: block;
