@@ -170,17 +170,46 @@ function getLogin(requests, response, next){
   }
 }
 
+
+// 마이페이지
 app.get('/mypage', getLogin, function(requests, response){
   console.log(requests.user)
   response.render('mypage.ejs', {info : requests.user})
 })
 
+// 로그아웃
 app.post('/logout', function(requests, response){
   requests.session.destroy();
   response.redirect('/');
 })
 
 
+
+// 회원정보 수정, 탈퇴--------------------------------------------------------------------------
+
+app.put('/edit', function(requests, response){
+  db.collection('user').updateOne({_id : parseInt(requests.body._id)},
+    {$set:{ID : requests.body.id, PW : requests.body.pw}}, function(error, result){
+    console.log('수정');
+    response.redirect('/mypage');
+  })
+})
+
+// 회원정보를 수정하면 로그인이 풀리는 현상 
+
+app.delete('/delete', function(requests, response){
+  console.log(requests.body._id)
+  requests.body._id = parseInt(requests.body._id)
+
+  db.collection('user').deleteOne({_id : requests.body._id}, function(error, result){
+    if(error){
+      console.log(error)
+    }
+    console.log('탈퇴')
+  })
+
+  response.status(200).send({message : '성공'})
+})
 
 // login 상태에서 zzim 값을 데이터베이스에서 받아서 -> zzim 페이지에서 꺼내오기
 
