@@ -99,13 +99,13 @@
             <li><a href="/today-eat">맛집</a></li>
             <li><a href="/today-see">축제/공연</a></li>
           </ul>
-          <h2 class="title"><%= api.title %></h2>
+          <h2 class="title"><%= api[0].title %></h2>
         </div>
 
         <hr>
 
         <div class="place-detail-box">
-          <img src="<%= api.img %>" alt="<%= api.title %>">
+          <img src="<%= api[0].img %>" alt="<%= api[0].title %>">
           <div class="btn-group">
             <div class="like-btn">
               <button type="button"><i class="fa-regular fa-heart"></i></button>
@@ -114,23 +114,23 @@
             <button type="button"><i class="fa-regular fa-share-from-square"></i></button>
           </div>
           <div class="place-detail-txt">
-            <p><%= api.overview %></p>
+            <p><%= api[0].overview %></p>
             <ul class="place-detail-list">
               <li class="place-detail-item">
                 <strong>주소 :</strong>
-                <span><%= api.addr1 %> <%= api.addr2 %></span>
+                <span><%= api[0].addr1 %> <%= api[0].addr2 %></span>
               </li>
               <li class="place-detail-item">
                 <strong>영업시간 :</strong>
-                <span><%= api.opentime %></span>
+                <span><%= api[0].opentime %></span>
               </li>
               <li class="place-detail-item">
                 <strong>문의 및 안내 :</strong>
-                <span><%= api.infocenter %></span>
+                <span><%= api[0].infocenter %></span>
               </li>
               <li class="place-detail-item">
                 <strong>홈페이지 :</strong>
-                <span><a href="<%= api.hmpg %>"><%= api.hmpg %></a></span>
+                <span><a href="<%= api[0].hmpg %>"><%= api[0].hmpg %></a></span>
               </li>
             </ul>
             <ul class="keywords-list">
@@ -152,7 +152,7 @@
             <p>후기</p>
             <span></span>
           </div>
-          <form action="/place-details/<%= api._id %>" method="POST" id="review-form">
+          <form action="/place-details/<%= api[0]._id %>" method="POST" id="review-form">
             <div class="write-review">
               <div class="star-rating">
                 <label for="">
@@ -237,8 +237,7 @@
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b30aabb752a0a95816e403bb318ea0b1"></script>
 	<script>
     // 받아온 데이터 배열로 생성
-    let apiArray = <%- JSON.stringify(api) %>;
-    console.log(<%- JSON.stringify(api) %>)
+    let apiArray = <%- JSON.stringify(api[0]) %>;
 
     // 지도 생성 및 위도, 경도 설정
 		var container = document.getElementById('map');
@@ -248,6 +247,7 @@
 		};
 
 		var map = new kakao.maps.Map(container, options);
+
 
     // 지도에 마커 생성 및 나타내기
     var markerPosition  = new kakao.maps.LatLng(apiArray.mapy, apiArray.mapx); 

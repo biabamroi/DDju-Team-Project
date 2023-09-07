@@ -232,10 +232,10 @@ app.get('/place-details/:id', function(requests, response){
   db.collection('api').find({_id : requests.params.id}).toArray(function(error, result){
     response.render('place-details.ejs', {api : result});
   })
-
+  
   // db.collection('review').find({name : parseInt(requests.params.id)}).toArray(function(error, result){
-  //   response.render('place-details.ejs', {review : result});
-  // })
+    //   response.render('place-details.ejs', {review : result});
+    // })
 })
 app.post('/place-details/:id', function(requests, response){
   db.collection('review').insertOne({name : parseInt(requests.params.id), 'star' : parseInt(requests.body.star), 'review' : requests.body.reviewTxt}, function(error, result){
@@ -269,6 +269,18 @@ app.get('/sitemap', function(requests, response){
   response.sendFile(__dirname + '/sitemap.html');
 })
 app.get('/search', function(requests, response){
+  let pageNum = 1;
+  let keyword = encodeURI(keyword)
+  console.log(encodeURI('대전'))
+
+  let url = 'https://apis.data.go.kr/B551011/KorService1/searchKeyword1?numOfRows=10&pageNo=' + pageNum + '&MobileOS=etc&MobileApp=DDju&_type=json&listYN=Y&arrange=O&keyword=' + keyword + '&areaCode=3&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D'
+
+  fetch(url)
+  .then((res) => res.json())
+  .then((json) => {
+    let KeywordArray = json.response.body.items.item;
+
+  })
   response.sendFile(__dirname + '/search.html');
 })
 
