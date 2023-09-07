@@ -144,7 +144,7 @@ passport.use(new LocalStrategy({
     if(!result){
       return done(null, false, {message : '존재하지 않는 아이디입니다.'})
     }
-    if(userPW == result.userpw){
+    if(userPW == result.PW){
       return done(null, result)
     }else{
       return done(null, false, {message : '비밀번호가 일치하지 않습니다.'})
@@ -153,7 +153,7 @@ passport.use(new LocalStrategy({
 }))
 
 passport.serializeUser(function(user, done){
-  done(null, user.userid)
+  done(null, user.ID)
 })
 
 passport.deserializeUser(function(id, done){
@@ -177,7 +177,7 @@ app.get('/mypage', getLogin, function(requests, response){
 
 app.post('/logout', function(requests, response){
   requests.session.destroy();
-  response.redirect('/login');
+  response.redirect('/');
 })
 
 
