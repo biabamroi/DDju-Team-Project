@@ -170,11 +170,14 @@ function getLogin(requests, response, next){
   }
 }
 
+
+// 마이페이지
 app.get('/mypage', getLogin, function(requests, response){
   console.log(requests.user)
   response.render('mypage.ejs', {info : requests.user})
 })
 
+// 로그아웃
 app.post('/logout', function(requests, response){
   requests.session.destroy();
   response.redirect('/');
