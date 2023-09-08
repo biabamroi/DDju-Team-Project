@@ -305,9 +305,7 @@ app.post('/place-details/:id', function(requests, response){
   })
 })
 app.get('/today-all', function(requests, response){
-  db.collection('api').find().toArray(function(error, result){
-    response.render('today-all.ejs', {api : result})
-  })
+  response.sendFile(__dirname + '/today-all.html');
 })
 app.get('/today-do', function(requests, response){
   response.sendFile(__dirname + '/today-do.html');

@@ -8,7 +8,6 @@ function api(url){
   .then((res) => res.json())
   .then((json) => {
     let areaBasedList = json.response.body.items.item;
-    console.log(json.response.body.pageNo)
     areaBasedList.forEach((item, index) => {
       let placeItem = `
       <a href="/place-details/${item.contentid}">
@@ -52,6 +51,7 @@ function api(url){
 
 api(url);
 
+// 페이지네이션
 // 페이지네이션에 필요한 변수 선언
 const district = document.getElementById('district');
 const order = document.querySelectorAll('.order li');
@@ -60,9 +60,6 @@ let currentPage = 1;
 let arrange = 'O';
 let sigunguCode = '';
 
-
-// 페이지네이션 함수
-function pagination(currentPage){
 // 총 페이지 개수 구하기
 const limit = 10
 
@@ -84,7 +81,7 @@ if(district.value == '&sigunguCode=1') {
 let totalPage = Math.ceil(totalCount / limit);
 
 // 현재 페이지의 그룹 구하기
-let pageCount = 5;
+let pageCount = 4;
 
 let pageGroup = Math.ceil(currentPage / pageCount);
 
@@ -95,9 +92,6 @@ if (lastNumber > totalPage) {
 }
 
 let firstNumber = lastNumber - (pageCount - 1)
-
-const next = lastNumber + 1
-const prev = firstNumber - 1
 
 // 1~5만큼 페이지네이션 그리기
 document.querySelector('.number-btn').innerHTML = '';
@@ -119,11 +113,6 @@ sigunguCode = district.value;
 url = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=10&pageNo=' + currentPage + '&MobileOS=ect&MobileApp=DDju&_type=json&arrange=' + arrange + '&areaCode=3&sigunguCode=1&' + sigunguCode + '&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
 
 api(url)
-}
-
-pagination(currentPage)
-
-
 
 
 // 페이지네이션 번호 눌렀을 때 해당 페이지로 이동하기
@@ -135,7 +124,6 @@ numBtns.forEach(function(item){
       item.classList.remove('selected')
     })
     item.target.classList.add('selected')
-    console.log(item.target)
 
     // 현재 페이지 번호
     currentPage = item.target.innerText
@@ -150,55 +138,10 @@ numBtns.forEach(function(item){
     // 선택된 '구' 값
     sigunguCode = district.value;
 
-
     url = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=10&pageNo=' + currentPage + '&MobileOS=ect&MobileApp=DDju&_type=json&arrange=' + arrange + '&areaCode=3&sigunguCode=1&' + sigunguCode + '&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
 
     api(url)
-
   })
-})
-
-// 다음 버튼 눌렀을 때 페이지네이션 번호 바꾸기
-document.querySelector('.next').addEventListener('click', function(){
-  // 총 페이지 개수 구하기
-const limit = 10;
-
-  if(district.value == '&sigunguCode=1') {
-    totalCount = 71;
-  } else if(district.value == '&sigunguCode=2') {
-    totalCount = 110;
-  } else if(district.value == '&sigunguCode=3') {
-    totalCount = 144;
-  } else if(district.value == '&sigunguCode=4') {
-    totalCount = 357;
-  } else if(district.value == '&sigunguCode=5') {
-    totalCount = 101;
-  } else {
-    totalCount = 785;
-  }
-  
-  let totalPage = Math.ceil(totalCount / limit);
-  
-  // 현재 페이지의 그룹 구하기
-  let pageCount = 5;
-  
-  let pageGroup = Math.ceil(currentPage / pageCount);
-  pageGroup = pageGroup + 1;
-  
-  // 현재 페이지 그룹의 첫번째, 마지막 숫자 구하기
-  let lastNumber = pageGroup * pageCount
-  if (lastNumber > totalPage) {
-    lastNumber = totalPage
-  }
-  
-  let firstNumber = lastNumber - (pageCount - 1)
-  
-  
-  // 1~5만큼 페이지네이션 그리기
-  document.querySelector('.number-btn').innerHTML = '';
-  for (let i = firstNumber; i <= lastNumber; i++) {
-    document.querySelector('.number-btn').innerHTML += `<button type="button">${i}</button>`
-  }
 })
 
 
@@ -215,12 +158,14 @@ order.forEach(function(item){
     })
     item.classList.add('selected')
 
+    // 선택된 정렬 값
     if(order[0].classList.contains('selected')) {
       arrange = 'O'
     } else if(order[1].classList.contains('selected')) {
       arrange = 'R'
     }
 
+    // 선택된 '구' 값
     sigunguCode = district.value;
 
     url = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=10&pageNo=1&MobileOS=ect&MobileApp=DDju&_type=json&arrange=' + arrange + '&areaCode=3&' + sigunguCode + '&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
@@ -242,6 +187,7 @@ district.addEventListener('change', function(){
   })
   numBtns[0].classList.add('selected')
 
+  // 선택된 '구' 값
   sigunguCode = this.value;
 
   url = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=10&pageNo=1&MobileOS=ect&MobileApp=DDju&_type=json&arrange=O&areaCode=3' + sigunguCode + '&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
