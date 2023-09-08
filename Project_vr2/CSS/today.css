@@ -140,10 +140,6 @@ main {
   margin: 40px 0;
 }
 
-.pagination i {
-  font-size: 18px;
-}
-
 .number-btn {
   display: flex;
   margin: 0 10px;
