@@ -1,4 +1,4 @@
-let url = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=10&pageNo=1&MobileOS=ect&MobileApp=DDju&_type=json&arrange=O&areaCode=3&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
+let url = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=10&pageNo=1&MobileOS=ect&MobileApp=DDju&_type=json&arrange=O&contentTypeId=39&areaCode=3&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
 
 // 지역기반 api 가져오는 함수
 function api(url){
@@ -81,7 +81,7 @@ if(district.value == '&sigunguCode=1') {
 let totalPage = Math.ceil(totalCount / limit);
 
 // 현재 페이지의 그룹 구하기
-let pageCount = 4;
+let pageCount = 2;
 
 let pageGroup = Math.ceil(currentPage / pageCount);
 
@@ -93,26 +93,11 @@ if (lastNumber > totalPage) {
 
 let firstNumber = lastNumber - (pageCount - 1)
 
-// 1~5만큼 페이지네이션 그리기
+// 페이지네이션 그리기
 document.querySelector('.number-btn').innerHTML = '';
 for (let i = firstNumber; i <= lastNumber; i++) {
   document.querySelector('.number-btn').innerHTML += `<button type="button">${i}</button>`
 }
-
-// 선택된 정렬 값
-if(order[0].classList.contains('selected')) {
-  arrange = 'O'
-} else if(order[1].classList.contains('selected')) {
-  arrange = 'R'
-}
-
-// 선택된 '구' 값
-sigunguCode = district.value;
-
-
-url = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=10&pageNo=' + currentPage + '&MobileOS=ect&MobileApp=DDju&_type=json&arrange=' + arrange + '&areaCode=3&sigunguCode=1&' + sigunguCode + '&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
-
-api(url)
 
 
 // 페이지네이션 번호 눌렀을 때 해당 페이지로 이동하기
@@ -138,7 +123,7 @@ numBtns.forEach(function(item){
     // 선택된 '구' 값
     sigunguCode = district.value;
 
-    url = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=10&pageNo=' + currentPage + '&MobileOS=ect&MobileApp=DDju&_type=json&arrange=' + arrange + '&areaCode=3&sigunguCode=1&' + sigunguCode + '&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
+    url = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=10&pageNo=' + currentPage + '&MobileOS=ect&MobileApp=DDju&_type=json&arrange=' + arrange + '&contentTypeId=39&areaCode=3' + sigunguCode + '&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
 
     api(url)
   })
@@ -168,7 +153,7 @@ order.forEach(function(item){
     // 선택된 '구' 값
     sigunguCode = district.value;
 
-    url = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=10&pageNo=1&MobileOS=ect&MobileApp=DDju&_type=json&arrange=' + arrange + '&areaCode=3&' + sigunguCode + '&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
+    url = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=10&pageNo=1&MobileOS=ect&MobileApp=DDju&_type=json&arrange=' + arrange + '&contentTypeId=39&areaCode=3&' + sigunguCode + '&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
 
     api(url);
   })
@@ -190,7 +175,7 @@ district.addEventListener('change', function(){
   // 선택된 '구' 값
   sigunguCode = this.value;
 
-  url = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=10&pageNo=1&MobileOS=ect&MobileApp=DDju&_type=json&arrange=O&areaCode=3' + sigunguCode + '&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
+  url = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=10&pageNo=1&MobileOS=ect&MobileApp=DDju&_type=json&arrange=O&contentTypeId=39&areaCode=3' + sigunguCode + '&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
   
   api(url);
 })
