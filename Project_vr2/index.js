@@ -41,7 +41,6 @@ MongoClient.connect('mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.n
 })
 
 
-
 // npm install body-parser  ★ 설치 ★
 // bodyParser 사용 선언
 const bodyParser = require('body-parser');
@@ -61,6 +60,10 @@ app.get('/', function (req, res) {
 });
 
 
+// 라우터 객체 설정
+const router = require('express').Router();
+app.use('/', router);
+
 // 세션  ★ 설치 ★
 // npm install passport   
 // npm install passport-local   
@@ -71,47 +74,10 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 
-app.use(session({secret : 'secret', resave : true, saveUninitialized : false}));
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.serializeUser(function(user, done){
-  done(null, user.ID)
-})
-
-passport.deserializeUser(function(id, done){
-  db.collection('user').findOne({ID : id}, function(error, result){
-    done(null, result)
-  })
-})
-
-// 라우터 객체 설정
-var router = express.Router();
-app.use('/', router);
-
-
-// ------------- 연구중 -------------------------------------------
-// router.route('/process/showCookie').get(function(req,res){
-//   res.send(req.cookies);
-// });
-// router.route('/process/setUserCookie').get(function(req,res){    
-//     // 쿠키 설정
-//     res.cookie('user', {
-//       id : 'mike',
-//       name : '소녀시대',
-//       authorized : true
-//     });
-//     // redirect로 응답
-//     res.redirect('/process/showCookie');
-// });
-// router.route('/process/product').get(function(req,res){  
-//   if(req.session.user){
-//     res.redirect('/');
-//   }else{
-//     res.redirect('/login.html');
-//   }
-// });
-
+// app -> router
+router.use(session({secret : 'secret', resave : true, saveUninitialized : false}));
+router.use(passport.initialize());
+router.use(passport.session());
 
 
 // 회원가입 시 아이디 중복체크 - 추후 업데이트
@@ -160,19 +126,17 @@ app.post('/join', function(requests, response){
 
 // 로그인 --------------------------------------------------------------------
 
-
-
 app.get('/login', function(requests, response){
   response.render('login.ejs');
 })
 
-app.post('/login', passport.authenticate('local', {
+router.post('/login', passport.authenticate('local', {
   failureRedirect : '/fail'
 }), function(requests, response){
   response.redirect('/')
 })
 
-app.get('/fail', function(requests, response){
+router.get('/fail', function(requests, response){
   response.send('로그인 정보가 일치하지 않습니다.')
 })
 
@@ -182,21 +146,30 @@ passport.use(new LocalStrategy({
   session : true,
   passReqToCallback : false
 }, function(userID, userPW, done){
-  db.collection('user').findOne({ID : userID}, function(error, result){
-    // console.log(error)
-    if(!result){
+  db.collection('user').findOne({ID : userID}, function(error, user){
+    if(error) return done(error);
+    if(!user){
       return done(null, false, {message : '존재하지 않는 아이디입니다.'})
     }
-    if(userPW == result.PW){
-      return done(null, result)
+    if(userPW == user.PW){
+      return done(null, user)
     }else{
       return done(null, false, {message : '비밀번호가 일치하지 않습니다.'})
     }
   })
 }))
 
+passport.serializeUser(function(user, done){
+  done(null, user.ID)
+})
 
+passport.deserializeUser(function(id, done){
+  db.collection('user').findOne({ID : id}, function(error, result){
+    done(null, result)
+  })
+})
 
+// 로그인 체크
 function getLogin(requests, response, next){
   if(requests.user){
     next()
@@ -205,10 +178,8 @@ function getLogin(requests, response, next){
   }
 }
 
-
 // 마이페이지
-app.get('/mypage', getLogin, function(requests, response){
-  console.log(requests.user)
+router.get('/mypage', getLogin, function(requests, response){
   response.render('mypage.ejs', {info : requests.user})
 })
 
