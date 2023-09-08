@@ -271,9 +271,9 @@ app.get('/index', function(requests, response){
 // app.get('/login', function(requests, response){
 //   response.sendFile(__dirname + '/login.html');
 // })
-// app.get('/find-idpw', function(requests, response){
-//   response.sendFile(__dirname + '/find-idpw.html');
-// })
+app.get('/find-idpw', function(requests, response){
+  response.sendFile(__dirname + '/find-idpw.html');
+})
 app.get('/map', function(requests, response){
   response.sendFile(__dirname + '/map.html');
 })
