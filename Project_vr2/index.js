@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-var static = require('serve-static');
-var errorHandler = require('errorhandler');
+// const static = require('serve-static');
+// const errorHandler = require('errorhandler');
 
 // 데이터를 저장할 변수
 let db;
@@ -75,6 +75,15 @@ app.use(session({secret : 'secret', resave : true, saveUninitialized : false}));
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.serializeUser(function(user, done){
+  done(null, user.ID)
+})
+
+passport.deserializeUser(function(id, done){
+  db.collection('user').findOne({ID : id}, function(error, result){
+    done(null, result)
+  })
+})
 
 // 라우터 객체 설정
 var router = express.Router();
@@ -115,6 +124,7 @@ app.get('/join', function(requests, response){
 })
 
 app.post('/join', function(requests, response){
+
   db.collection('total').findOne({name:'dataLength'}, function(error, result){
     console.log(result.totalData);
     let totalDataLength = result.totalData;
@@ -185,15 +195,7 @@ passport.use(new LocalStrategy({
   })
 }))
 
-passport.serializeUser(function(user, done){
-  done(null, user.ID)
-})
 
-passport.deserializeUser(function(id, done){
-  db.collection('user').findOne({ID : id}, function(error, result){
-    done(null, result)
-  })
-})
 
 function getLogin(requests, response, next){
   if(requests.user){
