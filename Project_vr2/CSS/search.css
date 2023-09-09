@@ -3,17 +3,15 @@ main {
   margin: 0 auto;
 }
 
-.search-box {
-  margin: 80px 10px 0;
+#search {
+  margin: 10px 0;
   padding: 20px 40px;
-  border: 3px solid #eef1ff;
-  border-radius: 10px;
 }
 
 .search-bar {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .search-bar div {
@@ -55,20 +53,77 @@ main {
   background-color: #eef1ff;
 }
 
-.keywords-list {
+.search-details-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 600px;
+}
+
+.search-details-box > p {
+  padding: 5px;
+  color: #666;
+  font-weight: 700;
+}
+
+.search-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+  margin-top: 1px;
+}
+
+.place,
+.order {
   display: flex;
 }
 
-.keywords-list li {
-  margin-right: 15px;
-  padding:  5px 10px;
-  border-radius: 25px;
-  font-size: 12px;
-  color: #fff;
-  background-color: #AAC4FF;
+input[type="radio"] {
+  display: none;
+}
+
+.inputbox {
+  display: flex;
+  align-items: center;
   cursor: pointer;
 }
 
-.keywords-list li:last-child {
-  margin-right: 0;
+.inputbox p {
+  position: relative;
+  padding: 5px 8px;
+  color: #666;
+  font-size: 14px;
+}
+
+.inputbox p::after {
+  content: "";
+  width: 1px;
+  height: 14px;
+  background-color: #ccc;
+  position: absolute;
+  top: 8px;
+  left: 0;
+} 
+
+.inputbox:first-child p::after {
+  content: none;
+}
+
+.inputbox input {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.inputbox select {
+  margin-top: 2px;
+  font-size: 14px;
+  color: #666;
+  border: none;
+  outline: none;
+}
+.inputbox.selected p {
+  color: #AAC4FF;
 }
