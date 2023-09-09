@@ -57,28 +57,13 @@ api(url);
 // 페이지네이션에 필요한 변수 선언
 const district = document.getElementById('district');
 const order = document.querySelectorAll('.order li');
-let totalCount = 785;
 let currentPage = 1;
 let arrange = 'O';
 let sigunguCode = '';
 
 // 총 페이지 개수 구하기
+let totalCount = 20;
 const limit = 10
-
-// '구'별 totalCount
-if(district.value == '&sigunguCode=1') {
-  totalCount = 71;
-} else if(district.value == '&sigunguCode=2') {
-  totalCount = 110;
-} else if(district.value == '&sigunguCode=3') {
-  totalCount = 144;
-} else if(district.value == '&sigunguCode=4') {
-  totalCount = 357;
-} else if(district.value == '&sigunguCode=5') {
-  totalCount = 101;
-} else {
-  totalCount = 785;
-}
 
 let totalPage = Math.ceil(totalCount / limit);
 
