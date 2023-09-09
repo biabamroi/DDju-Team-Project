@@ -213,6 +213,25 @@
     
   </div>
 
+  <script>
+    // place-menu를 눌렀을 때 this에 p태그 색 바꾸기, inputbox checked 속성 주기
+    $('.place .inputbox').on('click', function(e){
+      $('.place .inputbox').removeClass('selected');
+      $('.place .inputbox input[type="radio"]').prop('checked', false);
+      $(this).addClass('selected');
+      $(this).children('input[type="radio"]').prop('checked', true);
+    })
+
+    // order-menu를 눌렀을 때 this에 p태그 색 바꾸기, inputbox checked 속성 주기
+    $('.order .inputbox').on('click', function(e){
+      $('.order .inputbox').removeClass('selected');
+      $('.order .inputbox input[type="radio"]').prop('checked', false);
+      $(this).addClass('selected');
+      $(this).children('input[type="radio"]').prop('checked', true);
+    })
+
+  </script>
+  
   <script src="../JS/header.js"></script>
   <script src="../JS/slide.js"></script>
   <script src="../JS/search.js"></script>
