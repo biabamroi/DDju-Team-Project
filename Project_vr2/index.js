@@ -22,6 +22,8 @@ app.use(methodOverride('_method'));
 // MongoDB 연결
 // npm install mongoose --save ★ 설치 ★
 const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
+// mongoose.connect("mongodb://lodcallhost/<db이름>", {useNewUrlParser: true});
 
 // Database : Data
 // 저장소 DDju
