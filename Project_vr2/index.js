@@ -200,7 +200,8 @@ function getLogin(requests, response, next){
 
 // 마이페이지
 router.get('/mypage', getLogin, function(requests, response){
-  response.render('mypage.ejs', {info : requests.user})
+  const currentUser = req.session.user;
+  response.render('mypage.ejs', {user : currentUser})
 })
 
 // 로그아웃
@@ -216,12 +217,12 @@ app.post('/logout', function(requests, response){
 app.put('/edit', function(requests, response){
   db.collection('user').updateOne({_id : parseInt(requests.body._id)},
     {$set:{ID : requests.body.id, PW : requests.body.pw}}, function(error, result){
-    console.log('수정');
+      const updatedUserId = req.body.id; // 수정된 사용자 아이디
+      const updatedPassword = req.body.pw; // 수정된 비밀번호
+    requests.session.user.id = updatedUserId;
     response.redirect('/mypage');
   })
 })
-
-// 회원정보를 수정하면 로그인이 풀리는 현상 
 
 app.delete('/delete', function(requests, response){
   console.log(requests.body._id)

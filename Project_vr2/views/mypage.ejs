@@ -92,20 +92,20 @@
 
     <main>
       <h1>My Page</h1>
-      <p><%= info.name %> 님, 안녕하세요!</p>
+      <p><%= user.name %> 님, 안녕하세요!</p>
       <h4>내 정보 수정</h4>
       <form action="/edit?_method=PUT" method="POST">
         <div class="form-group">
-          <input value="<%= info._id %>" type="text" style="display: none;" name="_id">
+          <input value="<%= user._id %>" type="text" style="display: none;" name="_id">
           <label for="id" class="inp">
-            <input value="<%= info.ID %>" type="text" class="form-control" name="id" placeholder="&nbsp;">
+            <input value="<%= user.ID %>" type="text" class="form-control" name="id" placeholder="&nbsp;">
             <span class="label">아이디</span>
             <div class="focus-bg"></div>
           </label>
         </div>
         <div class="form-group">
           <label for="pw" class="inp">
-            <input value="<%= info.PW %>" type="password" class="form-control" name="pw" placeholder="&nbsp;">
+            <input value="<%= user.PW %>" type="password" class="form-control" name="pw" placeholder="&nbsp;">
             <span class="label">비밀번호</span>
             <div class="focus-bg"></div>
           </label>
