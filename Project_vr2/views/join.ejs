@@ -108,7 +108,7 @@
           <div class="join-box-item userid">
             <label for="userid" class="inp">
               <div class="inputbox">
-                <input type="text" name="userid" id="userid" placeholder="&nbsp;">
+                <input type="text" name="userid" id="userid" placeholder="&nbsp;" autocomplete="off">
                 <span class="label">아이디</span>
                 <div class="focus-bg"></div>
                 <div>
@@ -122,7 +122,7 @@
           <div class="join-box-item userpw">
             <label for="userpw" class="inp">
               <div class="inputbox">
-                <input type="password" name="userpw" id="userpw" placeholder="&nbsp;">
+                <input type="password" name="userpw" id="userpw" placeholder="&nbsp;" autocomplete="off">
                 <span class="label">비밀번호</span>
                 <div class="focus-bg"></div>
                 <div>
@@ -137,7 +137,7 @@
           <div class="join-box-item userpw-chk">
             <label for="userpw-chk" class="inp">
               <div class="inputbox">
-                <input type="password" name="userpw-chk" id="userpw-chk" placeholder="&nbsp;">
+                <input type="password" name="userpw-chk" id="userpw-chk" placeholder="&nbsp;" autocomplete="off">
                 <span class="label">비밀번호 재확인</span>
                 <div class="focus-bg"></div>
                 <div>
@@ -151,9 +151,9 @@
           <div class="spaces"></div>
   
           <div class="join-box-item username">
-            <label>이름
+            <label for="username">이름
               <div class="inputbox">
-                <input type="text" name="username">
+                <input type="text" name="username" id="username" autocomplete="off">
               </div>
             </label>
             <p class="warn"></p>
@@ -163,7 +163,7 @@
             <label>생년월일
               <div class="three-box">
                 <div class="inputbox">
-                  <input class="birth-item" type="text" name="year" id="year" maxlength="4" placeholder="년(4자)">
+                  <input class="birth-item" type="text" name="year" id="year" maxlength="4" placeholder="년(4자)" autocomplete="off">
                 </div>
                 <div class="inputbox">
                   <select class="birth-item" name="month" id="month">
@@ -183,7 +183,7 @@
                   </select>
                 </div>
                 <div class="inputbox">
-                  <input class="birth-item" type="text" name="date" id="date" maxlength="2" placeholder="일">
+                  <input class="birth-item" type="text" name="date" id="date" maxlength="2" placeholder="일" autocomplete="off">
                 </div>
               </div>
             </label>
@@ -212,7 +212,7 @@
             <label>본인 확인 이메일
               <span class="text-secondary">(선택)</span>
               <div class="inputbox">
-                <input type="text" name="usermail" id="email" placeholder="선택입력">
+                <input type="text" name="usermail" id="email" placeholder="선택입력" autocomplete="off">
               </div>
             </label>
             <p class="warn"></p>
@@ -221,7 +221,7 @@
           <div class="join-box-item phone">
             <p>휴대전화</p>
             <div class="inputbox">
-              <select name="country">
+              <select name="country" autocomplete="off">
                 <option value="233">가나 +233</option>
                 <option value="30">그리스 +30</option>
                 <option value="82" selected>대한민국 +82</option>
@@ -234,13 +234,13 @@
   
             <div class="phonenum">
               <div class="inputbox">
-                <input type="text" name="phonenum" placeholder="전화번호 입력">
+                <input type="text" name="phonenum" placeholder="전화번호 입력" autocomplete="off">
               </div>
               <button type="button" id="veribtn" class="btn-primary">인증번호 받기</button>
             </div>
   
             <div class="inputbox disinput">
-              <input disabled type="text" id="veritext" name="veritext" placeholder="인증번호를 입력하세요">
+              <input disabled type="text" id="veritext" name="veritext" placeholder="인증번호를 입력하세요" autocomplete="off">
               <div></div>
             </div>
             <p class="warn"></p>

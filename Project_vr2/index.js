@@ -80,8 +80,6 @@ router.use(passport.initialize());
 router.use(passport.session());
 
 
-// 회원가입 시 아이디 중복체크 - 추후 업데이트
-
 
 // 회원가입 --------------------------------------------------------------------
 
@@ -90,34 +88,45 @@ app.get('/join', function(requests, response){
 })
 
 app.post('/join', function(requests, response){
+  let userSameID = db.collection('user').findOne({ID:'userid'});
+  console.log(userSameID);
 
   db.collection('total').findOne({name:'dataLength'}, function(error, result){
     console.log(result.totalData);
     let totalDataLength = result.totalData;
+    if(db){
+      db.collection('user').findOne({ID: userid}, function(err, user){
+        if(err) throw err;
+        if(user == requests.body.userid){
+          // join 페이지에서 업데이트 필요
+          response.redirect('/join');
+        }else{
+          db.collection('user').insertOne({
+            _id : totalDataLength+1, 
+            ID : requests.body.userid, 
+            PW : requests.body.userpw, 
+            name : requests.body.username,
+            birth : requests.body.year + requests.body.month + requests.body.date,
+            gender : requests.body.gender,
+            email : requests.body.usermail,
+            phone : requests.body.country + requests.body.phonenum,
+            adress : requests.body.sample6_postcode + requests.body.sample6_address + requests.body.sample6_detailAddress + requests.body.sample6_extraAddress
+          }, function(error, result){
+            if(error){
+              return console.log(error);
+            }
+          })
+        }
+      })
 
-    db.collection('user').insertOne({
-      _id : totalDataLength+1, 
-      ID : requests.body.userid, 
-      PW : requests.body.userpw, 
-      name : requests.body.username,
-      birth : requests.body.year + requests.body.month + requests.body.date,
-      gender : requests.body.gender,
-      email : requests.body.usermail,
-      phone : requests.body.country + requests.body.phonenum,
-      adress : requests.body.sample6_postcode + requests.body.sample6_address + requests.body.sample6_detailAddress + requests.body.sample6_extraAddress
-    }, function(error, result){
-      if(error){
-        return console.log(error);
-      }
-    })
-
-    db.collection('total').updateOne({name : 'dataLength'},
-    {$inc : {totalData:1}},
-    function(error, result){
-      if(error){
-        return console.log(error);
-      }
-    })
+      db.collection('total').updateOne({name : 'dataLength'},
+      {$inc : {totalData:1}},
+      function(error, result){
+        if(error){
+          return console.log(error);
+        }
+      })
+    }
   })
   response.redirect('/login');
 })
