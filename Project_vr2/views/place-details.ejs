@@ -111,7 +111,7 @@
               <button type="button"><i class="fa-regular fa-heart"></i></button>
               <button type="button"><i class="fa-solid fa-heart"></i></button>
             </div>
-            <button type="button"><i class="fa-regular fa-share-from-square"></i></button>
+            <button type="button" class="share-btn"><i class="fa-regular fa-share-from-square"></i></button>
           </div>
           <div class="place-detail-txt">
             <p><%= api[0].overview %></p>
@@ -290,6 +290,15 @@
         </li>
       `);
     }
+
+    // share-btn 눌렀을 때 현재 페이지 url 복사하기
+    $('.share-btn').on('click', function(){
+      let currentUrl = window.document.location.href;
+      window.navigator.clipboard.writeText(currentUrl)
+      .then(() => {
+        alert('url이 복사되었습니다');
+      });
+    })
 	</script>
 
   <script src="../JS/header.js"></script>
