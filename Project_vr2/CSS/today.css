@@ -3,11 +3,6 @@ main {
   margin: 0 auto;
   color: #333;
 }
-
-.place-header {
-  margin-top: 80px;
-}
-
 .place-header .title {
   font-size: 48px;
   font-family: 'Gowun Dodum', sans-serif;
