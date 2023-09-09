@@ -96,48 +96,70 @@
     <main>
       <!-- search bar -->
       <section>
-        <div class="search-box">
-          <div class="search-bar">
-            <div>
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="text" placeholder="검색어를 입력하세요.">
+          <form id="search" action="/search" method="post">
+            <div class="search-bar">
+              <div>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input name="search" type="text" placeholder="검색어를 입력하세요." value="<%= search.search %>">
+              </div>
+              <button type="submit">검색</button>
             </div>
-            <button type="button">검색</button>
-          </div>
-          <ul class="keywords-list">
-            <li>#맛집</li>
-            <li>#데이트 코스 추천</li>
-            <li>#대전 핫플</li>
-            <li>#놀거리</li>
-          </ul>
-        </div>
+            <div class="search-details-box">
+              <p>상세 검색</p>
+              <div class="search-details">
+                <div class="place">
+                  <div class="place-menu inputbox selected">
+                    <p>전체</p>
+                    <input type="radio" name="placeMenu" value="" checked>
+                  </div>
+                  <div class="place-menu inputbox">
+                    <p>관광지</p>
+                    <input type="radio" name="placeMenu" value="12">
+                  </div>
+                  <div class="place-menu inputbox">
+                    <p>맛집</p>
+                    <input type="radio" name="placeMenu" value="39">
+                  </div>
+                  <div class="place-menu inputbox">
+                    <p>축제/공연</p>
+                    <input type="radio" name="placeMenu" value="15">
+                  </div>
+                </div>
+              
+                <div class="inputbox">
+                  <select name="district" id="district">
+                    <option value="">전체(구)</option>
+                    <option value="&sigunguCode=1">대덕구</option>
+                    <option value="&sigunguCode=2">동구</option>
+                    <option value="&sigunguCode=3">서구</option>
+                    <option value="&sigunguCode=4">유성구</option>
+                    <option value="&sigunguCode=5">중구</option>
+                  </select>
+                </div>
+                <div class="order">
+                  <div class="order-menu inputbox selected">
+                    <p>제목순</p>
+                    <input type="radio" name="orderMenu" value="O" checked>
+                  </div>
+                  <div class="order-menu inputbox">
+                    <p>등록일순</p>
+                    <input type="radio" name="orderMenu" value="R">
+                  </div>
+                  <div class="order-menu inputbox">
+                    <p>인기순</p>
+                    <input type="radio" name="orderMenu" value="R">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
       </section>
 
       <!-- date place 검색 결과 -->
       <section>
         <div class="place-header">
           <h2 class="title">데이트 장소</h2>
-          <ul class="place-menu">
-            <li><a href="/today-all">전체</a></li>
-            <li><a href="/today-do">관광지</a></li>
-            <li><a href="/today-eat">맛집</a></li>
-            <li><a href="/today-see">축제/공연</a></li>
-          </ul>
-          
-          <div class="select">
-            <select name="district" id="district">
-              <option value="">구</option>
-              <option value="">동구</option>
-              <option value="">대덕구</option>
-              <option value="">서구</option>
-              <option value="">유성구</option>
-              <option value="">중구</option>
-            </select>
-            <div class="order">
-              <p>인기순</p>
-              <p>최신순</p>
-            </div>
-          </div>
+          <hr>
         </div>
 
         <div class="place-list">
@@ -154,120 +176,6 @@
               </ul>
             </div>
           </div>
-          <div class="place-item">
-            <img src="./images/kumdori .jpg" alt="사진">
-            <div class="text-box">
-              <h3>대전 꿈돌이 도시</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, repellendus.</p>
-              <ul class="keywords-list">
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-              </ul>
-            </div>
-          </div>
-          <div class="place-item">
-            <img src="./images/kumdori .jpg" alt="사진">
-            <div class="text-box">
-              <h3>대전 꿈돌이 도시</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, repellendus.</p>
-              <ul class="keywords-list">
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-              </ul>
-            </div>
-          </div>
-          <div class="place-item">
-            <img src="./images/kumdori .jpg" alt="사진">
-            <div class="text-box">
-              <h3>대전 꿈돌이 도시</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, repellendus.</p>
-              <ul class="keywords-list">
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-              </ul>
-            </div>
-          </div>
-          <div class="place-item">
-            <img src="./images/kumdori .jpg" alt="사진">
-            <div class="text-box">
-              <h3>대전 꿈돌이 도시</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, repellendus.</p>
-              <ul class="keywords-list">
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- date course 검색 결과 -->
-      <section>
-        <div class="course-header">
-          <h2 class="title">데이트 코스</h2>
-          <div class="order">
-            <p>인기순</p>
-            <p>최신순</p>
-          </div>
-        </div>
-
-        <div class="course-list">
-          <a href="/course-details">
-            <div class="course-item">
-              <img src="./images/detail-expo.jpg" alt="한밭수목원">
-              <div class="text-box">
-                <h3>한밭수목원</h3>
-              </div>
-            </div>
-          </a>
-          <a href="/course-details">
-            <div class="course-item">
-              <img src="./images/travel.jpg" alt="사진">
-              <div class="text-box">
-                <h3>대전 여행 코스</h3>
-              </div>
-            </div>
-          </a>
-          <a href="">
-            <div class="course-item">
-              <img src="./images/travel.jpg" alt="사진">
-              <div class="text-box">
-                <h3>대전 여행 코스</h3>
-              </div>
-            </div>
-          </a>
-          <a href="">
-            <div class="course-item">
-              <img src="./images/travel.jpg" alt="사진">
-              <div class="text-box">
-                <h3>대전 여행 코스</h3>
-              </div>
-            </div>
-          </a>
-          <a href="">
-            <div class="course-item">
-              <img src="./images/travel.jpg" alt="사진">
-              <div class="text-box">
-                <h3>대전 여행 코스</h3>
-              </div>
-            </div>
-          </a>
-          <a href="">
-            <div class="course-item">
-              <img src="./images/travel.jpg" alt="사진">
-              <div class="text-box">
-                <h3>대전 여행 코스</h3>
-              </div>
-            </div>
-          </a>
         </div>
       </section>
     </main>
