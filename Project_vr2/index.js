@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-var static = require('serve-static');
-var errorHandler = require('errorhandler');
+// const static = require('serve-static');
+// const errorHandler = require('errorhandler');
 
 // 데이터를 저장할 변수
 let db;
@@ -41,7 +41,6 @@ MongoClient.connect('mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.n
 })
 
 
-
 // npm install body-parser  ★ 설치 ★
 // bodyParser 사용 선언
 const bodyParser = require('body-parser');
@@ -61,6 +60,10 @@ app.get('/', function (req, res) {
 });
 
 
+// 라우터 객체 설정
+const router = require('express').Router();
+app.use('/', router);
+
 // 세션  ★ 설치 ★
 // npm install passport   
 // npm install passport-local   
@@ -71,41 +74,11 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 
-app.use(session({secret : 'secret', resave : true, saveUninitialized : false}));
-app.use(passport.initialize());
-app.use(passport.session());
+// app -> router
+router.use(session({secret : 'secret', resave : true, saveUninitialized : false}));
+router.use(passport.initialize());
+router.use(passport.session());
 
-
-// 라우터 객체 설정
-var router = express.Router();
-app.use('/', router);
-
-
-// ------------- 연구중 -------------------------------------------
-// router.route('/process/showCookie').get(function(req,res){
-//   res.send(req.cookies);
-// });
-// router.route('/process/setUserCookie').get(function(req,res){    
-//     // 쿠키 설정
-//     res.cookie('user', {
-//       id : 'mike',
-//       name : '소녀시대',
-//       authorized : true
-//     });
-//     // redirect로 응답
-//     res.redirect('/process/showCookie');
-// });
-// router.route('/process/product').get(function(req,res){  
-//   if(req.session.user){
-//     res.redirect('/');
-//   }else{
-//     res.redirect('/login.html');
-//   }
-// });
-
-
-
-// 회원가입 시 아이디 중복체크 - 추후 업데이트
 
 
 // 회원가입 --------------------------------------------------------------------
@@ -115,33 +88,45 @@ app.get('/join', function(requests, response){
 })
 
 app.post('/join', function(requests, response){
+  let userSameID = db.collection('user').findOne({ID:'userid'});
+  console.log(userSameID);
+
   db.collection('total').findOne({name:'dataLength'}, function(error, result){
     console.log(result.totalData);
     let totalDataLength = result.totalData;
+    if(db){
+      db.collection('user').findOne({ID: userid}, function(err, user){
+        if(err) throw err;
+        if(user == requests.body.userid){
+          // join 페이지에서 업데이트 필요
+          response.redirect('/join');
+        }else{
+          db.collection('user').insertOne({
+            _id : totalDataLength+1, 
+            ID : requests.body.userid, 
+            PW : requests.body.userpw, 
+            name : requests.body.username,
+            birth : requests.body.year + requests.body.month + requests.body.date,
+            gender : requests.body.gender,
+            email : requests.body.usermail,
+            phone : requests.body.country + requests.body.phonenum,
+            adress : requests.body.sample6_postcode + requests.body.sample6_address + requests.body.sample6_detailAddress + requests.body.sample6_extraAddress
+          }, function(error, result){
+            if(error){
+              return console.log(error);
+            }
+          })
+        }
+      })
 
-    db.collection('user').insertOne({
-      _id : totalDataLength+1, 
-      ID : requests.body.userid, 
-      PW : requests.body.userpw, 
-      name : requests.body.username,
-      birth : requests.body.year + requests.body.month + requests.body.date,
-      gender : requests.body.gender,
-      email : requests.body.usermail,
-      phone : requests.body.country + requests.body.phonenum,
-      adress : requests.body.sample6_postcode + requests.body.sample6_address + requests.body.sample6_detailAddress + requests.body.sample6_extraAddress
-    }, function(error, result){
-      if(error){
-        return console.log(error);
-      }
-    })
-
-    db.collection('total').updateOne({name : 'dataLength'},
-    {$inc : {totalData:1}},
-    function(error, result){
-      if(error){
-        return console.log(error);
-      }
-    })
+      db.collection('total').updateOne({name : 'dataLength'},
+      {$inc : {totalData:1}},
+      function(error, result){
+        if(error){
+          return console.log(error);
+        }
+      })
+    }
   })
   response.redirect('/login');
 })
@@ -150,19 +135,17 @@ app.post('/join', function(requests, response){
 
 // 로그인 --------------------------------------------------------------------
 
-
-
 app.get('/login', function(requests, response){
   response.render('login.ejs');
 })
 
-app.post('/login', passport.authenticate('local', {
+router.post('/login', passport.authenticate('local', {
   failureRedirect : '/fail'
 }), function(requests, response){
   response.redirect('/')
 })
 
-app.get('/fail', function(requests, response){
+router.get('/fail', function(requests, response){
   response.send('로그인 정보가 일치하지 않습니다.')
 })
 
@@ -172,13 +155,13 @@ passport.use(new LocalStrategy({
   session : true,
   passReqToCallback : false
 }, function(userID, userPW, done){
-  db.collection('user').findOne({ID : userID}, function(error, result){
-    // console.log(error)
-    if(!result){
+  db.collection('user').findOne({ID : userID}, function(error, user){
+    if(error) return done(error);
+    if(!user){
       return done(null, false, {message : '존재하지 않는 아이디입니다.'})
     }
-    if(userPW == result.PW){
-      return done(null, result)
+    if(userPW == user.PW){
+      return done(null, user)
     }else{
       return done(null, false, {message : '비밀번호가 일치하지 않습니다.'})
     }
@@ -195,6 +178,7 @@ passport.deserializeUser(function(id, done){
   })
 })
 
+// 로그인 체크
 function getLogin(requests, response, next){
   if(requests.user){
     next()
@@ -203,10 +187,8 @@ function getLogin(requests, response, next){
   }
 }
 
-
 // 마이페이지
-app.get('/mypage', getLogin, function(requests, response){
-  console.log(requests.user)
+router.get('/mypage', getLogin, function(requests, response){
   response.render('mypage.ejs', {info : requests.user})
 })
 
@@ -269,9 +251,9 @@ app.get('/index', function(requests, response){
 // app.get('/login', function(requests, response){
 //   response.sendFile(__dirname + '/login.html');
 // })
-// app.get('/find-idpw', function(requests, response){
-//   response.sendFile(__dirname + '/find-idpw.html');
-// })
+app.get('/find-idpw', function(requests, response){
+  response.sendFile(__dirname + '/find-idpw.html');
+})
 app.get('/map', function(requests, response){
   response.sendFile(__dirname + '/map.html');
 })
