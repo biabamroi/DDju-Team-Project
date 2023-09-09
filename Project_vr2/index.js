@@ -228,7 +228,61 @@ app.delete('/delete', function(requests, response){
 
 // login 상태에서 zzim 값을 데이터베이스에서 받아서 -> zzim 페이지에서 꺼내오기
 
+// 장소 상세설명 페이지
+app.get('/place-details/:id', function(requests, response){
+  db.collection('api').find({_id : requests.params.id}).toArray(function(error, result){
+    response.render('place-details.ejs', {api : result});
+  })
+  
+  // db.collection('review').find({name : parseInt(requests.params.id)}).toArray(function(error, result){
+    //   response.render('place-details.ejs', {review : result});
+    // })
+})
 
+// 장소 상세설명 페이지에서 작성된 후기 review DB에 저장
+app.post('/place-details/:id', function(requests, response){
+  db.collection('review').insertOne({name : parseInt(requests.params.id), 'star' : parseInt(requests.body.star), 'review' : requests.body.reviewTxt}, function(error, result){
+    console.log('review DB에 저장 완료!')
+  })
+})
+
+// 검색 화면
+app.post('/search', function(requests, response){
+  // 검색어가 있는 데이터 찾기
+  let creatIndex = [
+    {
+      $search: {
+        index: "search",
+        text: {
+          query: requests.body.search,
+          path: {
+            wildcard: "*"
+          }
+        }
+      }
+    }
+  ]
+
+  db.collection('api').aggregate(creatIndex).toArray(function(error, result){
+    let placeMenu = requests.body.placeMenu
+    let district = requests.body.district
+    
+    // 콘텐츠 타입, 시군구코드가 비어있을 경우 ejs 파일에 보내야하는 데이터 필터링
+    if(placeMenu == undefined || (!placeMenu && !district)) {
+      response.render('search.ejs', {search : result})
+    } else if(placeMenu && !district) {
+      let search = result.filter((item) => item.contenttypeid == placeMenu)  
+      console.log(search)
+      response.render('search.ejs', {search : search})
+    } else if(!placeMenu && district) {
+      let search = result.filter((item) => item.sigungucode == district)
+      response.render('search.ejs', {search : search})
+    } else {
+      let search = result.filter((item) => item.contenttypeid == placeMenu && item.sigungucode == district)
+      response.render('search.ejs', {search : search})
+    }
+  })
+})
 
 
 
@@ -272,20 +326,6 @@ app.get('/course-details', function(requests, response){
 app.get('/member-info', function(requests, response){
   response.sendFile(__dirname + '/member-info.html');
 })
-app.get('/place-details/:id', function(requests, response){
-  db.collection('api').find({_id : requests.params.id}).toArray(function(error, result){
-    response.render('place-details.ejs', {api : result});
-  })
-  
-  // db.collection('review').find({name : parseInt(requests.params.id)}).toArray(function(error, result){
-    //   response.render('place-details.ejs', {review : result});
-    // })
-})
-app.post('/place-details/:id', function(requests, response){
-  db.collection('review').insertOne({name : parseInt(requests.params.id), 'star' : parseInt(requests.body.star), 'review' : requests.body.reviewTxt}, function(error, result){
-    console.log('review DB에 저장 완료!')
-  })
-})
 app.get('/today-all', function(requests, response){
   response.sendFile(__dirname + '/today-all.html');
 })
@@ -309,21 +349,6 @@ app.get('/privacy', function(requests, response){
 })
 app.get('/sitemap', function(requests, response){
   response.sendFile(__dirname + '/sitemap.html');
-})
-app.get('/search', function(requests, response){
-  let pageNum = 1;
-  let keyword = encodeURI(keyword)
-  console.log(encodeURI('대전'))
-
-  let url = 'https://apis.data.go.kr/B551011/KorService1/searchKeyword1?numOfRows=10&pageNo=' + pageNum + '&MobileOS=etc&MobileApp=DDju&_type=json&listYN=Y&arrange=O&keyword=' + keyword + '&areaCode=3&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D'
-
-  fetch(url)
-  .then((res) => res.json())
-  .then((json) => {
-    let KeywordArray = json.response.body.items.item;
-
-  })
-  response.sendFile(__dirname + '/search.html');
 })
 
 
