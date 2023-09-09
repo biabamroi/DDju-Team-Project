@@ -44,25 +44,25 @@ section:nth-of-type(1) {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.search-bar {
+#search {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
 }
 
-.search-bar div {
+#search div {
   position: relative;
   margin-right: 10px;
 }
 
-.search-bar div i {
+#search div i {
   position: absolute;
   top: 11px;
   left: 8px;
   color: #999;
 }
 
-.search-bar div input {
+#search div input {
   width: 350px;
   height: 100%;
   padding: 10px 0 10px 30px;
@@ -71,12 +71,12 @@ section:nth-of-type(1) {
   background-color: transparent;
 }
 
-.search-bar div input:focus {
+#search div input:focus {
   outline: 1px solid #666;
   border-color: transparent;
 }
 
-.search-bar button {
+#search button {
   padding: 5px 20px;
   border-radius: 5px;
   color: #fff;
@@ -84,7 +84,7 @@ section:nth-of-type(1) {
   transition: all 300ms ease-in-out;
 }
 
-.search-bar button:hover {
+#search button:hover {
   color: #AAC4FF;
   background-color: #fff;
 }
@@ -271,7 +271,7 @@ section:nth-of-type(1) {
     font-size: 25px;
   }
   
-  .search-bar button {
+  #search button {
     width: 70px;
   }
 
