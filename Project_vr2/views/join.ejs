@@ -108,12 +108,17 @@
           <div class="join-box-item userid">
             <label for="userid" class="inp">
               <div class="inputbox">
-                <input type="text" name="userid" id="userid" placeholder="&nbsp;" autocomplete="off">
+                <!-- 아이디 중복 검사 -->
+                <input type="text" class="useridinp" check_result="fail" required name="userid" id="userid" placeholder="&nbsp;" autocomplete="off">
                 <span class="label">아이디</span>
                 <div class="focus-bg"></div>
-                <div>
+                <button type="button" class="id_overlap_button" onclick="id_overlap_check()">
                   <i class="fa-solid fa-id-card" style="color: #6f86ae; font-size: 20px"></i>
-                </div>
+                  <p>
+                    <iconify-icon icon="eos-icons:arrow-rotate" style="color: #0077FF; font-size: 20px;" flip="horizontal"></iconify-icon>
+                    &nbsp;중복체크
+                  </p>
+                </button>
               </div>
             </label>
             <p class="warn"></p>
@@ -260,11 +265,11 @@
             </div>
   
             <div class="inputbox">
-              <input id="sample6_detailAddress" name="sample6_detailAddress" type="text" placeholder="상세주소">
+              <input id="sample6_detailAddress" name="sample6_detailAddress" type="text" placeholder="상세주소" autocomplete="off">
             </div>
   
             <div class="inputbox">
-              <input id="sample6_extraAddress" name="sample6_extraAddress" type="text" placeholder="참고항목">
+              <input id="sample6_extraAddress" name="sample6_extraAddress" type="text" placeholder="참고항목" autocomplete="off">
             </div>
           </div>
           <button type="submit" id="joinbtn" class="btn-primary">가입하기</button>

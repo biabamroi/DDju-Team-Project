@@ -20,6 +20,7 @@ app.use(methodOverride('_method'));
 // npm install -g nodemon ★ 전역 설치 ★
 
 // MongoDB 연결
+// npm install mongoose --save ★ 설치 ★
 const MongoClient = require('mongodb').MongoClient;
 
 // Database : Data
@@ -87,19 +88,17 @@ app.get('/join', function(requests, response){
   response.render('join.ejs');
 })
 
-app.post('/join', function(requests, response){
-  let userSameID = db.collection('user').findOne({ID:'userid'});
-  console.log(userSameID);
-
+router.post('/join', function(requests, response){
   db.collection('total').findOne({name:'dataLength'}, function(error, result){
     console.log(result.totalData);
     let totalDataLength = result.totalData;
+    
     if(db){
-      db.collection('user').findOne({ID: userid}, function(err, user){
+      db.collection('user').findOne({ID: 'userid'}, function(err, user){
         if(err) throw err;
-        if(user == requests.body.userid){
+        if(user.ID == requests.body.userid){
           // join 페이지에서 업데이트 필요
-          response.redirect('/join');
+          response.redirect('/join'); 
         }else{
           db.collection('user').insertOne({
             _id : totalDataLength+1, 

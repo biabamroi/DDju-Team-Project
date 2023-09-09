@@ -20,25 +20,66 @@ $('.userid input').focusout(function(){
 
   if(userId.length == 0) {
     $('.userid .warn').html('<span class="text-red">아이디를 입력해 주세요.</span>');
-    $('.userid .inputbox i').attr({
+    $('.userid .inputbox button i').attr({
       class : 'fa-solid fa-id-card',
       style : 'color: #6f86ae; font-size: 20px;'
     });
   } else if(!idExp.test(userId)) {
     $('.userid .warn').html('<span class="text-red">5~8자의 영문 소문자, 숫자만 사용 가능합니다.</span>');
-    $('.userid .inputbox i').attr({
+    $('.userid .inputbox button i').attr({
       class : 'fa-solid fa-id-card',
       style : 'color: red; font-size: 20px;'
     });
   } else {
     idveri = true;
-    $('.userid .warn').html('<span class="text-green">사용할 수 있는 아이디입니다.</span>');
-    $('.userid .inputbox i').attr({
+    $('.userid .inputbox button i').attr({
       class : 'fa-solid fa-id-card',
       style : 'color: #0077FF; font-size: 20px;'
     });
   }
 })
+
+// 아이디 중복 검사 함수
+function id_overlap_check() {
+  $('.useridinp').change(function () {
+    $('.userid .inputbox button i').attr({
+      class : 'fa-solid fa-id-card',
+      style : 'color: #6f86ae; font-size: 20px;'
+    });
+    $('.useridinp').attr("check_result", "fail");
+  })
+
+  if ($('.useridinp').val() == '') {
+    $('.userid .warn').html('<span class="text-red">아이디를 입력해 주세요.</span>');
+    return;
+  }
+
+  id_overlap_input = document.querySelector('input[name="userid"]');
+
+  $.ajax({
+    url: "{% url 'lawyerAccount:id_overlap_check' %}",
+    data: {
+      'userid': id_overlap_input.value
+    },
+    datatype: 'json',
+    success: function (data) {
+      console.log(data['overlap']);
+      if (data['overlap'] == "fail") {
+        $('.userid .warn').html('<span class="text-red">존재하는 아이디입니다.</span>');
+        id_overlap_input.focus();
+        return;
+      } else {
+        $('.userid .warn').html('<span class="text-green">사용할 수 있는 아이디입니다.</span>');
+        $('.useridinp').attr("check_result", "success");
+        $('.userid .inputbox button i').attr({
+          class : 'fa-solid fa-id-card',
+          style : 'color: #0077FF; font-size: 20px;'
+        });
+        return;
+      }
+    }
+  });
+}
 
 
 
@@ -291,6 +332,11 @@ function sample6_execDaumPostcode() {
 // 가입하기
 $('#joinbtn').on('click', function(e){
   if(idveri && pwveri && pwchkveri && nameveri && bitrhveri && genderveri && phoneveri && addressveri && mailveri){
+    if ($('.useridinp').attr("check_result") == "fail"){
+      alert("아이디 중복체크를 해주세요.");
+      $('.useridinp').focus();
+      return false;
+    }
     $('#join-form').submit();
   } else {
     e.preventDefault();
