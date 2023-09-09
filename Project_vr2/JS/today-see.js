@@ -31,9 +31,11 @@ function api(url){
       // .then((res) => res.json())
       // .then((json) => {
       //   let detailCommon = json.response.body.items.item;
+      //   let overview = detailCommon[0].overview.replace('<br />', ' ')
+      //   let newOverview = overview.replace('<br>', ' ')
 
       //   let placeOverview = `
-      //   <p>${detailCommon[0].overview}</p>
+      //   <p>${newOverview}</p>
       //   <ul class="keywords-list">
       //     <li>#키워드</li>
       //     <li>#키워드</li>
