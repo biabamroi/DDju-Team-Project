@@ -89,6 +89,11 @@ app.get('/', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('index.ejs', { userLoggedIn });
 })
+app.get('/index', function(requests, response){
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('index.ejs', { userLoggedIn });
+})
+
 
 // 외 페이지
 app.get('/map', function(requests, response){
