@@ -1,0 +1,55 @@
+<header class="global-header">
+  <h1 class="logo">
+    <a href="/index">DDju
+      <span>date deajeon is U</span>
+    </a>
+  </h1>
+  
+  <nav>
+    <h2 class="visually-hidden">메뉴</h2>
+    <ul class="gnb-list lg-only">
+      <li class="gnb-item"><a href="/about">ABOUT</a></li>
+      <li class="gnb-item"><a href="/course-daejeon">코스 대전</a></li>
+      <li class="gnb-item">
+        <a href="/today-all">대전의 모든 것</a>
+        <ul class="sub">
+          <li><a href="/today-do">오늘 뭐하지</a></li>
+          <li><a href="/today-eat">오늘 뭐먹지</a></li>
+          <li><a href="/today-see">오늘 뭐보지</a></li>
+        </ul>
+      </li>
+      <li class="gnb-item"><a href="/contact">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <div class="user-menu-btn">
+    <button type="button" class="lg-hidden gnb-icon-button is-menu" aria-label="메뉴 열기 버튼">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <% if (userLoggedIn) { %>
+    <div class="mymenu">
+      <button type="button" class="logout-btn">
+        <a href="/logout">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </a>
+      </button>
+      <button type="button" class="like-btn">
+        <a href="/zzim">
+          <i class="fa-solid fa-heart"></i>
+        </a>
+      </button>
+      <button type="button" class="mymenu-btn">
+        <a href="/mypage">
+          <i class="fa-solid fa-user"></i>
+        </a>
+      </button>
+    </div>
+    <% } else { %>
+      <button type="button" class="login-btn">
+        <a href="/login">
+          <i class="fa-regular fa-user"></i>
+        </a>
+      </button>
+    <% } %>
+  </div>
+</header>
