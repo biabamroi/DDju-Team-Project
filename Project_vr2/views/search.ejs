@@ -129,26 +129,12 @@
                 <div class="inputbox">
                   <select name="district" id="district">
                     <option value="">전체(구)</option>
-                    <option value="&sigunguCode=1">대덕구</option>
-                    <option value="&sigunguCode=2">동구</option>
-                    <option value="&sigunguCode=3">서구</option>
-                    <option value="&sigunguCode=4">유성구</option>
-                    <option value="&sigunguCode=5">중구</option>
+                    <option value="1">대덕구</option>
+                    <option value="2">동구</option>
+                    <option value="3">서구</option>
+                    <option value="4">유성구</option>
+                    <option value="5">중구</option>
                   </select>
-                </div>
-                <div class="order">
-                  <div class="order-menu inputbox selected">
-                    <p>제목순</p>
-                    <input type="radio" name="orderMenu" value="O" checked>
-                  </div>
-                  <div class="order-menu inputbox">
-                    <p>등록일순</p>
-                    <input type="radio" name="orderMenu" value="R">
-                  </div>
-                  <div class="order-menu inputbox">
-                    <p>인기순</p>
-                    <input type="radio" name="orderMenu" value="R">
-                  </div>
                 </div>
               </div>
             </div>
@@ -159,23 +145,40 @@
       <section>
         <div class="place-header">
           <h2 class="title">데이트 장소</h2>
-          <hr>
+          <div class="order">
+            <div class="order-menu inputbox selected">
+              <p>제목순</p>
+              <input type="radio" name="title" value="-1" checked>
+            </div>
+            <div class="order-menu inputbox">
+              <p>등록일순</p>
+              <input type="radio" name="createdtime" value="-1">
+            </div>
+            <div class="order-menu inputbox">
+              <p>인기순</p>
+              <input type="radio" name="title" value="0">
+            </div>
+          </div>
         </div>
 
         <div class="place-list">
-          <div class="place-item">
-            <img src="./images/kumdori .jpg" alt="사진">
-            <div class="text-box">
-              <h3>대전 꿈돌이 도시</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, repellendus.</p>
-              <ul class="keywords-list">
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-                <li>#키워드</li>
-              </ul>
-            </div>
-          </div>
+          <% for(let i = 0; i < search.length; i++) { %>
+              <a href="/place-details/<%= search[i]._id %>">
+                <div class="place-item">
+                  <img src = "<%= search[i].img %>" alt = "<%= search[i].title %>">
+                  <div class="text-box">
+                    <h3><%= search[i].title %></h3>
+                    <p><%= search[i].overview %></p>
+                    <ul class="keywords-list">
+                      <li>#키워드</li>
+                      <li>#키워드</li>
+                      <li>#키워드</li>
+                      <li>#키워드</li>
+                    </ul>    
+                  </div>
+                </div>
+              </a>
+          <% } %>
         </div>
       </section>
     </main>
