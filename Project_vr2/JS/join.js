@@ -40,7 +40,10 @@ $('.userid input').focusout(function(){
 })
 
 // 아이디 중복 검사 함수
-function id_overlap_check() {
+function id_check() {
+  let id_input = document.querySelector('input[name="userid"]');
+  let userID = id_input.value; 
+
   $('.useridinp').change(function () {
     $('.userid .inputbox button i').attr({
       class : 'fa-solid fa-id-card',
@@ -49,24 +52,23 @@ function id_overlap_check() {
     $('.useridinp').attr("check_result", "fail");
   })
 
-  if ($('.useridinp').val() == '') {
+  if (userID == '') {
     $('.userid .warn').html('<span class="text-red">아이디를 입력해 주세요.</span>');
     return;
   }
 
-  id_overlap_input = document.querySelector('input[name="userid"]');
 
   $.ajax({
-    url: "{% url 'lawyerAccount:id_overlap_check' %}",
+    url: "/id_check",
+    method: 'post',
     data: {
-      'userid': id_overlap_input.value
+      'userid': userID
     },
     datatype: 'json',
     success: function (data) {
-      console.log(data['overlap']);
-      if (data['overlap'] == "fail") {
+      if (data.exists) {
         $('.userid .warn').html('<span class="text-red">존재하는 아이디입니다.</span>');
-        id_overlap_input.focus();
+        id_input.focus();
         return;
       } else {
         $('.userid .warn').html('<span class="text-green">사용할 수 있는 아이디입니다.</span>');

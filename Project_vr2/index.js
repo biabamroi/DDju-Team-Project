@@ -90,44 +90,54 @@ app.get('/join', function(requests, response){
   response.render('join.ejs');
 })
 
-router.post('/join', function(requests, response){
+router.post('/id_check', (req, res) => {
+  let userid = req.body.userid; // 클라이언트에서 전달된 아이디 값
+
+  db.collection('user').findOne({ ID: userid }, function (error, user) {
+    if (error) {
+      console.error("에러 발생:", error);
+      res.status(500).json({ error: "서버 오류" });
+    } else {
+      if (user) {
+        // 아이디가 이미 존재하는 경우
+        res.json({ exists: true });
+      } else {
+        // 아이디가 사용 가능한 경우
+        res.json({ exists: false });
+      }
+    }
+  });
+});
+
+app.post('/join', function(requests, response){
   db.collection('total').findOne({name:'dataLength'}, function(error, result){
     console.log(result.totalData);
     let totalDataLength = result.totalData;
     
-    if(db){
-      db.collection('user').findOne({ID: 'userid'}, function(err, user){
-        if(err) throw err;
-        if(user.ID == requests.body.userid){
-          // join 페이지에서 업데이트 필요
-          response.redirect('/join'); 
-        }else{
-          db.collection('user').insertOne({
-            _id : totalDataLength+1, 
-            ID : requests.body.userid, 
-            PW : requests.body.userpw, 
-            name : requests.body.username,
-            birth : requests.body.year + requests.body.month + requests.body.date,
-            gender : requests.body.gender,
-            email : requests.body.usermail,
-            phone : requests.body.country + requests.body.phonenum,
-            adress : requests.body.sample6_postcode + requests.body.sample6_address + requests.body.sample6_detailAddress + requests.body.sample6_extraAddress
-          }, function(error, result){
-            if(error){
-              return console.log(error);
-            }
-          })
-        }
-      })
+    db.collection('user').insertOne({
+      _id : totalDataLength+1, 
+      ID : requests.body.userid, 
+      PW : requests.body.userpw, 
+      name : requests.body.username,
+      birth : requests.body.year + requests.body.month + requests.body.date,
+      gender : requests.body.gender,
+      email : requests.body.usermail,
+      phone : requests.body.country + requests.body.phonenum,
+      adress : requests.body.sample6_postcode + requests.body.sample6_address + requests.body.sample6_detailAddress + requests.body.sample6_extraAddress
+    }, function(error, result){
+      if(error){
+        return console.log(error);
+      }
+    })
 
-      db.collection('total').updateOne({name : 'dataLength'},
-      {$inc : {totalData:1}},
-      function(error, result){
-        if(error){
-          return console.log(error);
-        }
-      })
-    }
+    db.collection('total').updateOne({name : 'dataLength'},
+    {$inc : {totalData:1}},
+    function(error, result){
+      if(error){
+        return console.log(error);
+      }
+    })
+    
   })
   response.redirect('/login');
 })
