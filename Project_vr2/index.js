@@ -84,6 +84,57 @@ router.use(passport.session());
 
 
 
+// 로그인 상태를 판단하여 userLoggedIn 값을 전달
+app.get('/', function(requests, response){
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('index.ejs', { userLoggedIn });
+})
+
+// 외 페이지
+app.get('/map', function(requests, response){
+  response.sendFile(__dirname + '/map.html');
+})
+app.get('/about', function(requests, response){
+  response.sendFile(__dirname + '/about.html');
+})
+app.get('/contact', function(requests, response){
+  response.sendFile(__dirname + '/contact.html');
+})
+app.get('/course-daejeon', function(requests, response){
+  response.sendFile(__dirname + '/course-daejeon.html');
+})
+app.get('/course-details', function(requests, response){
+  response.sendFile(__dirname + '/course-details.html');
+})
+app.get('/member-info', function(requests, response){
+  response.sendFile(__dirname + '/member-info.html');
+})
+app.get('/today-all', function(requests, response){
+  response.sendFile(__dirname + '/today-all.html');
+})
+app.get('/today-do', function(requests, response){
+  response.sendFile(__dirname + '/today-do.html');
+})
+app.get('/today-eat', function(requests, response){
+  response.sendFile(__dirname + '/today-eat.html');
+})
+app.get('/today-see', function(requests, response){
+  response.sendFile(__dirname + '/today-see.html');
+})
+app.get('/zzim', function(requests, response){
+  response.sendFile(__dirname + '/zzim.html');
+})
+app.get('/policy', function(requests, response){
+  response.sendFile(__dirname + '/policy.html');
+})
+app.get('/privacy', function(requests, response){
+  response.sendFile(__dirname + '/privacy.html');
+})
+app.get('/sitemap', function(requests, response){
+  response.sendFile(__dirname + '/sitemap.html');
+})
+
+
 // 회원가입 --------------------------------------------------------------------
 
 app.get('/join', function(requests, response){
@@ -198,6 +249,12 @@ function getLogin(requests, response, next){
   }
 }
 
+// 서버에서 로그인 상태를 반환하는 엔드포인트 생성
+app.get('/get-user-status', (req, res) => {
+  const userLoggedIn = req.session.user ? true : false;
+  res.json({ userLoggedIn });
+});
+
 // 마이페이지
 router.get('/mypage', getLogin, function(requests, response){
   const currentUser = req.session.user;
@@ -239,6 +296,16 @@ app.delete('/delete', function(requests, response){
 })
 
 // login 상태에서 zzim 값을 데이터베이스에서 받아서 -> zzim 페이지에서 꺼내오기
+
+
+
+
+
+
+
+
+
+
 
 // 장소 상세설명 페이지
 app.get('/place-details/:id', function(requests, response){
@@ -300,68 +367,6 @@ app.post('/search', function(requests, response){
 
 
 
-// 기본 홈페이지 첫 화면
-app.get('/', function(requests, response){
-  response.sendFile(__dirname + '/index.html');
-})
-
-
-
-// 외 페이지
-app.get('/index', function(requests, response){
-  response.sendFile(__dirname + '/index.html');
-})
-// app.get('/join', function(requests, response){
-//   response.sendFile(__dirname + '/join.html');
-// })
-// app.get('/login', function(requests, response){
-//   response.sendFile(__dirname + '/login.html');
-// })
-app.get('/find-idpw', function(requests, response){
-  response.sendFile(__dirname + '/find-idpw.html');
-})
-app.get('/map', function(requests, response){
-  response.sendFile(__dirname + '/map.html');
-})
-app.get('/about', function(requests, response){
-  response.sendFile(__dirname + '/about.html');
-})
-app.get('/contact', function(requests, response){
-  response.sendFile(__dirname + '/contact.html');
-})
-app.get('/course-daejeon', function(requests, response){
-  response.sendFile(__dirname + '/course-daejeon.html');
-})
-app.get('/course-details', function(requests, response){
-  response.sendFile(__dirname + '/course-details.html');
-})
-app.get('/member-info', function(requests, response){
-  response.sendFile(__dirname + '/member-info.html');
-})
-app.get('/today-all', function(requests, response){
-  response.sendFile(__dirname + '/today-all.html');
-})
-app.get('/today-do', function(requests, response){
-  response.sendFile(__dirname + '/today-do.html');
-})
-app.get('/today-eat', function(requests, response){
-  response.sendFile(__dirname + '/today-eat.html');
-})
-app.get('/today-see', function(requests, response){
-  response.sendFile(__dirname + '/today-see.html');
-})
-app.get('/zzim', function(requests, response){
-  response.sendFile(__dirname + '/zzim.html');
-})
-app.get('/policy', function(requests, response){
-  response.sendFile(__dirname + '/policy.html');
-})
-app.get('/privacy', function(requests, response){
-  response.sendFile(__dirname + '/privacy.html');
-})
-app.get('/sitemap', function(requests, response){
-  response.sendFile(__dirname + '/sitemap.html');
-})
 
 
 
