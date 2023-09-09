@@ -100,7 +100,7 @@
         <h2 class="title">오늘 뭐하지</h2>
         <ul class="place-menu">
           <li><a href="/today-all">전체</a></li>
-          <li><a href="/today-do">관광지</a></li>
+          <li><a href="/today-do" style="color: #AAC4FF;">관광지</a></li>
           <li><a href="/today-eat">맛집</a></li>
           <li><a href="/today-see">축제/공연</a></li>
         </ul>
@@ -115,13 +115,18 @@
             <option value="&sigunguCode=5">중구</option>
           </select>
           <div class="order">
-            <p>인기순</p>
-            <p>최신순</p>
+            <li class="selected">제목순</li>
+            <li>등록일순</li>
+            <li>인기순</li>
           </div>
         </div>
       </div>
 
       <div class="place-list">
+      </div>
+
+      <div class="pagination">
+        <div class="number-btn"></div>
       </div>
     </main>
 
@@ -203,6 +208,7 @@
   </div>
 
   <script src="./JS/header.js"></script>
+  <script src="./JS/today-do.js"></script>
   <script src="./JS/footer.js"></script>
   <script src="./JS/sidebar.js"></script>
 
