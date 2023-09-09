@@ -1,3 +1,38 @@
+// 로그인 
+window.addEventListener('DOMContentLoaded', () => {
+  // 로그인 상태를 가져오는 비동기 함수 호출
+  getUserLoggedInStatus()
+    .then((userLoggedIn) => {
+      // 가져온 로그인 상태에 따라 버튼을 숨기거나 표시
+      const mymenu = document.querySelector('.mymenu');
+      const loginBtn = document.querySelector('.login-btn');
+
+      if (userLoggedIn) {
+        mymenu.style.display = 'flex';
+        loginBtn.style.display = 'none';
+      } else {
+        mymenu.style.display = 'none';
+        loginBtn.style.display = 'block';
+      }
+    })
+    .catch((error) => {
+      console.error('로그인 상태를 가져오는 중에 오류 발생:', error);
+    });
+});
+
+// 서버로부터 로그인 상태를 가져오는 비동기 함수
+async function getUserLoggedInStatus() {
+  try {
+    const response = await fetch('/get-user-status'); // 서버에서 로그인 상태를 반환하는 엔드포인트
+    const data = await response.json();
+
+    return data.userLoggedIn; // 서버에서 반환한 로그인 상태를 반환
+  } catch (error) {
+    throw error;
+  }
+}
+
+
 // var xhr = new XMLHttpRequest();
 
 // var url = 'http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureSidoLIst'; /*URL*/ 
