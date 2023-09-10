@@ -110,7 +110,7 @@ router.get('/get-user-status', (requests, response) => {
 
 
 // 로그인 페이지
-app.get('/login', function(requests, response){
+router.get('/login', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('login.ejs', { userLoggedIn });
 })
