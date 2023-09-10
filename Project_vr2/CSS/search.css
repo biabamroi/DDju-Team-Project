@@ -137,3 +137,8 @@ input[type="radio"] {
 .order-menu p {
   font-size: 16px;
 }
+
+.place-item-btn {
+  display: block;
+  margin: 40px auto;
+}
