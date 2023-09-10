@@ -108,6 +108,10 @@ router.get('/get-user-status', function(requests, response){
   response.json({ userLoggedIn })
 });
 
+router.get('/get-user-status-html', function(request, response) {
+  const userLoggedIn = request.session.user ? true : false;
+  response.render('user-status.ejs', { userLoggedIn });
+});
 
 // 로그인 페이지
 router.get('/login', function(requests, response){
@@ -170,14 +174,14 @@ router.get('/mypage', getLogin, function(requests, response){
 })
 
 // 로그아웃
-app.get('/logout', function(requests, response){
+router.get('/logout', function(requests, response){
   requests.session.destroy();
   response.redirect('/');
 })
 
 // 회원가입 --------------------------------------------------------------------
 
-app.get('/join', function(requests, response){
+router.get('/join', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('join.ejs', { userLoggedIn });
 })
@@ -201,7 +205,7 @@ router.post('/id_check', (req, res) => {
   });
 });
 
-app.post('/join', function(requests, response){
+router.post('/join', function(requests, response){
   db.collection('total').findOne({name:'dataLength'}, function(error, result){
     console.log(result.totalData);
     let totalDataLength = result.totalData;
@@ -240,7 +244,7 @@ app.post('/join', function(requests, response){
 
 // 회원정보 수정, 탈퇴--------------------------------------------------------------------------
 
-app.put('/edit', function(requests, response){
+router.put('/edit', function(requests, response){
   db.collection('user').updateOne({_id : parseInt(requests.body._id)},
     {$set:{ID : requests.body.id, PW : requests.body.pw}}, function(error, result){
       const updatedUserId = req.body.id; // 수정된 사용자 아이디
@@ -250,7 +254,7 @@ app.put('/edit', function(requests, response){
   })
 })
 
-app.delete('/delete', function(requests, response){
+router.delete('/delete', function(requests, response){
   console.log(requests.body._id)
   requests.body._id = parseInt(requests.body._id)
 
@@ -272,71 +276,71 @@ app.delete('/delete', function(requests, response){
 
 
 // 전체 페이지 userLoggedIn 연결
-app.get('/map', function(requests, response){
+router.get('/map', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('map.ejs', { userLoggedIn });
 })
-app.get('/about', function(requests, response){
+router.get('/about', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('about.ejs', { userLoggedIn });
 })
-app.get('/contact', function(requests, response){
+router.get('/contact', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('contact.ejs', { userLoggedIn });
 })
-app.get('/course-daejeon', function(requests, response){
+router.get('/course-daejeon', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('course-daejeon.ejs', { userLoggedIn });
 })
-app.get('/course-details', function(requests, response){
+router.get('/course-details', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('course-details.ejs', { userLoggedIn });
 })
-app.get('/member-info', function(requests, response){
+router.get('/member-info', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('member-info.ejs', { userLoggedIn });
 })
-app.get('/today-all', function(requests, response){
+router.get('/today-all', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('today-all.ejs', { userLoggedIn });
 })
-app.get('/today-do', function(requests, response){
+router.get('/today-do', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('today-do.ejs', { userLoggedIn });
 })
-app.get('/today-eat', function(requests, response){
+router.get('/today-eat', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('today-eat.ejs', { userLoggedIn });
 })
-app.get('/today-see', function(requests, response){
+router.get('/today-see', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('today-see.ejs', { userLoggedIn });
 })
-app.get('/zzim', function(requests, response){
+router.get('/zzim', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('zzim.ejs', { userLoggedIn });
 })
-app.get('/policy', function(requests, response){
+router.get('/policy', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('policy.ejs', { userLoggedIn });
 })
-app.get('/privacy', function(requests, response){
+router.get('/privacy', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('privacy.ejs', { userLoggedIn });
 })
-app.get('/sitemap', function(requests, response){
+router.get('/sitemap', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('sitemap.ejs', { userLoggedIn });
 })
-app.get('/place-details', function(requests, response){
+router.get('/place-details', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('place-details.ejs', { userLoggedIn });
 })
-app.get('/mypage', function(requests, response){
+router.get('/mypage', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('mypage.ejs', { userLoggedIn });
 })
-app.get('/find-idpw', function(requests, response){
+router.get('/find-idpw', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('find-idpw.ejs', { userLoggedIn });
 })

@@ -4,15 +4,17 @@ window.addEventListener('DOMContentLoaded', () => {
   getUserLoggedInStatus()
     .then((userLoggedIn) => {
       // 가져온 로그인 상태에 따라 버튼을 숨기거나 표시
-      const mymenu = $('.mymenu');
-      const loginBtn = $('.login-btn');
+      // const mymenu = $('.mymenu');
+      // const loginBtn = $('.login-btn');
 
       if (userLoggedIn) {
-        mymenu.css('display', 'flex');
-        loginBtn.css('display', 'none');
+        $('.user-menu-btn').addClass('.login');
+        // mymenu.css('display', 'flex');
+        // loginBtn.css('display', 'none');
       } else {
-        mymenu.css('display', 'none');
-        loginBtn.css('display', 'block');
+        $('.user-menu-btn').removeClass('.login');
+        // mymenu.css('display', 'none');
+        // loginBtn.css('display', 'block');
       }
     })
     .catch((error) => {

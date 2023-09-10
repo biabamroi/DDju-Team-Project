@@ -162,6 +162,10 @@
   display: flex;
 }
 
+.hidden {
+  display: none;
+}
+
 .mymenu {
   display: flex;
   justify-content: space-between;
