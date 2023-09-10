@@ -41,7 +41,7 @@
 <body>
   <div class="wrapper" id="top">
 
-    <%- include('./header.ejs', { userLoggedIn }); -%>
+<%- include('./header.ejs', { userLoggedIn }); -%>
     
     <main>
       <!-- search bar -->
@@ -50,7 +50,7 @@
             <div class="search-bar">
               <div>
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input name="search" type="text" placeholder="검색어를 입력하세요." value="<%= search.search %>">
+                <input name="search" type="text" placeholder="검색어를 입력하세요." value="<%= searchWord %>">
               </div>
               <button type="submit">검색</button>
             </div>
