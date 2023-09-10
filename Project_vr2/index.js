@@ -12,9 +12,9 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 // npm install express-ejs-layouts ★ 설치 ★
 const expressLayouts = require('express-ejs-layouts');
-app.use(expressLayouts);
-app.set('layout','layout');
-app.set('layout extractScripts', true);
+// app.use(expressLayouts);
+// app.set('layout','layout');
+// app.set('layout extractScripts', true);
 
 
 // 모든 정적 파일 제공
@@ -103,15 +103,16 @@ router.get('/index', function(requests, response){
 })
 
 // 서버에서 로그인 상태를 반환하는 엔드포인트 생성
-router.get('/get-user-status', (req, res) => {
+router.get('/get-user-status', (requests, response) => {
   const userLoggedIn = requests.session.user ? true : false;
-  res.render('index.ejs', { userLoggedIn });
+  response.render('index.ejs', { userLoggedIn });
 });
 
 
 // 로그인 페이지
 app.get('/login', function(requests, response){
-  response.render('login.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('login.ejs', { userLoggedIn });
 })
 
 router.post('/login', passport.authenticate('local', {
