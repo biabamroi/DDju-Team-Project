@@ -162,12 +162,8 @@
   display: flex;
 }
 
-.hidden {
-  display: none;
-}
-
 .mymenu {
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
   width: 120px;
