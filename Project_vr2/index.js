@@ -332,10 +332,6 @@ router.get('/sitemap', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('sitemap.ejs', { userLoggedIn });
 })
-router.get('/place-details', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
-  response.render('place-details.ejs', { userLoggedIn });
-})
 router.get('/mypage', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('mypage.ejs', { userLoggedIn });
@@ -353,13 +349,14 @@ router.get('/find-idpw', function(requests, response){
 
 
 // 장소 상세설명 페이지
-app.get('/place-details/:id', function(requests, response){
+router.get('/place-details/:id', function(requests, response){
+  const userLoggedIn = requests.session.user ? true : false;
   db.collection('api').find({_id : requests.params.id}).toArray(function(error, result){
     let apiResult = result;
     // response.render('place-details.ejs', {api : result});
     
     db.collection('review').find({name : parseInt(requests.params.id)}).toArray(function(error, result){
-      response.render('place-details.ejs', {api : apiResult, review : result});
+      response.render('place-details.ejs', {api : apiResult, review : result, userLoggedIn});
     })
   })
   
@@ -367,14 +364,15 @@ app.get('/place-details/:id', function(requests, response){
 })
 
 // 장소 상세설명 페이지에서 작성된 후기 review DB에 저장
-app.post('/place-details/:id', function(requests, response){
+router.post('/place-details/:id', function(requests, response){
   db.collection('review').insertOne({name : parseInt(requests.params.id), 'star' : parseInt(requests.body.star), 'review' : requests.body.reviewTxt}, function(error, result){
     console.log('review DB에 저장 완료!')
   })
 })
 
 // 검색 화면
-app.post('/search', function(requests, response){
+router.post('/search', function(requests, response){
+  const userLoggedIn = requests.session.user ? true : false;
   // 검색어가 있는 데이터 찾기
   let searchWord = requests.body.search;
   let creatIndex = [
@@ -397,16 +395,16 @@ app.post('/search', function(requests, response){
     
     // 콘텐츠 타입, 시군구코드가 비어있을 경우 ejs 파일에 보내야하는 데이터 필터링
     if(placeMenu == undefined || (!placeMenu && !district)) {
-      response.render('search.ejs', {search : result, searchWord : searchWord})
+      response.render('search.ejs', {search : result, searchWord : searchWord, userLoggedIn})
     } else if(placeMenu && !district) {
       let search = result.filter((item) => item.contenttypeid == placeMenu)  
-      response.render('search.ejs', {search : search, searchWord : searchWord})
+      response.render('search.ejs', {search : search, searchWord : searchWord, userLoggedIn})
     } else if(!placeMenu && district) {
       let search = result.filter((item) => item.sigungucode == district)
-      response.render('search.ejs', {search : search, searchWord : searchWord})
+      response.render('search.ejs', {search : search, searchWord : searchWord, userLoggedIn})
     } else {
       let search = result.filter((item) => item.contenttypeid == placeMenu && item.sigungucode == district)
-      response.render('search.ejs', {search : search, searchWord : searchWord})
+      response.render('search.ejs', {search : search, searchWord : searchWord, userLoggedIn})
     }
   })
 })
