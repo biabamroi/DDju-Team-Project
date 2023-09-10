@@ -273,46 +273,46 @@ app.delete('/delete', function(requests, response){
 
 // 외 페이지
 app.get('/map', function(requests, response){
-  response.sendFile(__dirname + '/map.html');
+  response.render('map.ejs');
 })
 app.get('/about', function(requests, response){
-  response.sendFile(__dirname + '/about.html');
+  response.render('about.ejs');
 })
 app.get('/contact', function(requests, response){
-  response.sendFile(__dirname + '/contact.html');
+  response.render('contact.ejs');
 })
 app.get('/course-daejeon', function(requests, response){
-  response.sendFile(__dirname + '/course-daejeon.html');
+  response.render('course-daejeon.ejs');
 })
 app.get('/course-details', function(requests, response){
-  response.sendFile(__dirname + '/course-details.html');
+  response.render('course-details.ejs');
 })
 app.get('/member-info', function(requests, response){
-  response.sendFile(__dirname + '/member-info.html');
+  response.render('member-info.ejs');
 })
 app.get('/today-all', function(requests, response){
-  response.sendFile(__dirname + '/today-all.html');
+  response.render('today-all.ejs');
 })
 app.get('/today-do', function(requests, response){
-  response.sendFile(__dirname + '/today-do.html');
+  response.render('today-do.ejs');
 })
 app.get('/today-eat', function(requests, response){
-  response.sendFile(__dirname + '/today-eat.html');
+  response.render('today-eat.ejs');
 })
 app.get('/today-see', function(requests, response){
-  response.sendFile(__dirname + '/today-see.html');
+  response.render('today-see.ejs');
 })
 app.get('/zzim', function(requests, response){
-  response.sendFile(__dirname + '/zzim.html');
+  response.render('zzim.ejs');
 })
 app.get('/policy', function(requests, response){
-  response.sendFile(__dirname + '/policy.html');
+  response.render('policy.ejs');
 })
 app.get('/privacy', function(requests, response){
-  response.sendFile(__dirname + '/privacy.html');
+  response.render('privacy.ejs');
 })
 app.get('/sitemap', function(requests, response){
-  response.sendFile(__dirname + '/sitemap.html');
+  response.render('sitemap.ejs');
 })
 
 
