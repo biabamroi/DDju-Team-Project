@@ -355,12 +355,15 @@ router.get('/find-idpw', function(requests, response){
 // 장소 상세설명 페이지
 app.get('/place-details/:id', function(requests, response){
   db.collection('api').find({_id : requests.params.id}).toArray(function(error, result){
-    response.render('place-details.ejs', {api : result});
+    let apiResult = result;
+    // response.render('place-details.ejs', {api : result});
+    
+    db.collection('review').find({name : parseInt(requests.params.id)}).toArray(function(error, result){
+      response.render('place-details.ejs', {api : apiResult, review : result});
+    })
   })
   
-  // db.collection('review').find({name : parseInt(requests.params.id)}).toArray(function(error, result){
-    //   response.render('place-details.ejs', {review : result});
-    // })
+
 })
 
 // 장소 상세설명 페이지에서 작성된 후기 review DB에 저장
@@ -373,12 +376,13 @@ app.post('/place-details/:id', function(requests, response){
 // 검색 화면
 app.post('/search', function(requests, response){
   // 검색어가 있는 데이터 찾기
+  let searchWord = requests.body.search;
   let creatIndex = [
     {
       $search: {
         index: "search",
         text: {
-          query: requests.body.search,
+          query: searchWord,
           path: {
             wildcard: "*"
           }
@@ -393,17 +397,16 @@ app.post('/search', function(requests, response){
     
     // 콘텐츠 타입, 시군구코드가 비어있을 경우 ejs 파일에 보내야하는 데이터 필터링
     if(placeMenu == undefined || (!placeMenu && !district)) {
-      response.render('search.ejs', {search : result})
+      response.render('search.ejs', {search : result, searchWord : searchWord})
     } else if(placeMenu && !district) {
       let search = result.filter((item) => item.contenttypeid == placeMenu)  
-      console.log(search)
-      response.render('search.ejs', {search : search})
+      response.render('search.ejs', {search : search, searchWord : searchWord})
     } else if(!placeMenu && district) {
       let search = result.filter((item) => item.sigungucode == district)
-      response.render('search.ejs', {search : search})
+      response.render('search.ejs', {search : search, searchWord : searchWord})
     } else {
       let search = result.filter((item) => item.contenttypeid == placeMenu && item.sigungucode == district)
-      response.render('search.ejs', {search : search})
+      response.render('search.ejs', {search : search, searchWord : searchWord})
     }
   })
 })
