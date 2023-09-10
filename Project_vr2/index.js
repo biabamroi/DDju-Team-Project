@@ -10,6 +10,12 @@ let db;
 // .ejs 사용 세팅
 app.set('view engine', 'ejs');
 app.set('views', 'views');
+// npm install express-ejs-layouts ★ 설치 ★
+const expressLayouts = require('express-ejs-layouts');
+app.use(expressLayouts);
+app.set('layout','layout');
+app.set('layout extractScripts', true);
+
 
 // 모든 정적 파일 제공
 app.use(express.static(__dirname));
