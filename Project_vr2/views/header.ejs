@@ -27,6 +27,7 @@
       <i class="fa-solid fa-bars"></i>
     </button>
     <% if (userLoggedIn) { %>
+
     <div class="mymenu hidden">
       <button type="button" class="logout-btn">
         <a href="/logout">
@@ -45,7 +46,8 @@
       </button>
     </div>
     <% } else { %>
-      <button type="button hidden" class="login-btn">
+
+      <button type="button" class="login-btn">
         <a href="/login">
           <i class="fa-regular fa-user"></i>
         </a>
