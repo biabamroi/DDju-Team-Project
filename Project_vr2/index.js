@@ -103,9 +103,9 @@ router.get('/index', function(requests, response){
 })
 
 // 서버에서 로그인 상태를 반환하는 엔드포인트 생성
-router.get('/get-user-status', (requests, response) => {
+router.get('/get-user-status', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
-  response.render('index.ejs', { userLoggedIn });
+  response.json({ userLoggedIn })
 });
 
 
@@ -163,15 +163,14 @@ function getLogin(requests, response, next){
   }
 }
 
-
 // 마이페이지
 router.get('/mypage', getLogin, function(requests, response){
-  const currentUser = req.session.user;
+  const currentUser = requests.session.user;
   response.render('mypage.ejs', {user : currentUser})
 })
 
 // 로그아웃
-app.post('/logout', function(requests, response){
+app.get('/logout', function(requests, response){
   requests.session.destroy();
   response.redirect('/');
 })
@@ -179,7 +178,8 @@ app.post('/logout', function(requests, response){
 // 회원가입 --------------------------------------------------------------------
 
 app.get('/join', function(requests, response){
-  response.render('join.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('join.ejs', { userLoggedIn });
 })
 
 router.post('/id_check', (req, res) => {
@@ -271,48 +271,74 @@ app.delete('/delete', function(requests, response){
 
 
 
-// 외 페이지
+// 전체 페이지 userLoggedIn 연결
 app.get('/map', function(requests, response){
-  response.render('map.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('map.ejs', { userLoggedIn });
 })
 app.get('/about', function(requests, response){
-  response.render('about.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('about.ejs', { userLoggedIn });
 })
 app.get('/contact', function(requests, response){
-  response.render('contact.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('contact.ejs', { userLoggedIn });
 })
 app.get('/course-daejeon', function(requests, response){
-  response.render('course-daejeon.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('course-daejeon.ejs', { userLoggedIn });
 })
 app.get('/course-details', function(requests, response){
-  response.render('course-details.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('course-details.ejs', { userLoggedIn });
 })
 app.get('/member-info', function(requests, response){
-  response.render('member-info.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('member-info.ejs', { userLoggedIn });
 })
 app.get('/today-all', function(requests, response){
-  response.render('today-all.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('today-all.ejs', { userLoggedIn });
 })
 app.get('/today-do', function(requests, response){
-  response.render('today-do.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('today-do.ejs', { userLoggedIn });
 })
 app.get('/today-eat', function(requests, response){
-  response.render('today-eat.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('today-eat.ejs', { userLoggedIn });
 })
 app.get('/today-see', function(requests, response){
-  response.render('today-see.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('today-see.ejs', { userLoggedIn });
 })
 app.get('/zzim', function(requests, response){
-  response.render('zzim.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('zzim.ejs', { userLoggedIn });
 })
 app.get('/policy', function(requests, response){
-  response.render('policy.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('policy.ejs', { userLoggedIn });
 })
 app.get('/privacy', function(requests, response){
-  response.render('privacy.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('privacy.ejs', { userLoggedIn });
 })
 app.get('/sitemap', function(requests, response){
-  response.render('sitemap.ejs');
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('sitemap.ejs', { userLoggedIn });
+})
+app.get('/place-details', function(requests, response){
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('place-details.ejs', { userLoggedIn });
+})
+app.get('/mypage', function(requests, response){
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('mypage.ejs', { userLoggedIn });
+})
+app.get('/find-idpw', function(requests, response){
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('find-idpw.ejs', { userLoggedIn });
 })
 
 

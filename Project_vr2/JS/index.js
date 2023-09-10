@@ -4,15 +4,15 @@ window.addEventListener('DOMContentLoaded', () => {
   getUserLoggedInStatus()
     .then((userLoggedIn) => {
       // 가져온 로그인 상태에 따라 버튼을 숨기거나 표시
-      const mymenu = document.querySelector('.mymenu');
-      const loginBtn = document.querySelector('.login-btn');
+      const mymenu = $('.mymenu');
+      const loginBtn = $('.login-btn');
 
       if (userLoggedIn) {
-        mymenu.style.display = 'flex';
-        loginBtn.style.display = 'none';
+        mymenu.css('display', 'flex');
+        loginBtn.css('display', 'none');
       } else {
-        mymenu.style.display = 'none';
-        loginBtn.style.display = 'block';
+        mymenu.css('display', 'none');
+        loginBtn.css('display', 'block');
       }
     })
     .catch((error) => {
@@ -24,8 +24,13 @@ window.addEventListener('DOMContentLoaded', () => {
 async function getUserLoggedInStatus() {
   try {
     const response = await fetch('/get-user-status'); // 서버에서 로그인 상태를 반환하는 엔드포인트
-    const data = await response.json();
+    
+    if (!response.ok) {
+      // 서버에서 오류 응답을 받았을 경우 처리
+      throw new Error(`서버 응답 오류: ${response.status}`);
+    }
 
+    const data = await response.json();
     return data.userLoggedIn; // 서버에서 반환한 로그인 상태를 반환
   } catch (error) {
     throw error;
