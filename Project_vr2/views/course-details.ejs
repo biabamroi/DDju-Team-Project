@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="데이트는 대전이쥬~">
+  <meta name="keywords" content="대전, 여행, 맛집, 데이트, 기념일, 관광">
+  <meta name="author" content="꼬타비, 서우, 한나, Kai">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+  <link rel="manifest" href="./favicon/site.webmanifest">
+  <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    
+  <!-- Fontawesome -->
+  <script src="https://kit.fontawesome.com/6105f934ac.js" crossorigin="anonymous"></script>
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+  <title>DDju</title>
+
+  <link rel="stylesheet" href="./CSS/style.css">
+  <link rel="stylesheet" href="./CSS/header.css">
+  <link rel="stylesheet" href="./CSS/course-details.css">
+  <link rel="stylesheet" href="./CSS/footer.css">
+  <link rel="stylesheet" href="./CSS/aside.css">
+
+</head>
+<body>
+  <div class="wrapper" id="top">
+    
+    <%- include('./header.ejs', { userLoggedIn }); -%>
+
+    <main>
+      <section>
+        <h2 class="title">비오는 날 가고 싶은</h2>
+        
+        <hr>
+      
+        <div class="map-rain">
+          <div id="map" style="width:100%;height:400px;margin:20px 0;border:1px solid black;"></div>
+        </div>
+        <div class="map-wrap">
+          <span>비오는 날 딱인 데이트 코스!</span>
+          <div class="icon-group">
+            <div class="like-btn">
+              <button type="button"><i class="fa-regular fa-heart"></i></button>
+              <button type="button"><i class="fa-solid fa-heart"></i></button>
+            </div>
+            <button type="button"><i class="fa-regular fa-share-from-square"></i></button>
+          </div>
+        </div>
+      </section>
+
+
+      <section>
+        <div class="place-detail-box">
+          <div class="txt-wrap">
+            <h2>장소2</h2><span>-구</span><span>-동</span>
+          </div>
+          <img src="./images/detail-expo.jpg" alt="장소 사진">        
+          <div class="place-detail-txt">
+            <p>도심 속에서 푸르름을 만끽하며 휴식할 수 있는 공간</p>
+            <ul class="place-detail-list">
+              <li class="place-detail-item">
+                <strong>주소 :</strong>
+                <span>대전 서구 둔산대로 169</span>
+              </li>
+              <li class="place-detail-item">
+                <strong>영업시간 :</strong>
+                <span>동원 - 하절기 21:00에 운영종료</span>
+              </li>
+              <li class="place-detail-item">
+                <strong>문의 및 안내 :</strong>
+                <span>042-270-8452</span>
+              </li>
+              <li class="place-detail-item">
+                <strong>홈페이지 :</strong>
+                <span><a href="http://www.daejeon.go.kr/gar/index.do">http://www.daejeon.go.kr/gar/index.do</a></span>
+              </li>
+            </ul>
+            <ul class="keywords-list">
+              <li>#키워드</li>
+              <li>#키워드</li>
+              <li>#키워드</li>
+              <li>#키워드</li>
+            </ul>
+          </div>
+          <div class="place-map"></div>
+        </div>
+        <div class="map-list">
+          <div class="map-item bg1">
+            <p>한밭수목원</p>
+          </div>
+          <div class="map-item bg2">
+            <p>장소2</p>
+          </div>
+          <div class="map-item bg3">
+            <p>장소3</p>
+          </div>
+          <div class="map-item bg4">
+            <p>장소4</p>
+          </div>
+          <div class="map-item bg5">
+            <p>코스 후기</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <%- include('./aside.ejs') -%>
+
+    <%- include('./footer.ejs') -%>
+
+    <%- include('./top-btn.ejs') -%>
+      
+  </div>
+
+  <!-- 카카오 맵 -->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b30aabb752a0a95816e403bb318ea0b1"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(36.321655, 127.378953),
+			level: 3
+		};
+
+		var map = new kakao.maps.Map(container, options);
+	</script>
+
+  <script src="./JS/header.js"></script>
+  <script src="./JS/footer.js"></script>
+  <script src="./JS/sidebar.js"></script>
+</body>
+</html>
