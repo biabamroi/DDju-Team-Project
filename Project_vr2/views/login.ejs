@@ -40,7 +40,7 @@
 <body>
   <div class="wrapper" id="top">
 
-    <% include '/header.ejs' %>
+    <%- include('./header.ejs', { userLoggedIn }); -%>
         
     <main>
       <div class="login-wrap">
@@ -86,11 +86,11 @@
 
     </main>
 
-    <% include '/aside.ejs' %>
+    <%- include('./aside.ejs') -%>
 
-    <% include '/footer.ejs' %>
-    
-    <% include '/top-btn.ejs' %>
+    <%- include('./footer.ejs') -%>
+
+    <%- include('./top-btn.ejs') -%>
 
   </div>
 

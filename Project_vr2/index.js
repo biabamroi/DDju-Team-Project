@@ -9,6 +9,7 @@ let db;
 
 // .ejs 사용 세팅
 app.set('view engine', 'ejs');
+app.set('views', 'views');
 
 // 모든 정적 파일 제공
 app.use(express.static(__dirname));
@@ -82,18 +83,21 @@ router.use(session({secret : 'secret', resave : true, saveUninitialized : false}
 router.use(passport.initialize());
 router.use(passport.session());
 
-
-
 // 로그인 상태를 판단하여 userLoggedIn 값을 전달
-app.get('/', function(requests, response){
+router.get('/', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('index.ejs', { userLoggedIn });
 })
-app.get('/index', function(requests, response){
+router.get('/index', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('index.ejs', { userLoggedIn });
 })
 
+// 서버에서 로그인 상태를 반환하는 엔드포인트 생성
+router.get('/get-user-status', (req, res) => {
+  const userLoggedIn = req.session.user ? true : false;
+  res.render('index.ejs', { userLoggedIn });
+});
 
 // 외 페이지
 app.get('/map', function(requests, response){
@@ -254,11 +258,6 @@ function getLogin(requests, response, next){
   }
 }
 
-// 서버에서 로그인 상태를 반환하는 엔드포인트 생성
-app.get('/get-user-status', (req, res) => {
-  const userLoggedIn = req.session.user ? true : false;
-  res.json({ userLoggedIn });
-});
 
 // 마이페이지
 router.get('/mypage', getLogin, function(requests, response){
@@ -299,6 +298,9 @@ app.delete('/delete', function(requests, response){
 
   response.status(200).send({message : '성공'})
 })
+
+
+
 
 // login 상태에서 zzim 값을 데이터베이스에서 받아서 -> zzim 페이지에서 꺼내오기
 

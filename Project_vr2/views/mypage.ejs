@@ -41,7 +41,7 @@
   
   <div class="wrapper" id="top">
 
-    <% include '/header.ejs' %>
+    <%- include('./header.ejs'); -%>
 
     <main>
       <h1>My Page</h1>
@@ -73,11 +73,11 @@
       </form>
     </main>
 
-    <% include '/aside.ejs' %>
+    <%- include('./aside.ejs') -%>
 
-    <% include '/footer.ejs' %>
-    
-    <% include '/top-btn.ejs' %>
+    <%- include('./footer.ejs') -%>
+
+    <%- include('./top-btn.ejs') -%>
 
   <style>
     /* 포커스 */
