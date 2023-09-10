@@ -89,6 +89,9 @@ router.use(session({secret : 'secret', resave : true, saveUninitialized : false}
 router.use(passport.initialize());
 router.use(passport.session());
 
+
+// 로그인 상태 판별
+
 // 로그인 상태를 판단하여 userLoggedIn 값을 전달
 router.get('/', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
@@ -101,117 +104,12 @@ router.get('/index', function(requests, response){
 
 // 서버에서 로그인 상태를 반환하는 엔드포인트 생성
 router.get('/get-user-status', (req, res) => {
-  const userLoggedIn = req.session.user ? true : false;
+  const userLoggedIn = requests.session.user ? true : false;
   res.render('index.ejs', { userLoggedIn });
 });
 
-// 외 페이지
-app.get('/map', function(requests, response){
-  response.sendFile(__dirname + '/map.html');
-})
-app.get('/about', function(requests, response){
-  response.sendFile(__dirname + '/about.html');
-})
-app.get('/contact', function(requests, response){
-  response.sendFile(__dirname + '/contact.html');
-})
-app.get('/course-daejeon', function(requests, response){
-  response.sendFile(__dirname + '/course-daejeon.html');
-})
-app.get('/course-details', function(requests, response){
-  response.sendFile(__dirname + '/course-details.html');
-})
-app.get('/member-info', function(requests, response){
-  response.sendFile(__dirname + '/member-info.html');
-})
-app.get('/today-all', function(requests, response){
-  response.sendFile(__dirname + '/today-all.html');
-})
-app.get('/today-do', function(requests, response){
-  response.sendFile(__dirname + '/today-do.html');
-})
-app.get('/today-eat', function(requests, response){
-  response.sendFile(__dirname + '/today-eat.html');
-})
-app.get('/today-see', function(requests, response){
-  response.sendFile(__dirname + '/today-see.html');
-})
-app.get('/zzim', function(requests, response){
-  response.sendFile(__dirname + '/zzim.html');
-})
-app.get('/policy', function(requests, response){
-  response.sendFile(__dirname + '/policy.html');
-})
-app.get('/privacy', function(requests, response){
-  response.sendFile(__dirname + '/privacy.html');
-})
-app.get('/sitemap', function(requests, response){
-  response.sendFile(__dirname + '/sitemap.html');
-})
 
-
-// 회원가입 --------------------------------------------------------------------
-
-app.get('/join', function(requests, response){
-  response.render('join.ejs');
-})
-
-router.post('/id_check', (req, res) => {
-  let userid = req.body.userid; // 클라이언트에서 전달된 아이디 값
-
-  db.collection('user').findOne({ ID: userid }, function (error, user) {
-    if (error) {
-      console.error("에러 발생:", error);
-      res.status(500).json({ error: "서버 오류" });
-    } else {
-      if (user) {
-        // 아이디가 이미 존재하는 경우
-        res.json({ exists: true });
-      } else {
-        // 아이디가 사용 가능한 경우
-        res.json({ exists: false });
-      }
-    }
-  });
-});
-
-app.post('/join', function(requests, response){
-  db.collection('total').findOne({name:'dataLength'}, function(error, result){
-    console.log(result.totalData);
-    let totalDataLength = result.totalData;
-    
-    db.collection('user').insertOne({
-      _id : totalDataLength+1, 
-      ID : requests.body.userid, 
-      PW : requests.body.userpw, 
-      name : requests.body.username,
-      birth : requests.body.year + requests.body.month + requests.body.date,
-      gender : requests.body.gender,
-      email : requests.body.usermail,
-      phone : requests.body.country + requests.body.phonenum,
-      adress : requests.body.sample6_postcode + requests.body.sample6_address + requests.body.sample6_detailAddress + requests.body.sample6_extraAddress
-    }, function(error, result){
-      if(error){
-        return console.log(error);
-      }
-    })
-
-    db.collection('total').updateOne({name : 'dataLength'},
-    {$inc : {totalData:1}},
-    function(error, result){
-      if(error){
-        return console.log(error);
-      }
-    })
-    
-  })
-  response.redirect('/login');
-})
-
-
-
-// 로그인 --------------------------------------------------------------------
-
+// 로그인 페이지
 app.get('/login', function(requests, response){
   response.render('login.ejs');
 })
@@ -277,6 +175,66 @@ app.post('/logout', function(requests, response){
   response.redirect('/');
 })
 
+// 회원가입 --------------------------------------------------------------------
+
+app.get('/join', function(requests, response){
+  response.render('join.ejs');
+})
+
+router.post('/id_check', (req, res) => {
+  let userid = req.body.userid; // 클라이언트에서 전달된 아이디 값
+
+  db.collection('user').findOne({ ID: userid }, function (error, user) {
+    if (error) {
+      console.error("에러 발생:", error);
+      res.status(500).json({ error: "서버 오류" });
+    } else {
+      if (user) {
+        // 아이디가 이미 존재하는 경우
+        res.json({ exists: true });
+      } else {
+        // 아이디가 사용 가능한 경우
+        res.json({ exists: false });
+      }
+    }
+  });
+});
+
+app.post('/join', function(requests, response){
+  db.collection('total').findOne({name:'dataLength'}, function(error, result){
+    console.log(result.totalData);
+    let totalDataLength = result.totalData;
+    
+    db.collection('user').insertOne({
+      _id : totalDataLength+1, 
+      ID : requests.body.userid, 
+      PW : requests.body.userpw, 
+      name : requests.body.username,
+      birth : requests.body.year + requests.body.month + requests.body.date,
+      gender : requests.body.gender,
+      email : requests.body.usermail,
+      phone : requests.body.country + requests.body.phonenum,
+      adress : requests.body.sample6_postcode + requests.body.sample6_address + requests.body.sample6_detailAddress + requests.body.sample6_extraAddress
+    }, function(error, result){
+      if(error){
+        return console.log(error);
+      }
+    })
+
+    db.collection('total').updateOne({name : 'dataLength'},
+    {$inc : {totalData:1}},
+    function(error, result){
+      if(error){
+        return console.log(error);
+      }
+    })
+    
+  })
+  response.redirect('/login');
+})
+
+
+
 
 
 // 회원정보 수정, 탈퇴--------------------------------------------------------------------------
@@ -312,6 +270,49 @@ app.delete('/delete', function(requests, response){
 
 
 
+// 외 페이지
+app.get('/map', function(requests, response){
+  response.sendFile(__dirname + '/map.html');
+})
+app.get('/about', function(requests, response){
+  response.sendFile(__dirname + '/about.html');
+})
+app.get('/contact', function(requests, response){
+  response.sendFile(__dirname + '/contact.html');
+})
+app.get('/course-daejeon', function(requests, response){
+  response.sendFile(__dirname + '/course-daejeon.html');
+})
+app.get('/course-details', function(requests, response){
+  response.sendFile(__dirname + '/course-details.html');
+})
+app.get('/member-info', function(requests, response){
+  response.sendFile(__dirname + '/member-info.html');
+})
+app.get('/today-all', function(requests, response){
+  response.sendFile(__dirname + '/today-all.html');
+})
+app.get('/today-do', function(requests, response){
+  response.sendFile(__dirname + '/today-do.html');
+})
+app.get('/today-eat', function(requests, response){
+  response.sendFile(__dirname + '/today-eat.html');
+})
+app.get('/today-see', function(requests, response){
+  response.sendFile(__dirname + '/today-see.html');
+})
+app.get('/zzim', function(requests, response){
+  response.sendFile(__dirname + '/zzim.html');
+})
+app.get('/policy', function(requests, response){
+  response.sendFile(__dirname + '/policy.html');
+})
+app.get('/privacy', function(requests, response){
+  response.sendFile(__dirname + '/privacy.html');
+})
+app.get('/sitemap', function(requests, response){
+  response.sendFile(__dirname + '/sitemap.html');
+})
 
 
 
