@@ -135,24 +135,30 @@
           </form>
 
             <ul class="review-list">
-                <li class="review-item">
-                  <div class="user-info">
-                    <img src="../images/kumdori .jpg" alt="프로필 사진">
-                    <p>이름</p>
-                  </div>
-                  <div class="review">
-                    <div class="star-rating">
-                      <% for(let i = 0; i < review.star.length; i++) { %>
-                        <i class="fa-solid fa-star" style="color: #FBC85B;"></i>
-                      <% } %>
-                      <% for(let i = 0; i < search.length; i++) { %>
-                        <i class="fa-solid fa-star"></i>
-                      <% } %>
+              <% if(review.length == 0) { %>
+                
+              <% } else { %>
+                <% for(let i = 0; i < review.length; i++) { %>
+                  <li class="review-item">
+                    <div class="user-info">
+                      <img src="../images/kumdori .jpg" alt="프로필 사진">
+                      <p>이름</p>
                     </div>
-                    <p></p>
-                  </div>
-                  <p>작성시간</p>
-                </li>
+                    <div class="review">
+                      <div class="star-rating">
+                        <% for(let j = 1; j <= review[i].star; j++) { %>
+                          <i class="fa-solid fa-star" style="color: #FBC85B;"></i>
+                        <% } %>
+                        <% for(let j = 1; j <= 5 - review[i].star; j++) { %>
+                          <i class="fa-solid fa-star"></i>
+                        <% } %>
+                      </div>
+                      <p><%= review[i].review %></p>
+                    </div>
+                    <p><%= review[i].date %></p>
+                  </li>
+                <% } %>
+              <% } %>
             </ul>
         </div>
       </section>
