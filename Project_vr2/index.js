@@ -58,20 +58,6 @@ MongoClient.connect('mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.n
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended : true}));
 
-// cookieParser
-// npm install cookie-parser --save  ★ 설치 ★
-const cookieParser = require('cookie-parser');
-app.use(cookieParser());
-
-// app.get('/', function (req, res) {
-//   // Cookies that have not been signed 서명되지 않은 쿠키
-//   console.log('Cookies: ', req.cookies)
-
-//   // Cookies that have been signed 서명된 쿠키
-//   console.log('Signed Cookies: ', req.signedCookies)
-// });
-
-
 // 라우터 객체 설정
 const router = express.Router();
 app.use('/', router);
@@ -99,6 +85,18 @@ router.use(session({
 router.use(passport.initialize());
 router.use(passport.session());
 
+// cookieParser
+// npm install cookie-parser --save  ★ 설치 ★
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+app.get('/', function (requests, response) {
+  // Cookies that have not been signed 서명되지 않은 쿠키
+  console.log('Cookies: ', requests.cookies)
+
+  // Cookies that have been signed 서명된 쿠키
+  console.log('Signed Cookies: ', requests.signedCookies)
+});
 
 // 로그인 상태 판별 ----------------------------------------------------------------------
 
@@ -157,8 +155,8 @@ router.get('/get-user-status', function(requests, response){
   response.json({ userLoggedIn })
 });
 
-router.get('/get-user-status-html', function(request, response) {
-  const userLoggedIn = request.session.user ? true : false;
+router.get('/get-user-status-html', function(requests, response) {
+  const userLoggedIn = requests.session.user ? true : false;
   response.render('user-status.ejs', { userLoggedIn });
 });
 
@@ -209,8 +207,8 @@ router.get('/logout', function(requests, response){
 router.put('/edit', function(requests, response){
   db.collection('user').updateOne({_id : parseInt(requests.body._id)},
     {$set:{ID : requests.body.id, PW : requests.body.pw}}, function(error, result){
-      const updatedUserId = req.body.id; // 수정된 사용자 아이디
-      const updatedPassword = req.body.pw; // 수정된 비밀번호
+      const updatedUserId = requests.body.id; // 수정된 사용자 아이디
+      const updatedPassword = requests.body.pw; // 수정된 비밀번호
     requests.session.user.id = updatedUserId;
     response.redirect('/mypage');
   })
@@ -239,20 +237,20 @@ router.get('/join', function(requests, response){
   response.render('join.ejs', { userLoggedIn });
 })
 
-router.post('/id_check', (req, res) => {
-  let userid = req.body.userid; // 클라이언트에서 전달된 아이디 값
+router.post('/id_check', (requests, response) => {
+  let userid = requests.body.userid; // 클라이언트에서 전달된 아이디 값
 
   db.collection('user').findOne({ ID: userid }, function (error, user) {
     if (error) {
       console.error("에러 발생:", error);
-      res.status(500).json({ error: "서버 오류" });
+      response.status(500).json({ error: "서버 오류" });
     } else {
       if (user) {
         // 아이디가 이미 존재하는 경우
-        res.json({ exists: true });
+        response.json({ exists: true });
       } else {
         // 아이디가 사용 가능한 경우
-        res.json({ exists: false });
+        response.json({ exists: false });
       }
     }
   });
