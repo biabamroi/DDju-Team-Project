@@ -10,8 +10,9 @@ let db;
 // .ejs 사용 세팅
 app.set('view engine', 'ejs');
 app.set('views', 'views');
+
 // npm install express-ejs-layouts ★ 설치 ★
-const expressLayouts = require('express-ejs-layouts');
+// const expressLayouts = require('express-ejs-layouts');
 // app.use(expressLayouts);
 // app.set('layout','layout');
 // app.set('layout extractScripts', true);
@@ -26,11 +27,6 @@ app.use(methodOverride('_method'));
 
 // npm install -g nodemon ★ 전역 설치 ★
 
-// MongoDB 연결
-// npm install mongoose --save ★ 설치 ★
-const MongoClient = require('mongodb').MongoClient;
-const mongoose = require('mongoose');
-// mongoose.connect("mongodb://lodcallhost/<db이름>", {useNewUrlParser: true});
 
 // Database : Data
 // 저장소 DDju
@@ -38,6 +34,12 @@ const mongoose = require('mongoose');
 // 콜렉션 zzim (좋아요) 
 // 콜렉션 review (리뷰)
 // 콜렉션 api (API)
+
+// MongoDB 연결
+// npm install mongoose --save ★ 설치 ★
+const MongoClient = require('mongodb').MongoClient;
+// const mongoose = require('mongoose');
+// mongoose.connect("mongodb://lodcallhost/3000", {useNewUrlParser: true});
 
 // Database ID admin PW zbJIiHYEKSsLa6Jg
 MongoClient.connect('mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.net/?retryWrites=true&w=majority', function(error, client){
@@ -61,17 +63,17 @@ app.use(bodyParser.urlencoded({extended : true}));
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
-// app.get('/', function (req, res) {
-//   // Cookies that have not been signed 서명되지 않은 쿠키
-//   console.log('Cookies: ', req.cookies)
+app.get('/', function (req, res) {
+  // Cookies that have not been signed 서명되지 않은 쿠키
+  console.log('Cookies: ', req.cookies)
 
-//   // Cookies that have been signed 서명된 쿠키
-//   console.log('Signed Cookies: ', req.signedCookies)
-// });
+  // Cookies that have been signed 서명된 쿠키
+  console.log('Signed Cookies: ', req.signedCookies)
+});
 
 
 // 라우터 객체 설정
-const router = require('express').Router();
+const router = express.Router();
 app.use('/', router);
 
 // 세션  ★ 설치 ★
@@ -80,20 +82,101 @@ app.use('/', router);
 // npm install express-session  
 // npm install -s express-session 
 
+const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const session = require('express-session');
 
-// app -> router
-router.use(session({secret : 'secret', resave : true, saveUninitialized : false}));
+// 세션 시크릿 키 설정 (환경 변수로 설정하는 것이 안전)
+const sessionSecretKey = process.env.SESSION_SECRET_KEY || 'defaultSecretKeyDDju';
+
+router.use(session({
+  secret : sessionSecretKey, 
+  resave : true, 
+  saveUninitialized : false
+}));
+// 초기화 세팅 : 반드시 세션 설정 뒤로 순서 
 router.use(passport.initialize());
 router.use(passport.session());
 
 
-// 로그인 상태 판별
+// 로그인 상태 판별 ----------------------------------------------------------------------
+// isNotLoggedIn,
+router.post('/login', async(req, res, next) => {
+  passport.authenticate('local', (authError, user, info) => {
+    if (authError) {
+      console.error(authError);
+      res.status(500);
+      return next(authError);
+    }
+    if (!user) {
+      res.status(500);
+      return res.send(info.message);
+    }
+    return req.login(user, (loginError) => {
+      if (loginError) {
+        console.error(loginError);
+        res.status(500);
+        return next(loginError);
+      }
+      return res.send(user);
+    });
+  })(req, res, next);
+});
+
+module.exports = () => {
+  passport.use(new LocalStrategy({
+    usernameField: 'userid',
+    passwordField: 'userpw',
+    session : true,
+    passReqToCallback : false
+  }, async (userid, userpw, done) => {
+    try {
+      const exUser = await user.findOne({ where : { userid } });
+      if (exUser) {
+        const result = await bcrypt.compare(userpw, exUser.userpw);
+        if (result) {
+          done(null, exUser);
+        } else {
+          done(null, false, { message: '비밀번호가 일치하지 않습니다.' });
+        }
+      } else {
+        done(null, false, { message: '존재하지 않는 아이디입니다.' });
+      }
+    } catch (error) {
+      console.error(error);
+      done(error);
+    }
+  }))
+}
+
+module.exports = () => {
+  // 로그인시 실행, req.session에 데이터를 저장 즉, 사용자 정보를 세션에 아이디로 저장함.
+  passport.serializeUser((user, done) => {
+    done(null, user.userid);
+  });
+
+  // 매 요청시 실행. 세션에 저장한 아이디를 통해 사용자 정보를 불러옴.
+  passport.deserializeUser((userid, done) => {
+    user.findOne({ where: { userid } })
+      .then(user => done(null, user))
+      .catch(err => done(err));
+  });
+
+  local();
+};
+
+
+
 
 // 로그인 상태를 판단하여 userLoggedIn 값을 전달
-router.get('/', function(requests, response){
+router.get('/', function(requests, response, next){
+  console.log(requests.session);
+  if(requests.session.num === undefined){
+    requests.session.num = 1;
+  }else{
+    requests.session.num = requests.session.num + 1;
+  }
+  requests.send(`Views : ${requests.session.num}`);
   const userLoggedIn = requests.session.user ? true : false;
   response.render('index.ejs', { userLoggedIn });
 })
@@ -113,11 +196,14 @@ router.get('/get-user-status-html', function(request, response) {
   response.render('user-status.ejs', { userLoggedIn });
 });
 
+
 // 로그인 페이지
 router.get('/login', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('login.ejs', { userLoggedIn });
 })
+
+// /fail
 
 router.post('/login', passport.authenticate('local', {
   failureRedirect : '/fail'
@@ -129,34 +215,6 @@ router.get('/fail', function(requests, response){
   response.send('로그인 정보가 일치하지 않습니다.')
 })
 
-passport.use(new LocalStrategy({
-  usernameField : 'userid',
-  passwordField : 'userpw',
-  session : true,
-  passReqToCallback : false
-}, function(userID, userPW, done){
-  db.collection('user').findOne({ID : userID}, function(error, user){
-    if(error) return done(error);
-    if(!user){
-      return done(null, false, {message : '존재하지 않는 아이디입니다.'})
-    }
-    if(userPW == user.PW){
-      return done(null, user)
-    }else{
-      return done(null, false, {message : '비밀번호가 일치하지 않습니다.'})
-    }
-  })
-}))
-
-passport.serializeUser(function(user, done){
-  done(null, user.ID)
-})
-
-passport.deserializeUser(function(id, done){
-  db.collection('user').findOne({ID : id}, function(error, result){
-    done(null, result)
-  })
-})
 
 // 로그인 체크
 function getLogin(requests, response, next){
@@ -178,6 +236,35 @@ router.get('/logout', function(requests, response){
   requests.session.destroy();
   response.redirect('/');
 })
+
+
+// 회원정보 수정, 탈퇴--------------------------------------------------------------------------
+
+router.put('/edit', function(requests, response){
+  db.collection('user').updateOne({_id : parseInt(requests.body._id)},
+    {$set:{ID : requests.body.id, PW : requests.body.pw}}, function(error, result){
+      const updatedUserId = req.body.id; // 수정된 사용자 아이디
+      const updatedPassword = req.body.pw; // 수정된 비밀번호
+    requests.session.user.id = updatedUserId;
+    response.redirect('/mypage');
+  })
+})
+
+router.delete('/delete', function(requests, response){
+  console.log(requests.body._id)
+  requests.body._id = parseInt(requests.body._id)
+
+  db.collection('user').deleteOne({_id : requests.body._id}, function(error, result){
+    if(error){
+      console.log(error)
+    }
+    console.log('탈퇴')
+  })
+
+  response.status(200).send({message : '성공'})
+})
+
+
 
 // 회원가입 --------------------------------------------------------------------
 
@@ -239,34 +326,6 @@ router.post('/join', function(requests, response){
 })
 
 
-
-
-
-// 회원정보 수정, 탈퇴--------------------------------------------------------------------------
-
-router.put('/edit', function(requests, response){
-  db.collection('user').updateOne({_id : parseInt(requests.body._id)},
-    {$set:{ID : requests.body.id, PW : requests.body.pw}}, function(error, result){
-      const updatedUserId = req.body.id; // 수정된 사용자 아이디
-      const updatedPassword = req.body.pw; // 수정된 비밀번호
-    requests.session.user.id = updatedUserId;
-    response.redirect('/mypage');
-  })
-})
-
-router.delete('/delete', function(requests, response){
-  console.log(requests.body._id)
-  requests.body._id = parseInt(requests.body._id)
-
-  db.collection('user').deleteOne({_id : requests.body._id}, function(error, result){
-    if(error){
-      console.log(error)
-    }
-    console.log('탈퇴')
-  })
-
-  response.status(200).send({message : '성공'})
-})
 
 
 
