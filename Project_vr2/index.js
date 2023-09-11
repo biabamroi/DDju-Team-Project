@@ -25,7 +25,7 @@ app.use(express.static(__dirname));
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
-// npm install -g nodemon ★ 전역 설치 ★
+// npm install -g nodemon ★ 전역 설치 ★ -------------------------- test 쉽게 하려면 필수 설치
 
 
 // Database : Data
@@ -94,6 +94,7 @@ router.use(session({
   resave : true, 
   saveUninitialized : false
 }));
+
 // 초기화 세팅 : 반드시 세션 설정 뒤로 순서 
 router.use(passport.initialize());
 router.use(passport.session());
@@ -115,6 +116,7 @@ passport.use(new LocalStrategy({
 }, function(userID, userPW, done){
   db.collection('user').findOne({ID : userID}, function(error, user){
     if(error) return done(error);
+    
     if(!user){
       return done(null, false, {message : '존재하지 않는 아이디입니다.'})
     }
