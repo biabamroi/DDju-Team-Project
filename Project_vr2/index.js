@@ -4,8 +4,51 @@ const path = require('path');
 // const static = require('serve-static');
 // const errorHandler = require('errorhandler');
 
+// Database : Data
+// 저장소 DDju
+// 콜렉션 user (회원)
+// 콜렉션 zzim (좋아요) 
+// 콜렉션 review (리뷰)
+// 콜렉션 api (API)
+
+// MongoDB 연결
+// npm install mongoose --save ★ 설치 ★
+const MongoClient = require('mongodb').MongoClient;
+const url = 'mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.net/?authSource=admin&retryWrites=true&w=majority';
+const mongoose = require('mongoose');
+mongoose.connect("mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser: true}).then(()=>
+console.log('connected')).catch(() => console.log('failed'))
+
 // 데이터를 저장할 변수
 let db;
+
+// Database ID admin PW zbJIiHYEKSsLa6Jg
+MongoClient.connect(url, function(error, client){
+  if(error){
+    return console.log('MongoDB 연결 오류: ', error);
+  }
+  db = client.db('Data');
+  global.db = client.db('Data');
+  console.log('MongoDB 연결 성공'+db);
+  app.listen('3000');
+})
+
+mongoose.connection.collection('user').findOne({ ID: '5yunha' }, function(error, user) {
+  if (error) {
+    console.error('쿼리 실행 중 에러:', error);
+  } else {
+    console.log('조회된 사용자 정보:', user);
+  }
+});
+
+// db.collection('user').findOne({ ID: '5yunha' }, function(error, user) {
+//   if (error) {
+//     console.error('쿼리 실행 중 에러:', error);
+//   } else {
+//     console.log('조회된 사용자 정보:', user);
+//   }
+// });
+
 
 // .ejs 사용 세팅
 app.set('view engine', 'ejs');
@@ -26,32 +69,6 @@ const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
 // npm install -g nodemon ★ 전역 설치 ★ -------------------------- test 쉽게 하려면 필수 설치
-
-
-// Database : Data
-// 저장소 DDju
-// 콜렉션 user (회원)
-// 콜렉션 zzim (좋아요) 
-// 콜렉션 review (리뷰)
-// 콜렉션 api (API)
-
-// MongoDB 연결
-// npm install mongoose --save ★ 설치 ★
-const MongoClient = require('mongodb').MongoClient;
-// const mongoose = require('mongoose');
-// mongoose.connect("mongodb://lodcallhost/3000", {useNewUrlParser: true});
-
-// Database ID admin PW zbJIiHYEKSsLa6Jg
-MongoClient.connect('mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.net/?retryWrites=true&w=majority', function(error, client){
-  if(error){
-    return console.log(error);
-  }
-
-  db = client.db('DDju');
-  // 포트 3000 연결
-  app.listen('3000');
-})
-
 
 // npm install body-parser  ★ 설치 ★
 // bodyParser 사용 선언
@@ -103,7 +120,11 @@ app.get('/', function (requests, response) {
 router.post('/login', passport.authenticate('local', {
   failureRedirect : '/fail'
 }), function(requests, response){
-  response.redirect('/')
+  const userName = requests.user.name; // 로그인한 사용자의 이름을 가져옴
+
+  // 쿠키를 클라이언트에 설정
+  response.cookie('userName', userName);
+  response.redirect('/');
 })
 
 passport.use(new LocalStrategy({
@@ -137,16 +158,17 @@ passport.deserializeUser(function(id, done){
 })
 
 
-
-
 // 로그인 상태를 판단하여 userLoggedIn 값을 전달
 router.get('/', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
-  response.render('index.ejs', { userLoggedIn });
+  const userName = requests.cookies && requests.cookies.userName ? requests.cookies.userName : '';
+  // 로그인 상태 판별 (Passport와 세션을 사용하여 userLoggedIn 설정)
+  const userLoggedIn = requests.isAuthenticated(); // Passport를 통한 인증 상태 확인
+  response.render('index.ejs', { userLoggedIn, userName });
 })
 router.get('/index', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
-  response.render('index.ejs', { userLoggedIn });
+  const userName = requests.cookies.userName;
+  const userLoggedIn = requests.isAuthenticated();
+  response.render('index.ejs', { userLoggedIn, userName });
 })
 
 // 서버에서 로그인 상태를 반환하는 엔드포인트 생성
@@ -163,12 +185,11 @@ router.get('/get-user-status-html', function(requests, response) {
 
 // 로그인 페이지
 router.get('/login', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.render('login.ejs', { userLoggedIn });
 })
 
 // /fail
-
 router.post('/login', passport.authenticate('local', {
   failureRedirect : '/fail'
 }), function(requests, response){
@@ -182,18 +203,18 @@ router.get('/fail', function(requests, response){
 
 // 로그인 체크
 function getLogin(requests, response, next){
-  if(requests.user){
+  if (requests.isAuthenticated()) { // passport를 통한 인증 상태 확인
     next()
   }else{
     response.send('로그인이 필요한 페이지입니다.');
   }
 }
 
-// 마이페이지
+// 마이페이지---------------------------------------------------------------------------------
 router.get('/mypage', getLogin, function(requests, response){
-  const currentUser = requests.session.user;
-  const userLoggedIn = requests.session.user ? true : false;
-  response.render('mypage.ejs', { userLoggedIn, user : currentUser });
+  const currentUser = requests.user;
+  const userLoggedIn = requests.isAuthenticated();
+  response.render('mypage.ejs', { userLoggedIn, currentUser });
   console.log(currentUser, userLoggedIn)
 })
 
