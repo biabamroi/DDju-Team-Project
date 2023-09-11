@@ -192,7 +192,9 @@ function getLogin(requests, response, next){
 // 마이페이지
 router.get('/mypage', getLogin, function(requests, response){
   const currentUser = requests.session.user;
-  response.render('mypage.ejs', {user : currentUser})
+  const userLoggedIn = requests.session.user ? true : false;
+  response.render('mypage.ejs', { userLoggedIn, user : currentUser });
+  console.log(currentUser, userLoggedIn)
 })
 
 // 로그아웃
@@ -349,10 +351,6 @@ router.get('/privacy', function(requests, response){
 router.get('/sitemap', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('sitemap.ejs', { userLoggedIn });
-})
-router.get('/mypage', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
-  response.render('mypage.ejs', { userLoggedIn });
 })
 router.get('/find-idpw', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
