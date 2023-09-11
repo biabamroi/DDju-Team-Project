@@ -2,31 +2,7 @@
 <html lang="ko">
 <head>
     
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="데이트는 대전이쥬~">
-  <meta name="keywords" content="대전, 여행, 맛집, 데이트, 기념일, 관광">
-  <meta name="author" content="꼬타비, 서우, 한나, Kai">
-
-  <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
-  <link rel="manifest" href="./favicon/site.webmanifest">
-  <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#ffc40d">
-  <meta name="theme-color" content="#ffffff">
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR&display=swap" rel="stylesheet">
-    
-  <!-- Fontawesome -->
-  <script src="https://kit.fontawesome.com/6105f934ac.js" crossorigin="anonymous"></script>
-
-  <!-- jQuery CDN -->
-  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+  <%- include('./meta.ejs'); -%>
 
   <title>DDju</title>
 
@@ -48,29 +24,28 @@
         <!-- section1. 날씨, 미세먼지 API -->
         <div id="data">
           <div class="location">
-           <div class="data-item sidoname">
-             <i class="fa-solid fa-location-dot"></i>대전
+             <i class="fa-solid fa-location-dot"></i>대전광역시
            </div>
-           <div class="data-item cityname">
-             유성구
-           </div>
-          </div>
            <div class="data-item weather">
              <div class="we">
-               <i class="fa-regular fa-face-smile"></i>
+              <div class="info">
+                
+              </div>
                <div class="info-text">
                  <p>날씨</p>
                </div>
              </div>
-             <div class="we">
-               <i class="fa-regular fa-face-smile"></i>
+             <div class="temp">
+               <div class="info">
+
+               </div>
                <div class="info-text">
-                 <p>온도</p>
+                 <p>기온</p>
                </div>
              </div>
            </div>
-           <div class="data-item mise">
-             미세먼지 좋음<i class="fa-regular fa-face-smile"></i>
+           <div class="dust-item">
+             
            </div>
         </div>
         <!-- section1. search box -->
@@ -83,9 +58,9 @@
             <form id="search" action="/search" method="post">
               <div>
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input name="search" type="text" placeholder="검색어를 입력하세요.">
+                <input class="search-word" name="search" type="text" placeholder="검색어를 입력하세요.">
               </div>
-              <button type="submit">검색</button>
+              <button class="search-btn" type="submit">검색</button>
             </form>
             <ul class="keywords-list">
               <li>#맛집</li>
@@ -105,10 +80,10 @@
             <h1 class="section-title">오늘 '대전'이 책임질게</h1>
             <p class="section-content">데이트 코스 추천</p>
           </div>
-          <a href="/course-daejeon">
-            <button type="button" class="add">+ 더보기</button>
-          </a>
           <div class="slide-container">
+            <a href="/course-daejeon">
+              <button type="button" class="add">+ 더보기</button>
+            </a>
             <div class="slide-list">
               <div class="slide-item">
                 <img src="../images/데이트코스1.jpg" alt="엑스포">                            
@@ -204,5 +179,7 @@
   <script src="../JS/footer.js"></script>
   <script src="../JS/sidebar.js"></script>
   <script src="../JS/index.js"></script>
+  <script src="../JS/weather.js"></script>
+  <script src="../JS/dust.js"></script>
 </body>
 </html>
