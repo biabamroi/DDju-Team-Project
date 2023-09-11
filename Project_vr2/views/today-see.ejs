@@ -3,7 +3,7 @@
 <head>
     
   <%- include('./meta.ejs'); -%>
-  
+
   <title>DDju</title>
 
   <link rel="stylesheet" href="../CSS/style.css">
@@ -29,27 +29,54 @@
         </ul>
         
         <div class="select">
-          <select name="district" id="district">
-            <option value="">전체(구)</option>
-            <option value="&sigunguCode=1">대덕구</option>
-            <option value="&sigunguCode=2">동구</option>
-            <option value="&sigunguCode=3">서구</option>
-            <option value="&sigunguCode=4">유성구</option>
-            <option value="&sigunguCode=5">중구</option>
-          </select>
+            <select name="district" id="district">
+              <option value="">전체(구)</option>
+              <option value="1">대덕구</option>
+              <option value="2">동구</option>
+              <option value="3">서구</option>
+              <option value="4">유성구</option>
+              <option value="5">중구</option>
+            </select>
           <div class="order">
-            <li class="selected">제목순</li>
-            <li>등록일순</li>
-            <li>인기순</li>
+            <div class="order-menu selected">
+              <p>제목순</p>
+              <input type="radio" name="order" value="title" checked>
+            </div>
+            <div class="order-menu">
+              <p>등록일순</p>
+              <input type="radio" name="order" value="createdtime">
+            </div>
+            <div class="order-menu">
+              <p>인기순</p>
+              <input type="radio" name="order" value="">
+            </div>
           </div>
         </div>
       </div>
 
       <div class="place-list">
+        <% for(let i = 0; i < api.length; i++) { %>
+            <a href="/place-details/<%= api[i]._id %>">
+              <div class="place-item">
+                <img src = "<%= api[i].img %>" alt = "<%= api[i].title %>">
+                <div class="text-box">
+                  <h3><%= api[i].title %></h3>
+                  <p><%= api[i].overview %></p>
+                  <ul class="keywords-list">
+                    <li>#키워드</li>
+                    <li>#키워드</li>
+                    <li>#키워드</li>
+                    <li>#키워드</li>
+                  </ul>    
+                </div>
+              </div>
+            </a>
+        <% } %>
       </div>
+
+      <button type="button" class="place-item-btn">+ 더보기</button>
     </main>
 
-    
     <%- include('./aside.ejs') -%>
 
     <%- include('./footer.ejs') -%>
@@ -58,10 +85,114 @@
       
   </div>
 
+  <script>
+    let apiArray = <%- JSON.stringify(api) %>;
+    
+    // api 배열에 따라 place-item 생성하는 함수
+    function apiResult(data){
+      $('.place-list').empty();
+        data.forEach(function(item, index){
+          let placeItem = `
+            <a href="/place-details/${item._id}">
+                    <div class="place-item">
+                      <img src = "${item.img}" alt = "${item.title}">
+                      <div class="text-box">
+                        <h3>${item.title}</h3>
+                        <p>${item.overview}</p>
+                        <ul class="keywords-list">
+                          <li>#키워드</li>
+                          <li>#키워드</li>
+                          <li>#키워드</li>
+                          <li>#키워드</li>
+                        </ul>    
+                      </div>
+                    </div>
+                  </a>
+            `
+
+          $('.place-list').append(placeItem);
+        })
+      }
+
+
+    // '구'를 선택했을 때 해당하는 '구'의 데이터 가져오는 이벤트 추가
+    $('#district').on('change', function(){
+      // 제목순으로 정렬
+      $('.order .order-menu').removeClass('selected');
+      $('.order .order-menu input[type="radio"]').prop('checked', false);
+      $('.order .order-menu').eq(0).addClass('selected');
+      $('.order .order-menu input[type="radio"]').eq(0).prop('checked', true);
+
+      let orderArrray = apiArray.sort((a,b) => {
+          if(a.title > b.title) return 1;
+          if(a.title < b.title) return -1;
+          return 0;
+        })
+
+      if(!$('#district').val()) {
+        apiResult(orderArrray)
+      } else {
+        let data = orderArrray.filter((item) => item.sigungucode == $('#district').val())
+        apiResult(data)
+      }
+    })
+    
+
+    // '정렬'을 눌렀을 때 선택한 순서로 정렬하기
+    $('.order .order-menu').on('click', function(){
+      // 선택된 this에만 p태그 색 바꾸기, order-menu checked 속성 주기
+      $('.order .order-menu').removeClass('selected');
+      $('.order .order-menu input[type="radio"]').prop('checked', false);
+      $(this).addClass('selected');
+      $(this).children('input[type="radio"]').prop('checked', true);
+
+
+      let orderValue = $(this).children('input[type="radio"]').val();
+
+      // this가 '제목순'일 때
+      if(orderValue == 'title') {
+        let orderArrray = apiArray.sort((a,b) => {
+          if(a.title > b.title) return 1;
+          if(a.title < b.title) return -1;
+          return 0;
+        })
+
+        if(!$('#district').val()) {
+          apiResult(orderArrray)
+        } else {
+          let data = orderArrray.filter((item) => item.sigungucode == $('#district').val())
+          apiResult(data)
+        }
+
+      // this가 '등록일순'일 때
+      } else {
+        let orderArrray = apiArray.sort((a,b) => (b.createdtime - a.createdtime));
+        
+        if(!$('#district').val()) {
+          apiResult(orderArrray)
+        } else {
+          let data = orderArrray.filter((item) => item.sigungucode == $('#district').val())
+          apiResult(data)
+        }
+      }
+    })
+
+    // place-item 처음 10개만 보여주고 더보기 버튼을 눌렀을 때 5개씩 더 보여주기
+    $('.place-item').parent().hide();
+    $('.place-item').parent().slice(0, 10).show();
+
+    $('.place-item-btn').click(function(e){
+      e.preventDefault();
+      $('.place-item').parent('a:hidden').slice(0, 5).show();
+        if($('.place-item').parent('a:hidden').length == 0){
+        $('.place-item-btn').hide();
+      }
+    })
+  </script>
+  
   <script src="../JS/header.js"></script>
-  <script src="../JS/today-see.js"></script>
+  <!-- <script src="../JS/today-all.js"></script> -->
   <script src="../JS/footer.js"></script>
   <script src="../JS/sidebar.js"></script>
-
 </body>
 </html>
