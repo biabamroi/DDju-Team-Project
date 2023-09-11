@@ -63,13 +63,13 @@ app.use(bodyParser.urlencoded({extended : true}));
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
-app.get('/', function (req, res) {
-  // Cookies that have not been signed 서명되지 않은 쿠키
-  console.log('Cookies: ', req.cookies)
+// app.get('/', function (req, res) {
+//   // Cookies that have not been signed 서명되지 않은 쿠키
+//   console.log('Cookies: ', req.cookies)
 
-  // Cookies that have been signed 서명된 쿠키
-  console.log('Signed Cookies: ', req.signedCookies)
-});
+//   // Cookies that have been signed 서명된 쿠키
+//   console.log('Signed Cookies: ', req.signedCookies)
+// });
 
 
 // 라우터 객체 설정
