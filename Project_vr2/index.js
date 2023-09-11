@@ -385,7 +385,13 @@ router.get('/place-details/:id', function(requests, response){
 
 // 장소 상세설명 페이지에서 작성된 후기 review DB에 저장
 router.post('/place-details/:id', function(requests, response){
-  db.collection('review').insertOne({name : parseInt(requests.params.id), 'star' : parseInt(requests.body.star), 'review' : requests.body.reviewTxt}, function(error, result){
+  let date = new Date()
+  let year = date.getFullYear();
+  let month = date.getMonth();
+  let day = date.getDay();
+  let reviewDate = year + '년' + month + '월' + day + '일';
+
+  db.collection('review').insertOne({name : parseInt(requests.params.id), 'star' : parseInt(requests.body.star), 'review' : requests.body.reviewTxt, date : reviewDate}, function(error, result){
     console.log('review DB에 저장 완료!')
   })
 })
