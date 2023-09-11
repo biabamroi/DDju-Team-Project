@@ -109,7 +109,6 @@ numBtns.forEach(function(item){
 
     // 선택된 '구' 값
     sigunguCode = district.value;
-    console.log(sigunguCode, currentPage)
 
     url = 'https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=10&pageNo=' + currentPage + '&MobileOS=ect&MobileApp=DDju&_type=json&arrange=' + arrange + '&areaCode=3' + sigunguCode + '&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
 
