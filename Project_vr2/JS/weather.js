@@ -3,8 +3,8 @@ let year = today.getFullYear();
 var month = ("0" + (1 + today.getMonth())).slice(-2);
 var day = ("0" + today.getDate()).slice(-2);
 
-let result = year + month + day
-console.log(result)
+let result = year + month + day;
+// console.log(result)
 
 var xhr = new XMLHttpRequest();
 var url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst'; /*URL*/
