@@ -1,10 +1,18 @@
+let today = new Date();
+let year = today.getFullYear(); 
+var month = ("0" + (1 + today.getMonth())).slice(-2);
+var day = ("0" + today.getDate()).slice(-2);
+
+let result = year + month + day
+console.log(result)
+
 var xhr = new XMLHttpRequest();
 var url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst'; /*URL*/
 var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'6h06MN4YuByhKlHD6J5K5LnZ%2FAc1yC%2FvV3Z0aEAnC4UCGHZ%2FROI337GENBAQ3l7yr5ZO61wNNG%2F6G%2BS3d5M4fA%3D%3D'; /*Service Key*/
 queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
 queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('1000'); /**/
 queryParams += '&' + encodeURIComponent('dataType') + '=' + encodeURIComponent('JSON'); /**/
-queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent('20230911'); /**/
+queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent(result); /**/
 queryParams += '&' + encodeURIComponent('base_time') + '=' + encodeURIComponent('0600'); /**/
 queryParams += '&' + encodeURIComponent('nx') + '=' + encodeURIComponent('55'); /**/
 queryParams += '&' + encodeURIComponent('ny') + '=' + encodeURIComponent('127'); /**/
