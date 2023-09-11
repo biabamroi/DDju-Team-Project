@@ -258,6 +258,10 @@ section:nth-of-type(1) {
 
  /* 1200px 이하 해당 스타일링 적용 */
  @media screen and (max-width : 1200px) {
+  #data {
+    display: none;
+  }
+
   section:nth-of-type(1) {
     width: 100%;
     height: 650px;
@@ -275,9 +279,20 @@ section:nth-of-type(1) {
     width: 70px;
   }
 
+  .section-text {
+    width: 100%;
+    height: 200px;
+    padding-top: 70px;
+    text-align: center;
+  }
+
+  .slide-wrapper {
+    height: 650px;
+  }
+
   .slide-container {
     width: 700px;
-    height: 450px;
+    height: 400px;
   }
   
   .slide-list {
@@ -288,7 +303,6 @@ section:nth-of-type(1) {
   .slide-item img {
     width: 350px;
     height: 350px;
-    object-fit: cover;
   }
   
   .slide-item-text {
@@ -302,7 +316,6 @@ section:nth-of-type(1) {
   }
   
   #prev {
-    display: none;
     left: 30px;
   }
   
@@ -329,4 +342,98 @@ section:nth-of-type(1) {
     height: 150px;
     margin: 10px;
   }  
+}
+
+@media screen and (max-width : 768px) {
+  section:nth-of-type(1) {
+    height: 500px;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  #search {
+    width: 300px;
+  }
+
+  #search div input {
+    width: 250px;
+  }
+
+  .search-txt h3 {
+    font-size: 30px;
+  }
+
+  .search-txt p {
+    font-size: 20px;
+  }
+
+  #search button {
+    padding: 0 5px;
+  }
+
+  .keywords-list li {
+    margin-right: 5px;
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  .section-title {
+    font-size: 25px;
+  }
+
+  .section-content {
+    font-size: 15px;
+  }
+
+  .m-hidden {
+    display: none;
+  }
+
+  .slide-wrapper {
+    width: 100%;
+    height: 600px;
+  }
+
+  .slide-container {
+    width: 400px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slide-item {
+    width: 400px;
+    height: 300px;
+  }
+
+  .slide-item img {
+    width: 200px;
+    height: 300px;
+  }
+
+  .slide-item-text {
+    width: 200px;
+    height: 300px;
+    margin: 0;
+  }
+
+  .slide-title {
+    font-size: 20px;
+  }
+
+  .slide-content {
+    font-size: 14px;
+  }
+
+  .slide-item-text ul {
+    display: none;
+  }
+
+  #prev,
+  #next {
+    display: none;
+  }
 }
