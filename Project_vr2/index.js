@@ -100,83 +100,47 @@ router.use(passport.session());
 
 
 // 로그인 상태 판별 ----------------------------------------------------------------------
-// isNotLoggedIn,
-router.post('/login', async(req, res, next) => {
-  passport.authenticate('local', (authError, user, info) => {
-    if (authError) {
-      console.error(authError);
-      res.status(500);
-      return next(authError);
+
+router.post('/login', passport.authenticate('local', {
+  failureRedirect : '/fail'
+}), function(requests, response){
+  response.redirect('/')
+})
+
+passport.use(new LocalStrategy({
+  usernameField : 'userid',
+  passwordField : 'userpw',
+  session : true,
+  passReqToCallback : false
+}, function(userID, userPW, done){
+  db.collection('user').findOne({ID : userID}, function(error, user){
+    if(error) return done(error);
+    if(!user){
+      return done(null, false, {message : '존재하지 않는 아이디입니다.'})
     }
-    if (!user) {
-      res.status(500);
-      return res.send(info.message);
+    if(userPW == user.PW){
+      return done(null, user)
+    }else{
+      return done(null, false, {message : '비밀번호가 일치하지 않습니다.'})
     }
-    return req.login(user, (loginError) => {
-      if (loginError) {
-        console.error(loginError);
-        res.status(500);
-        return next(loginError);
-      }
-      return res.send(user);
-    });
-  })(req, res, next);
-});
+  })
+}))
 
-module.exports = () => {
-  passport.use(new LocalStrategy({
-    usernameField: 'userid',
-    passwordField: 'userpw',
-    session : true,
-    passReqToCallback : false
-  }, async (userid, userpw, done) => {
-    try {
-      const exUser = await user.findOne({ where : { userid } });
-      if (exUser) {
-        const result = await bcrypt.compare(userpw, exUser.userpw);
-        if (result) {
-          done(null, exUser);
-        } else {
-          done(null, false, { message: '비밀번호가 일치하지 않습니다.' });
-        }
-      } else {
-        done(null, false, { message: '존재하지 않는 아이디입니다.' });
-      }
-    } catch (error) {
-      console.error(error);
-      done(error);
-    }
-  }))
-}
+passport.serializeUser(function(user, done){
+  done(null, user.ID)
+})
 
-module.exports = () => {
-  // 로그인시 실행, req.session에 데이터를 저장 즉, 사용자 정보를 세션에 아이디로 저장함.
-  passport.serializeUser((user, done) => {
-    done(null, user.userid);
-  });
-
-  // 매 요청시 실행. 세션에 저장한 아이디를 통해 사용자 정보를 불러옴.
-  passport.deserializeUser((userid, done) => {
-    user.findOne({ where: { userid } })
-      .then(user => done(null, user))
-      .catch(err => done(err));
-  });
-
-  local();
-};
+passport.deserializeUser(function(id, done){
+  db.collection('user').findOne({ID : id}, function(error, result){
+    done(null, result)
+  })
+})
 
 
 
 
 // 로그인 상태를 판단하여 userLoggedIn 값을 전달
-router.get('/', function(requests, response, next){
-  console.log(requests.session);
-  if(requests.session.num === undefined){
-    requests.session.num = 1;
-  }else{
-    requests.session.num = requests.session.num + 1;
-  }
-  requests.send(`Views : ${requests.session.num}`);
+router.get('/', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   response.render('index.ejs', { userLoggedIn });
 })
@@ -326,11 +290,6 @@ router.post('/join', function(requests, response){
 })
 
 
-
-
-
-
-// login 상태에서 zzim 값을 데이터베이스에서 받아서 -> zzim 페이지에서 꺼내오기
 
 
 
