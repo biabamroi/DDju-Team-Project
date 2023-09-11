@@ -108,23 +108,23 @@
             <div class="write-review">
               <div class="star-rating">
                 <label for="">
-                  <input type="radio" name="star" id="1-star" value="1">
+                  <input type="radio" name="star" class="star" value="1">
                   <i class="fa-solid fa-star"></i>
                 </label>
                 <label for="">
-                  <input type="radio" name="star" id="2-star" value="2">
+                  <input type="radio" name="star" class="star" value="2">
                   <i class="fa-solid fa-star"></i>
                 </label>
                 <label for="">
-                  <input type="radio" name="star" id="3-star" value="3">
+                  <input type="radio" name="star" class="star" value="3">
                   <i class="fa-solid fa-star"></i>
                 </label>
                 <label for="">
-                  <input type="radio" name="star" id="4-star" value="4">
+                  <input type="radio" name="star" class="star" value="4">
                   <i class="fa-solid fa-star"></i>
                 </label>
                 <label for="">
-                  <input type="radio" name="star" id="5-star" value="5">
+                  <input type="radio" name="star" class="star" value="5">
                   <i class="fa-solid fa-star"></i>
                 </label>
               </div>
@@ -230,6 +230,11 @@
       `);
     }
 
+    // .like-btn을 눌렀을 때 on class toggle
+    $('.like-btn').on('click', function(){
+      $(this).toggleClass('on');
+    })
+
     // share-btn 눌렀을 때 현재 페이지 url 복사하기
     $('.share-btn').on('click', function(){
       let currentUrl = window.document.location.href;
@@ -238,10 +243,34 @@
         alert('url이 복사되었습니다');
       });
     })
+
+    // 리뷰 건수 count
+    let reviewCount = $('.review-list').children().length;
+    $('.review-title span').text(`총 ${reviewCount}건`);
+
+
+    // 리뷰 작성 칸 별점 체크
+    $('.star-rating label').on('click', function(){
+      $('.star-rating label').removeClass('on');
+      // this 전에 있는 label에 on class add
+      $(this).addClass('on').prevAll('label').addClass('on');
+      
+      $('.star-rating input[type="radio"]').prop('checked', false);
+      $(this).children('input[type="radio"]').prop('checked', true);
+    })
+
+    // review-btn 눌렀을 때 후기txt, 별점 값 없으면 alert 창 띄우고 submit 막기
+    $('.review-btn').on('click', function(e){
+      if($('input[name=star]:checked').val() == undefined || $('#review-txt').val() == '') {
+        e.preventDefault();
+        alert('후기를 작성하세요');
+      } else {
+        $('.search-btn').submit();
+      }
+    })
 	</script>
 
   <script src="../JS/header.js"></script>
-  <script src="../JS/place-details.js"></script>
   <script src="../JS/footer.js"></script>
 
 </body>
