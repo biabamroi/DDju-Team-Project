@@ -23,8 +23,12 @@ hr {
 .map-wrap {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding: 0 10px;
+}
+
+.map-wrap span {
+  width: 700px;
 }
 
 .icon-group {
@@ -36,7 +40,7 @@ hr {
 }
 
 .icon-group i {
-  font-size: 16px;
+  font-size: 20px;
 }
 
 section {position: relative;}
@@ -61,6 +65,7 @@ section {position: relative;}
 
 .place-detail-box > img {
   width: 780px;
+  height: 400px;
   object-fit: cover;
 }
 
