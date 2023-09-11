@@ -3,27 +3,28 @@ main {
   margin: 0 auto;
   color: #333;
 }
-.place-header .title {
+
+.title {
   font-size: 48px;
   font-family: 'Gowun Dodum', sans-serif;
   margin: 0 10px;
 }
 
-.place-header .place-menu {
+.place-menu {
   display: flex;
   margin: 10px 0;
 }
 
-.place-header .place-menu li {
+.place-menu li {
   position: relative;
   padding: 0 10px;
 }
 
-.place-header .place-menu li a {
+.place-menu li a {
   color: #666;
 }
 
-.place-header .place-menu li::before {
+.place-menu li::before {
   content: "";
   width: 2px;
   height: 15px;
@@ -33,45 +34,54 @@ main {
   left: 0;
 } 
 
-.place-header .place-menu li:first-child::before {
+.place-menu li:first-child::before {
   content: none;
 }
 
-.place-header .select {
+.select {
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding: 10px;
+  padding: 5px;
   color: #666;
 }
 
-.place-header .order {
-  display: flex;
-}
-.place-header .order li {
-  padding-left: 20px;
-  position: relative;
+#district {
+  padding: 0 20px;
+  font-size: 14px;
+  color: #666;
+  border: none;
+  outline: none;
 }
 
-.place-header .order li::after {
+input[type="radio"] {
+  display: none;
+}
+
+.order {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.order-menu p {
+  position: relative;
+  padding: 5px 8px;
+}
+
+.order-menu p::after {
   content: "";
   width: 2px;
-  height: 15px;
+  height: 14px;
   background-color: #ccc;
   position: absolute;
-  top: 3px;
-  left: 10px;
-}
+  top: 8px;
+  left: 0;
+} 
 
-.place-header .order li:first-child::after {
+.order-menu:first-child p::after {
   content: none;
-}
-
-.place-header #district {
-  border: none;
-  padding: 0 20px;
-  color: #666;
 }
 
 .place-list {
@@ -129,20 +139,9 @@ main {
   background-color: #AAC4FF;
 }
 
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin: 40px 0;
-}
-
-.number-btn {
-  display: flex;
-  margin: 0 10px;
-}
-
-.number-btn button {
-  padding: 0 5px;
-  font-size: 18px;
+.place-item-btn {
+  display: block;
+  margin: 40px auto;
 }
 
 .selected {
