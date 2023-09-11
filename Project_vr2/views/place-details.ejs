@@ -206,12 +206,12 @@
       `);
     }
 
-    // .like-btn을 눌렀을 때 on class toggle
+    // .like-btn 눌렀을 때 on class toggle
     $('.like-btn').on('click', function(){
       $(this).toggleClass('on');
     })
 
-    // share-btn 눌렀을 때 현재 페이지 url 복사하기
+    // .share-btn 눌렀을 때 현재 페이지 url 복사하기
     $('.share-btn').on('click', function(){
       let currentUrl = window.document.location.href;
       window.navigator.clipboard.writeText(currentUrl)
@@ -248,6 +248,7 @@
 
   <script src="../JS/header.js"></script>
   <script src="../JS/footer.js"></script>
+  <script src="../JS/sidebar.js"></script>
 
 </body>
 </html>
