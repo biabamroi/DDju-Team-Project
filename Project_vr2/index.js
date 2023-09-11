@@ -373,14 +373,11 @@ router.get('/place-details/:id', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   db.collection('api').find({_id : requests.params.id}).toArray(function(error, result){
     let apiResult = result;
-    // response.render('place-details.ejs', {api : result});
     
     db.collection('review').find({name : parseInt(requests.params.id)}).toArray(function(error, result){
       response.render('place-details.ejs', {api : apiResult, review : result, userLoggedIn});
     })
   })
-  
-
 })
 
 // 장소 상세설명 페이지에서 작성된 후기 review DB에 저장
@@ -389,11 +386,13 @@ router.post('/place-details/:id', function(requests, response){
   let year = date.getFullYear();
   let month = date.getMonth();
   let day = date.getDay();
-  let reviewDate = year + '년' + month + '월' + day + '일';
+  let reviewDate = year + '년 ' + month + '월 ' + day + '일';
 
   db.collection('review').insertOne({name : parseInt(requests.params.id), 'star' : parseInt(requests.body.star), 'review' : requests.body.reviewTxt, date : reviewDate}, function(error, result){
     console.log('review DB에 저장 완료!')
   })
+
+  response.redirect('/place-details/'+ requests.params.id);
 })
 
 // 검색 화면
