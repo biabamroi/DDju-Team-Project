@@ -140,7 +140,17 @@ section:nth-of-type(1) {
   background-color: #EEF1FF;
 }
 
+.add {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #739dff;
+}
+
 .slide-container {
+  position: relative;
   width: 900px;
   height: 500px;
   margin: 0 auto;
@@ -386,6 +396,15 @@ section:nth-of-type(1) {
     font-size: 25px;
   }
 
+  .add {
+    position: absolute;
+    bottom: 10px;
+    right: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #739dff;
+  }
+
   .section-content {
     font-size: 15px;
   }
@@ -442,11 +461,8 @@ section:nth-of-type(1) {
     font-size: 14px;
   }
 
-  #prev {
-    left: 30px;
-  }
-  
+  #prev,
   #next {
-    right: 30px;
+    display: none;
   }
 }
