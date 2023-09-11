@@ -322,19 +322,31 @@ router.get('/member-info', function(requests, response){
 })
 router.get('/today-all', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
-  response.render('today-all.ejs', { userLoggedIn });
+
+  db.collection('api').find().toArray(function(error, result){
+    response.render('today-all.ejs', {api : result, userLoggedIn });
+  })
 })
 router.get('/today-do', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
-  response.render('today-do.ejs', { userLoggedIn });
+  
+  db.collection('api').find({contenttypeid : '12'}).toArray(function(error, result){
+    response.render('today-do.ejs', {api : result, userLoggedIn });
+  })
 })
 router.get('/today-eat', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
-  response.render('today-eat.ejs', { userLoggedIn });
+  
+  db.collection('api').find({contenttypeid : '39'}).toArray(function(error, result){
+    response.render('today-eat.ejs', {api : result, userLoggedIn });
+  })
 })
 router.get('/today-see', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
-  response.render('today-see.ejs', { userLoggedIn });
+  
+  db.collection('api').find({contenttypeid : '15'}).toArray(function(error, result){
+    response.render('today-see.ejs', {api : result, userLoggedIn });
+  })
 })
 router.get('/zzim', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
@@ -367,6 +379,7 @@ router.get('/find-idpw', function(requests, response){
 // 장소 상세설명 페이지
 router.get('/place-details/:id', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
+
   db.collection('api').find({_id : requests.params.id}).toArray(function(error, result){
     let apiResult = result;
     
@@ -394,6 +407,7 @@ router.post('/place-details/:id', function(requests, response){
 // 검색 화면
 router.post('/search', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
+
   // 검색어가 있는 데이터 찾기
   let creatIndex = [
     {
