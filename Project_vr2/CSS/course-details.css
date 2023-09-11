@@ -1,3 +1,7 @@
+/* body {
+  height: 200vh;
+} */
+
 section {
   width: 800px;
   margin: 0 auto;
@@ -238,6 +242,7 @@ section {position: relative;}
 }
 
 .map-item {
+  cursor: pointer;
   position: relative;
   display: flex;
   justify-content: center;
@@ -248,6 +253,10 @@ section {position: relative;}
   border-radius: 10px;
   margin-bottom: 20px;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .map-item::after {
   content: '';
@@ -263,16 +272,6 @@ section {position: relative;}
   content: '';
   display: none;
 }
-
-.map-item.bg1 {
-  color: white;
-  background-image: url(../images/detail-expo.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-
 
 @keyframes like {
   0%{
