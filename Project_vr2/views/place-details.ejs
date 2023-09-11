@@ -142,8 +142,12 @@
                   </div>
                   <div class="review">
                     <div class="star-rating">
+                      <% for(let i = 0; i < review.star.length; i++) { %>
                         <i class="fa-solid fa-star" style="color: #FBC85B;"></i>
+                      <% } %>
+                      <% for(let i = 0; i < search.length; i++) { %>
                         <i class="fa-solid fa-star"></i>
+                      <% } %>
                     </div>
                     <p></p>
                   </div>
