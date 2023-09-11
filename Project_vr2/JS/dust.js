@@ -39,9 +39,8 @@ function updateData(){
               if(!latestData || item.dataTime > latestData.dataTime) {
                 // latestData에 더 큰 값을 넣어서 latestData에 제일 최근 데이터를 담는다.
                 latestData = item;
-                console.log(latestData)
-                
-
+                // console.log(latestData)
+              
               let dustItem = document.querySelector('.dust-item');
               if(item.pm10Value >= 20) {
                dustItem.innerHTML = '미세먼지 나쁨 <i class="fa-regular fa-face-frown"></i>';
