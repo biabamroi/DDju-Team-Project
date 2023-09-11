@@ -145,7 +145,7 @@
       $(this).addClass('selected');
       $(this).children('input[type="radio"]').prop('checked', true);
 
-      let searchArray = <%- JSON.stringify(search) %>;
+      let searchArray = JSON.parse('<%- JSON.stringify(search) %>');
       let orderValue = $(this).children('input[type="radio"]').val();
 
       // api 배열에 따라 place-item 생성하는 함수
