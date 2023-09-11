@@ -1,11 +1,25 @@
+// .like-btn 눌렀을 때 on class toggle
+$('.like-btn').on('click', function(){
+  $(this).toggleClass('on');
+})
+
+// .share-btn 눌렀을 때 현재 페이지 url 복사하기
+$('.share-btn').on('click', function(){
+  let currentUrl = window.document.location.href;
+  window.navigator.clipboard.writeText(currentUrl)
+  .then(() => {
+    alert('url이 복사되었습니다');
+  });
+})
+
 let course = [
   {
     title : '성심당',
     img : 'https://mblogthumb-phinf.pstatic.net/MjAyMDA1MjBfMjY2/MDAxNTg5OTQwNDQzMzcz.WNFQCRWTCDUoNQEXc0h9mVPJC_cjIwtbCzX322TVgREg.Kx8PyT1upSyT2AmWpi4RqcRZ8K1exVNH6Y3AttUOLPkg.JPEG.haram4th/work-029137.jpg?type=w800',
     p: '성심당은 대전광역시에 위치한 베이커리 전문점',
     location :'대전광역시 중구 대종로 480번길 15(은행동)',
-    time : '08:00 22:0,0(월~일)',
-    call : '042)220.4120',
+    time : '08:00 ~ 22:00(월~일)',
+    call : '042-220-4120',
     page : 'https://www.sungsimdangmall.co.kr/cscenter/search_market.asp'
   },
   {
@@ -14,7 +28,7 @@ let course = [
     p: '대표 메뉴로는 칼국수, 비빔국수, 수육',
     location :'대전광역시 동구 중동 22-1',
     time : '매일 09:00 ~ 20:00',
-    call : '042)220.4120',
+    call : '042-220.4120',
     page : 'https://www.instagram.com/explore/locations/1024345229/'
   },
   {
@@ -23,7 +37,7 @@ let course = [
     p: '휴양지에 온 듯한 기분을 느낄 수 있는 대전 카페 ',
     location :'대전광역시 유성구 한밭대로371번길 25-3',
     time : '10:00 ~ 22:00',
-    call : '042)823-3712',
+    call : '042-823-3712',
     page : 'https://www.instagram.com/explore/locations/1024345229/'
   },
   {
@@ -32,7 +46,7 @@ let course = [
     p: '감자, 야채, 매콤한 특제 양념소스를 넣어 만든 닭도리탕',
     location :'대전광역시 중구 계룡로874번길 6 (오류동)',
     time : '11:00 ~ 21:30',
-    call : '042)533-2644',
+    call : '042-533-2644',
     page : 'https://map.naver.com/p/entry/place/13571357?c=15.00,0,0,0,dh'
   },
   {
@@ -41,21 +55,11 @@ let course = [
   },
 ]
 
-// console.log(course[0].img)
-// document.querySelector('.txt-wrap h2').innerHTML = course[0].title;
-// document.querySelector('.place-detail-box img').src = course[0].img;
-// document.querySelector('.place-detail-txt p').innerHTML = course[0].p;
-// document.querySelector('.place-detail-item .location').innerHTML = course[0].location;
-// document.querySelector('.place-detail-item .time').innerHTML = course[0].time;
-// document.querySelector('.place-detail-item .call').innerHTML = course[0].call;
-// document.querySelector('.place-detail-item .page a').innerHTML = course[0].page;
 
 let detailList = document.querySelectorAll('.place-detail-box');
 let mapList = document.querySelector('.map-list');
 
 course.forEach(function(item, i){
-  // console.log(item, i + 1)
-
   let mapItem = `
     <div class="map-item">
       <p>${item.title}</p>
@@ -64,13 +68,11 @@ course.forEach(function(item, i){
   mapList.insertAdjacentHTML('beforeend', mapItem);
 })
 
-document.querySelectorAll('.map-item').forEach(function(post, i){
-  console.log(post, i)
-  console.log(course[i].img)
+let mapItem = document.querySelectorAll('.map-item')
+
+mapItem.forEach(function(post, i){
   post.style.backgroundImage = `url(${course[i].img})`
 })
-
-let mapItem = document.querySelectorAll('.map-item')
 
 mapItem.forEach(function(item, index){
   item.addEventListener('click', function(){
@@ -81,6 +83,7 @@ mapItem.forEach(function(item, index){
     document.querySelector('.place-detail-item .time').innerHTML = course[index].time;
     document.querySelector('.place-detail-item .call').innerHTML = course[index].call;
     document.querySelector('.place-detail-item .page a').innerHTML = course[index].page;
+    document.querySelector('.place-detail-item .page a').setAttribute('href', course[index].page)
   })
 })
 
