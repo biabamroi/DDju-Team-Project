@@ -50,9 +50,9 @@
             <div class="search-bar">
               <div>
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input name="search" type="text" placeholder="검색어를 입력하세요." value="<%= searchWord %>">
+                <input class="search-word" name="search" type="text" placeholder="검색어를 입력하세요." value="<%= searchWord.search %>">
               </div>
-              <button type="submit">검색</button>
+              <button class="search-btn" type="submit">검색</button>
             </div>
             <div class="search-details-box">
               <p>상세 검색</p>
@@ -144,6 +144,17 @@
   </div>
 
   <script>
+    let searchWord = <%- JSON.stringify(searchWord) %>;
+  
+    $('.search-btn').on('click', function(e){
+      if($('.search-word').val() == '') {
+        e.preventDefault();
+        alert('검색어를 입력하세요.');
+      } else {
+        $('.search-btn').submit();
+      }
+    })
+    
     // place-menu를 눌렀을 때 this에 p태그 색 바꾸기, inputbox checked 속성 주기
     $('.place .inputbox').on('click', function(e){
       $('.place .inputbox').removeClass('selected');

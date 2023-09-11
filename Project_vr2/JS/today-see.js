@@ -24,29 +24,29 @@ function api(url){
 
       
       // overview api
-      // let contentId = areaBasedList[index].contentid;
-      // let CommonUrl = 'https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ect&MobileApp=DDju&_type=json&contentId=' + contentId + '&defaultYN=Y&firstImageYN=Y&overviewYN=Y&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
+      let contentId = areaBasedList[index].contentid;
+      let CommonUrl = 'https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ect&MobileApp=DDju&_type=json&contentId=' + contentId + '&defaultYN=Y&firstImageYN=Y&overviewYN=Y&serviceKey=K3ffxC1oIoWzYskEUMHmA3hfplXmJTt08QidPS9Br4fcnakaukocNyaP5ADWFtSMQUivJzOwjmKlnqVUEADYXQ%3D%3D';
 
-      // fetch(CommonUrl)
-      // .then((res) => res.json())
-      // .then((json) => {
-      //   let detailCommon = json.response.body.items.item;
-      //   let overview = detailCommon[0].overview.replace('<br />', ' ')
-      //   let newOverview = overview.replace('<br>', ' ')
+      fetch(CommonUrl)
+      .then((res) => res.json())
+      .then((json) => {
+        let detailCommon = json.response.body.items.item;
+        let overview = detailCommon[0].overview.replace('<br />', ' ')
+        let newOverview = overview.replace('<br>', ' ')
 
-      //   let placeOverview = `
-      //   <p>${newOverview}</p>
-      //   <ul class="keywords-list">
-      //     <li>#키워드</li>
-      //     <li>#키워드</li>
-      //     <li>#키워드</li>
-      //     <li>#키워드</li>
-      //     </ul>
-      //     `
+        let placeOverview = `
+        <p>${newOverview}</p>
+        <ul class="keywords-list">
+          <li>#키워드</li>
+          <li>#키워드</li>
+          <li>#키워드</li>
+          <li>#키워드</li>
+          </ul>
+          `
 
-      //   let placeItems = document.querySelectorAll('.place-item')
-      //   placeItems[index].querySelector('.text-box').insertAdjacentHTML('beforeend' , placeOverview)
-      // })
+        let placeItems = document.querySelectorAll('.place-item')
+        placeItems[index].querySelector('.text-box').insertAdjacentHTML('beforeend' , placeOverview)
+      })
     })
   })
 }
