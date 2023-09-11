@@ -374,13 +374,12 @@ router.post('/place-details/:id', function(requests, response){
 router.post('/search', function(requests, response){
   const userLoggedIn = requests.session.user ? true : false;
   // 검색어가 있는 데이터 찾기
-  let searchWord = requests.body.search;
   let creatIndex = [
     {
       $search: {
         index: "search",
         text: {
-          query: searchWord,
+          query: requests.body.search,
           path: {
             wildcard: "*"
           }
@@ -395,16 +394,16 @@ router.post('/search', function(requests, response){
     
     // 콘텐츠 타입, 시군구코드가 비어있을 경우 ejs 파일에 보내야하는 데이터 필터링
     if(placeMenu == undefined || (!placeMenu && !district)) {
-      response.render('search.ejs', {search : result, searchWord : searchWord, userLoggedIn})
+      response.render('search.ejs', {search : result, searchWord : requests.body, userLoggedIn})
     } else if(placeMenu && !district) {
       let search = result.filter((item) => item.contenttypeid == placeMenu)  
-      response.render('search.ejs', {search : search, searchWord : searchWord, userLoggedIn})
+      response.render('search.ejs', {search : search, searchWord : requests.body, userLoggedIn})
     } else if(!placeMenu && district) {
       let search = result.filter((item) => item.sigungucode == district)
-      response.render('search.ejs', {search : search, searchWord : searchWord, userLoggedIn})
+      response.render('search.ejs', {search : search, searchWord : requests.body, userLoggedIn})
     } else {
       let search = result.filter((item) => item.contenttypeid == placeMenu && item.sigungucode == district)
-      response.render('search.ejs', {search : search, searchWord : searchWord, userLoggedIn})
+      response.render('search.ejs', {search : search, searchWord : requests.body, userLoggedIn})
     }
   })
 })
