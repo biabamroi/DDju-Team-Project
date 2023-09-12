@@ -32,19 +32,19 @@ MongoClient.connect(url, function(error, client){
   if(error){
     return console.log('MongoDB 연결 오류: ', error);
   }
-  db = client.db('Data');
-  global.db = client.db('Data');
+  db = client.db('DDju');
+  global.db = client.db('DDju');
   console.log('MongoDB 연결 성공'+db);
   app.listen('3000');
 })
 
-mongoose.connection.collection('user').findOne({ ID: '5yunha' }, function(error, user) {
-  if (error) {
-    console.error('쿼리 실행 중 에러:', error);
-  } else {
-    console.log('조회된 사용자 정보:', user);
-  }
-});
+// mongoose.connection.collection('user').findOne({ ID: 'user03' }, function(error, user) {
+//   if (error) {
+//     console.error('쿼리 실행 중 에러:', error);
+//   } else {
+//     console.log('조회된 사용자 정보:', user);
+//   }
+// });
 
 // db.collection('user').findOne({ ID: '5yunha' }, function(error, user) {
 //   if (error) {
@@ -171,9 +171,8 @@ router.get('/', function(requests, response){
   response.render('index.ejs', { userLoggedIn, userName });
 })
 router.get('/index', function(requests, response){
-  const userName = requests.cookies.userName;
   const userLoggedIn = requests.isAuthenticated();
-  response.render('index.ejs', { userLoggedIn, userName });
+  response.render('index.ejs', { userLoggedIn });
 })
 
 // 서버에서 로그인 상태를 반환하는 엔드포인트 생성
@@ -219,7 +218,7 @@ function getLogin(requests, response, next){
 router.get('/mypage', getLogin, function(requests, response){
   const currentUser = requests.user;
   const userLoggedIn = requests.isAuthenticated();
-  response.render('mypage.ejs', { userLoggedIn, currentUser });
+  response.render('mypage.ejs', { userLoggedIn, user : currentUser });
   console.log(currentUser, userLoggedIn)
 })
 
@@ -247,6 +246,7 @@ router.delete('/delete', function(requests, response){
   requests.body._id = parseInt(requests.body._id)
 
   db.collection('user').deleteOne({_id : requests.body._id}, function(error, result){
+    console.log(result)
     if(error){
       console.log(error)
     }
