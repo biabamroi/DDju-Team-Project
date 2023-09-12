@@ -35,7 +35,7 @@ MongoClient.connect(url, function(error, client){
   db = client.db('DDju');
   global.db = client.db('DDju');
   console.log('MongoDB 연결 성공'+db);
-  app.listen('3000');
+  app.listen('8080');
 })
 
 
