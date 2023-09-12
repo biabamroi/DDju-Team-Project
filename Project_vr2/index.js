@@ -13,8 +13,10 @@ const app = express();
 
 // MongoDB 연결
 // npm install mongoose --save ★ 설치 ★
+// Database ID admin PW zbJIiHYEKSsLa6Jg
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.net/?authSource=admin&retryWrites=true&w=majority';
+// const url = 'mongodb://admin:zbJIiHYEKSsLa6Jg@global.aws.realm.mongodb.com:27020/?authMechanism=PLAIN&authSource=%24external&ssl=true&appName=triggers-lsyub:Data:local-userpass';
 const mongoose = require('mongoose');
 mongoose.connect("mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser: true}).then(()=>
 console.log('connected')).catch(() => console.log('failed'))
@@ -22,7 +24,10 @@ console.log('connected')).catch(() => console.log('failed'))
 // 데이터를 저장할 변수
 let db;
 
-// Database ID admin PW zbJIiHYEKSsLa6Jg
+// 콜렉션 연결 - 서버가 못 읽음 
+// const collection = db.Collection("Data");
+// const collection = context.services.get(data).db("Data").collection("coll_name");
+
 MongoClient.connect(url, function(error, client){
   if(error){
     return console.log('MongoDB 연결 오류: ', error);
