@@ -38,22 +38,6 @@ MongoClient.connect(url, function(error, client){
   app.listen('3000');
 })
 
-// mongoose.connection.collection('user').findOne({ ID: 'user03' }, function(error, user) {
-//   if (error) {
-//     console.error('쿼리 실행 중 에러:', error);
-//   } else {
-//     console.log('조회된 사용자 정보:', user);
-//   }
-// });
-
-// db.collection('user').findOne({ ID: '5yunha' }, function(error, user) {
-//   if (error) {
-//     console.error('쿼리 실행 중 에러:', error);
-//   } else {
-//     console.log('조회된 사용자 정보:', user);
-//   }
-// });
-
 
 // .ejs 사용 세팅
 app.set('view engine', 'ejs');
@@ -125,10 +109,6 @@ app.get('/', function (requests, response) {
 router.post('/login', passport.authenticate('local', {
   failureRedirect : '/fail'
 }), function(requests, response){
-  const userName = requests.user.name; // 로그인한 사용자의 이름을 가져옴
-
-  // 쿠키를 클라이언트에 설정
-  response.cookie('userName', userName);
   response.redirect('/');
 })
 
@@ -219,7 +199,6 @@ router.get('/mypage', getLogin, function(requests, response){
   const currentUser = requests.user;
   const userLoggedIn = requests.isAuthenticated();
   response.render('mypage.ejs', { userLoggedIn, user : currentUser });
-  console.log(currentUser, userLoggedIn)
 })
 
 // 로그아웃
@@ -241,19 +220,16 @@ router.put('/edit', function(requests, response){
   })
 })
 
-router.delete('/delete', function(requests, response){
-  console.log(requests.body._id)
+router.post('/delete', function(requests, response){
   requests.body._id = parseInt(requests.body._id)
 
   db.collection('user').deleteOne({_id : requests.body._id}, function(error, result){
-    console.log(result)
     if(error){
       console.log(error)
     }
-    console.log('탈퇴')
+    console.log('회원탈퇴')
   })
-
-  response.status(200).send({message : '성공'})
+  response.redirect('/');
 })
 
 
