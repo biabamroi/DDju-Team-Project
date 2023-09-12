@@ -95,21 +95,21 @@
         data.forEach(function(item, index){
           let placeItem = `
             <a href="/place-details/${item._id}">
-                    <div class="place-item">
-                      <img src = "${item.img}" alt = "${item.title}">
-                      <div class="text-box">
-                        <h3>${item.title}</h3>
-                        <p>${item.overview}</p>
-                        <ul class="keywords-list">
-                          <li>#키워드</li>
-                          <li>#키워드</li>
-                          <li>#키워드</li>
-                          <li>#키워드</li>
-                        </ul>    
-                      </div>
-                    </div>
-                  </a>
-            `
+              <div class="place-item">
+                <img src = "${item.img}" alt = "${item.title}">
+                <div class="text-box">
+                  <h3>${item.title}</h3>
+                  <p>${item.overview}</p>
+                  <ul class="keywords-list">
+                    <li>#키워드</li>
+                    <li>#키워드</li>
+                    <li>#키워드</li>
+                    <li>#키워드</li>
+                  </ul>    
+                </div>
+              </div>
+            </a>
+          `
 
           $('.place-list').append(placeItem);
         })
