@@ -46,6 +46,7 @@
         <button type="submit">로그아웃</button>
       </form>
       <form action="/delete" method="POST">
+        <input type="text" value="<%= user._id %>" name="delete" id="delete" style="display: none;">
         <button type="submit">회원탈퇴</button>
       </form>
     </main>

@@ -221,9 +221,10 @@ router.put('/edit', function(requests, response){
 })
 
 router.post('/delete', function(requests, response){
-  requests.body._id = parseInt(requests.body._id)
+  console.log(requests.body.delete)
+  requests.body.delete = parseInt(requests.body.delete)
 
-  db.collection('user').deleteOne({_id : requests.body._id}, function(error, result){
+  db.collection('user').deleteOne({_id : requests.body.delete}, function(error, result){
     if(error){
       console.log(error)
     }
