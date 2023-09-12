@@ -32,19 +32,19 @@ MongoClient.connect(url, function(error, client){
   if(error){
     return console.log('MongoDB 연결 오류: ', error);
   }
-  db = client.db('Data');
-  global.db = client.db('Data');
+  db = client.db('DDju');
+  global.db = client.db('DDju');
   console.log('MongoDB 연결 성공'+db);
   app.listen('3000');
 })
 
-mongoose.connection.collection('user').findOne({ ID: '5yunha' }, function(error, user) {
-  if (error) {
-    console.error('쿼리 실행 중 에러:', error);
-  } else {
-    console.log('조회된 사용자 정보:', user);
-  }
-});
+// mongoose.connection.collection('user').findOne({ ID: 'user03' }, function(error, user) {
+//   if (error) {
+//     console.error('쿼리 실행 중 에러:', error);
+//   } else {
+//     console.log('조회된 사용자 정보:', user);
+//   }
+// });
 
 // db.collection('user').findOne({ ID: '5yunha' }, function(error, user) {
 //   if (error) {
@@ -171,19 +171,18 @@ router.get('/', function(requests, response){
   response.render('index.ejs', { userLoggedIn, userName });
 })
 router.get('/index', function(requests, response){
-  const userName = requests.cookies.userName;
   const userLoggedIn = requests.isAuthenticated();
-  response.render('index.ejs', { userLoggedIn, userName });
+  response.render('index.ejs', { userLoggedIn });
 })
 
 // 서버에서 로그인 상태를 반환하는 엔드포인트 생성
 router.get('/get-user-status', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.json({ userLoggedIn })
 });
 
 router.get('/get-user-status-html', function(requests, response) {
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.render('user-status.ejs', { userLoggedIn });
 });
 
@@ -219,7 +218,7 @@ function getLogin(requests, response, next){
 router.get('/mypage', getLogin, function(requests, response){
   const currentUser = requests.user;
   const userLoggedIn = requests.isAuthenticated();
-  response.render('mypage.ejs', { userLoggedIn, currentUser });
+  response.render('mypage.ejs', { userLoggedIn, user : currentUser });
   console.log(currentUser, userLoggedIn)
 })
 
@@ -237,7 +236,7 @@ router.put('/edit', function(requests, response){
     {$set:{ID : requests.body.id, PW : requests.body.pw}}, function(error, result){
       const updatedUserId = requests.body.id; // 수정된 사용자 아이디
       const updatedPassword = requests.body.pw; // 수정된 비밀번호
-    requests.session.user.id = updatedUserId;
+    requests.isAuthenticated() = {updatedUserId, updatedPassword};
     response.redirect('/mypage');
   })
 })
@@ -247,6 +246,7 @@ router.delete('/delete', function(requests, response){
   requests.body._id = parseInt(requests.body._id)
 
   db.collection('user').deleteOne({_id : requests.body._id}, function(error, result){
+    console.log(result)
     if(error){
       console.log(error)
     }
@@ -261,7 +261,7 @@ router.delete('/delete', function(requests, response){
 // 회원가입 --------------------------------------------------------------------
 
 router.get('/join', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.render('join.ejs', { userLoggedIn });
 })
 
@@ -323,75 +323,75 @@ router.post('/join', function(requests, response){
 
 // 전체 페이지 userLoggedIn 연결
 router.get('/map', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.render('map.ejs', { userLoggedIn });
 })
 router.get('/about', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.render('about.ejs', { userLoggedIn });
 })
 router.get('/contact', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.render('contact.ejs', { userLoggedIn });
 })
 router.get('/course-daejeon', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.render('course-daejeon.ejs', { userLoggedIn });
 })
 router.get('/course-details', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.render('course-details.ejs', { userLoggedIn });
 })
 router.get('/member-info', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.render('member-info.ejs', { userLoggedIn });
 })
 router.get('/today-all', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
 
   db.collection('api').find().toArray(function(error, result){
     response.render('today-all.ejs', {api : result, userLoggedIn });
   })
 })
 router.get('/today-do', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   
   db.collection('api').find({contenttypeid : '12'}).toArray(function(error, result){
     response.render('today-do.ejs', {api : result, userLoggedIn });
   })
 })
 router.get('/today-eat', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   
   db.collection('api').find({contenttypeid : '39'}).toArray(function(error, result){
     response.render('today-eat.ejs', {api : result, userLoggedIn });
   })
 })
 router.get('/today-see', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   
   db.collection('api').find({contenttypeid : '15'}).toArray(function(error, result){
     response.render('today-see.ejs', {api : result, userLoggedIn });
   })
 })
 router.get('/zzim', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.render('zzim.ejs', { userLoggedIn });
 })
 router.get('/policy', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.render('policy.ejs', { userLoggedIn });
 })
 router.get('/privacy', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.render('privacy.ejs', { userLoggedIn });
 })
 router.get('/sitemap', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.render('sitemap.ejs', { userLoggedIn });
 })
 router.get('/find-idpw', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
   response.render('find-idpw.ejs', { userLoggedIn });
 })
 
@@ -404,7 +404,7 @@ router.get('/find-idpw', function(requests, response){
 
 // 장소 상세설명 페이지
 router.get('/place-details/:id', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
 
   db.collection('api').find({_id : requests.params.id}).toArray(function(error, result){
     let apiResult = result;
@@ -432,7 +432,7 @@ router.post('/place-details/:id', function(requests, response){
 
 // 검색 화면
 router.post('/search', function(requests, response){
-  const userLoggedIn = requests.session.user ? true : false;
+  const userLoggedIn = requests.isAuthenticated();
 
   // 검색어가 있는 데이터 찾기
   let creatIndex = [

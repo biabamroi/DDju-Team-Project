@@ -154,16 +154,8 @@
   color: #888;
 }
 
-.user-menu-btn.login .login-btn {
-  display: none;
-}
-
-.user-menu-btn.login .mymenu {
-  display: flex;
-}
-
 .mymenu {
-  display: none;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   width: 120px;
