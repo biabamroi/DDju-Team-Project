@@ -92,15 +92,20 @@
   </div>
 
   <!-- 카카오 맵 -->
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b30aabb752a0a95816e403bb318ea0b1"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4a6ed3aa85025cddcbe089a1f323f593"></script>
 	<script>
 		var container = document.getElementById('map');
 		var options = {
-			center: new kakao.maps.LatLng(36.321655, 127.378953),
+			center: new kakao.maps.LatLng(36.32764900781793, 127.42727992623006),
 			level: 3
 		};
 
 		var map = new kakao.maps.Map(container, options);
+
+    var marker = new kakao.maps.Marker({ 
+    position: map.getCenter() 
+    });
+    marker.setMap(map);
 	</script>
 
   <script src="../JS/header.js"></script>
