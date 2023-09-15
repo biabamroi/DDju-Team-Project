@@ -17,9 +17,9 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.net/?authSource=admin&retryWrites=true&w=majority';
 // const url = 'mongodb://admin:zbJIiHYEKSsLa6Jg@global.aws.realm.mongodb.com:27020/?authMechanism=PLAIN&authSource=%24external&ssl=true&appName=triggers-lsyub:Data:local-userpass';
-const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser: true}).then(()=>
-console.log('connected')).catch(() => console.log('failed'))
+// const mongoose = require('mongoose');
+// mongoose.connect("mongodb+srv://admin:zbJIiHYEKSsLa6Jg@data.faox2rv.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser: true}).then(()=>
+// console.log('connected')).catch(() => console.log('failed'))
 
 // 데이터를 저장할 변수
 let db;
