@@ -202,11 +202,15 @@ router.get('/mypage', getLogin, function(requests, response){
 })
 
 // 로그아웃
-router.get('/logout', function(requests, response){
-  requests.session.destroy();
-  response.redirect('/');
+router.post('/logout', function(requests, response, next){
+  requests.logOut(err => {
+    if (err) {
+      return next(err);
+    } else {
+      response.redirect('/');
+    }
+  });
 })
-
 
 // 회원정보 수정, 탈퇴--------------------------------------------------------------------------
 

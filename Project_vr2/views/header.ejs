@@ -29,11 +29,11 @@
     <% if (userLoggedIn) { %>
       <% console.log(userLoggedIn) %>
     <div class="mymenu">
-      <button type="button" class="logout-btn">
-        <a href="/logout">
+      <form action="/logout" method="POST">
+        <button type="submit" class="logout-btn">
           <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        </a>
-      </button>
+        </button>
+      </form>
       <button type="button" class="like-btn">
         <a href="/zzim">
           <i class="fa-solid fa-heart"></i>
