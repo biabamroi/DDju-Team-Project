@@ -121,6 +121,10 @@
   background-color: rgba(238, 241, 255, 0.8);
 }
 
+.sub a {
+  font-size: 14px;
+}
+
 .sub a:hover {
   font-weight: 700;
 }

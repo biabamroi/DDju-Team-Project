@@ -30,7 +30,7 @@ section:nth-of-type(1) {
 }
 
 .search-txt h3 {
-  font-size: 50px;
+  font-size: 40px;
   font-weight: 300;
 }
 
@@ -121,12 +121,12 @@ section:nth-of-type(1) {
 
 .section-title {
   margin-bottom: 10px;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 700;
 }
 
 .section-content {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 
@@ -144,7 +144,7 @@ section:nth-of-type(1) {
   position: absolute;
   right: 30px;
   bottom: 30px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   color: #739dff;
 }
@@ -193,13 +193,19 @@ section:nth-of-type(1) {
 }
 
 .slide-title {
+  font-size: 20px;
   font-weight: 700;
   text-align: center;
 }
 
 .slide-content {
   margin: 20px 0 30px 0;
+  font-size: 13px;
   text-align: center;
+}
+
+.slide-item-text ul li {
+  font-size: 11px;
 }
 
 .slide-btn {
